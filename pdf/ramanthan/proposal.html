@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperwrike — Ramanthan — MedTranscribe Proposal</title>
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+.tier-card {
+  border: 1px solid var(--hairline); border-radius: 6px;
+  padding: 16px; background: var(--surface); overflow: hidden;
+  position: relative;
+}
+.tier-card.recommended { border-color: var(--lime); }
+.tier-card.recommended::before {
+  content: "RECOMMENDED";
+  position: absolute; top: 0; right: 0;
+  background: var(--lime); color: var(--navy);
+  font-family: var(--label); font-size: 7px; font-weight: 700;
+  letter-spacing: 0.16em; padding: 3px 10px;
+  border-bottom-left-radius: 4px;
+}
+.tier-price {
+  font-family: var(--display); font-weight: 800; font-size: 28px;
+  color: var(--lime); line-height: 1;
+}
+.tier-name {
+  font-family: var(--label); font-size: 9px; text-transform: uppercase;
+  letter-spacing: 0.2em; color: var(--muted); margin-bottom: 8px;
+}
+.tier-feature {
+  font-size: 9.5px; padding: 3px 0 3px 18px; position: relative; color: #2A3650;
+}
+.tier-feature::before {
+  content: "✓"; position: absolute; left: 0;
+  color: var(--lime); font-weight: 700; font-size: 9px;
+}
+.tier-feature.extra::before { content: "★"; color: var(--gold); }
+.privacy-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(76,122,12,0.08); border: 1px solid var(--lime-line);
+  border-radius: 5px; padding: 8px 14px;
+  font-family: var(--mono); font-size: 9px; color: var(--lime); font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<!-- ======= PAGE 1: COVER + OVERVIEW ======= -->
+<div class="page" data-screen-label="Cover">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/>
+        <rect class="bar" x="13" y="24" width="7" height="20" rx="2"/>
+        <rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/>
+        <circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div>
+        <div class="brand-name">Hyperwrike</div>
+        <div class="brand-tag">Elevate. Engage. Exceed.</div>
+      </div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:team@hyperwrike.com">team@hyperwrike.com</a> · <a href="https://www.hyperwrike.com">www.hyperwrike.com</a></div>
+      <div class="addr">Shop No. 01, Door No. 27-971, Madina Complex,</div>
+      <div class="addr">Palamaner Road, Chittoor, Andhra Pradesh — 517001</div>
+      <div>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+  </header>
+
+  <div class="doc-head">
+    <div class="doc-type">Commercial Proposal</div>
+    <h1 class="doc-title">MedTranscribe<br><span style="font-size:18px;color:var(--muted);font-weight:400;">Doctor-Patient Call Recording &amp; Transcription System</span></h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Ref No.</div><div class="v accent">HW-PROP-RMN-2026-001</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">13 June 2026</div></div>
+      <div class="cell"><div class="k">Valid For</div><div class="v">15 days</div></div>
+      <div class="cell"><div class="k">Prepared For</div><div class="v">Ramanthan</div></div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div class="party"><div class="role">From — Service Provider</div><div class="pname">Hyperwrike</div><div class="pdetail">AI Voice &amp; Automation Solutions<br>Chittoor, Andhra Pradesh — 517001</div></div>
+    <div class="party client"><div class="role">To — Client</div><div class="pname">Ramanthan</div><div class="pdetail">Medical Practice<br>India</div></div>
+  </div>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">01</span> Overview</div>
+      <p class="lead">A <strong>private, secure, on-premise</strong> system that automatically records every doctor-patient consultation call, transcribes it in real time, and stores everything locally on your own server. <strong>No data ever leaves your premises. No external API. No per-minute charges. Ever.</strong></p>
+      <div class="privacy-badge" style="margin:10px 0">🔒 100% Local Processing — No Audio Leaves Your Server</div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">02</span> What We Build</div>
+      <ul class="ticks">
+        <li>Records every doctor-patient phone/consultation call <strong>automatically</strong></li>
+        <li>Transcribes the full call to clean text format in <strong>real time</strong></li>
+        <li>Stores all transcripts <strong>locally</strong> — 100% private, no data leaves your server</li>
+        <li><strong>No external API used</strong> — all processing done on your own machine (open-source Whisper model)</li>
+        <li><strong>Speaker diarization</strong> — Doctor and Patient voices are labelled separately (Tier B)</li>
+        <li>Each transcript tagged: <strong>Date, Doctor Name, Patient ID, Duration</strong></li>
+        <li>Search any transcript by keyword, date, or doctor name</li>
+        <li>Export as <strong>.txt or .pdf</strong></li>
+      </ul>
+      <div class="callout" style="margin-top:11px">
+        <strong>Why no external API?</strong><br>
+        Your patients' medical conversations are private. We use open-source local models (Whisper by OpenAI, run entirely on your server) so no audio ever leaves your premises. <strong>HIPAA-safe by design.</strong>
+      </div>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-PROP-RMN-2026-001</div>
+    <div class="center">Page 1 of 2</div>
+    <div class="right">Confidential — <span class="lime">Ramanthan</span></div>
+  </footer>
+</div>
+
+<!-- ======= PAGE 2: PRICING + WHY HYPERWRIKE ======= -->
+<div class="page" data-screen-label="Pricing & Terms">
+  <header class="running-head">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div class="brand-name">Hyperwrike</div>
+    </div>
+    <div class="rh-ref"><span class="doc">Proposal</span><br>HW-PROP-RMN-2026-001 · Ramanthan</div>
+  </header>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">03</span> Pricing Tiers</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:12px;">
+
+        <div class="tier-card">
+          <div class="tier-name">Tier A — Standard</div>
+          <div class="tier-price">₹20,000</div>
+          <p style="font-size:9px;color:var(--muted);margin:6px 0 10px;">One-time build. No recurring fees.</p>
+          <div class="tier-feature">Basic recording + transcription</div>
+          <div class="tier-feature">Local Whisper model (medium accuracy)</div>
+          <div class="tier-feature">.txt output with searchable archive</div>
+          <div class="tier-feature">Up to <strong>10 simultaneous calls</strong></div>
+        </div>
+
+        <div class="tier-card recommended">
+          <div class="tier-name">Tier B — Professional</div>
+          <div class="tier-price">₹30,000</div>
+          <p style="font-size:9px;color:var(--muted);margin:6px 0 10px;">One-time build. No recurring fees.</p>
+          <div class="tier-feature">Everything in Tier A</div>
+          <div class="tier-feature extra"><strong>Speaker diarization</strong> — Doctor vs Patient labelled</div>
+          <div class="tier-feature extra"><strong>PDF export</strong> with formatted layout</div>
+          <div class="tier-feature extra"><strong>Dashboard UI</strong> — browse, filter, search transcripts</div>
+          <div class="tier-feature extra">Up to <strong>50 simultaneous calls</strong></div>
+          <div class="tier-feature extra"><strong>1 month</strong> post-delivery support included</div>
+        </div>
+
+      </div>
+
+      <table class="tbl">
+        <thead><tr><th>Payment Terms</th><th class="num">Tier A</th><th class="num">Tier B</th></tr></thead>
+        <tbody>
+          <tr><td>Advance to begin (50%)</td><td class="num mono">₹10,000</td><td class="num mono">₹15,000</td></tr>
+          <tr class="total"><td>Balance on delivery (50%)</td><td class="num">₹10,000</td><td class="num">₹15,000</td></tr>
+          <tr><td>Work starts within</td><td class="num mono" colspan="2">48 hours of advance</td></tr>
+          <tr><td>Delivery timeline</td><td class="num mono" colspan="2">10–14 days</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">04</span> Why Hyperwrike</div>
+      <ul class="ticks">
+        <li><strong>No paid transcription APIs</strong> — zero per-minute charges, ever. You pay once and own it.</li>
+        <li><strong>Your data stays on your server</strong> — no audio, no transcripts, nothing leaves your premises.</li>
+        <li><strong>We handle setup, testing, and staff training</strong> — full handover with no technical knowledge required from your team.</li>
+        <li>Open-source stack — no vendor lock-in, no subscription fees, no surprises.</li>
+      </ul>
+    </section>
+
+    <hr class="gold-rule">
+
+    <div class="signatures">
+      <div class="sig">
+        <div class="sig-for">For <span class="co">Hyperwrike</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+      <div class="sig">
+        <div class="sig-for">For <span class="co">Ramanthan</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-PROP-RMN-2026-001</div>
+    <div class="center">Page 2 of 2</div>
+    <div class="right">Confidential — <span class="lime">Ramanthan</span></div>
+  </footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperwrike — Chital Paper — Internal Kanban Brief</title>
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+.internal-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 3px;
+  background: rgba(201,168,76,0.15); color: var(--gold);
+  font-family: var(--label); font-size: 8px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em;
+}
+.kanban-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+.kanban-col { border-radius: 6px; overflow: hidden; }
+.col-head {
+  padding: 9px 12px;
+  font-family: var(--display); font-weight: 700; font-size: 11px;
+  border-bottom: 2px solid transparent;
+}
+.col-head .col-sub {
+  font-family: var(--label); font-weight: 400; font-size: 8px;
+  text-transform: uppercase; letter-spacing: 0.12em; margin-top: 2px;
+  opacity: 0.75;
+}
+.col-todo   .col-head { background: rgba(201,132,44,0.14); border-color: #C98C2C; color: #C98C2C; }
+.col-prog1  .col-head { background: rgba(58,107,168,0.14); border-color: #3A6BA8; color: #3A6BA8; }
+.col-prog2  .col-head { background: rgba(58,107,168,0.10); border-color: #5A8FC8; color: #5A8FC8; }
+.col-done   .col-head { background: rgba(42,138,90,0.14); border-color: #2A8A5A; color: #2A8A5A; }
+
+.col-body { padding: 8px; background: var(--surface); min-height: 200px; }
+.col-todo  .col-body { background: rgba(201,132,44,0.04); }
+.col-prog1 .col-body { background: rgba(58,107,168,0.04); }
+.col-prog2 .col-body { background: rgba(58,107,168,0.03); }
+.col-done  .col-body { background: rgba(42,138,90,0.04); }
+
+.kanban-card {
+  background: var(--navy); border: 1px solid var(--hairline); border-radius: 5px;
+  padding: 8px 10px; margin-bottom: 6px; font-size: 9px; color: #2A3650;
+  line-height: 1.45; box-shadow: 0 1px 3px rgba(21,32,58,0.06);
+}
+.kanban-card:last-child { margin-bottom: 0; }
+.kanban-card strong { color: var(--ink); }
+.card-dot {
+  width: 6px; height: 6px; border-radius: 50%; display: inline-block;
+  margin-right: 5px; flex: none; margin-top: 3px;
+}
+.dot-todo   { background: #C98C2C; }
+.dot-prog   { background: #3A6BA8; }
+.dot-done   { background: #2A8A5A; }
+.notes-box {
+  border: 1px solid var(--hairline); border-left: 3px solid var(--gold);
+  border-radius: 5px; background: rgba(201,168,76,0.05);
+  padding: 13px 16px; margin-top: 16px;
+}
+.notes-box .note-title {
+  font-family: var(--label); font-size: 9px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em; color: var(--gold); margin-bottom: 8px;
+}
+.note-item { font-size: 9.5px; color: #2A3650; padding: 4px 0; border-bottom: 0.5px solid var(--hairline); line-height:1.45; }
+.note-item:last-child { border-bottom: none; padding-bottom: 0; }
+</style>
+</head>
+<body>
+
+<div class="page" data-screen-label="Kanban Team Brief">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/>
+        <rect class="bar" x="13" y="24" width="7" height="20" rx="2"/>
+        <rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/>
+        <circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div>
+        <div class="brand-name">Hyperwrike</div>
+        <div class="brand-tag">Internal Planning Document — Not for Client Distribution</div>
+      </div>
+    </div>
+    <div class="contact"><span class="internal-badge">Internal Only</span></div>
+  </header>
+
+  <div class="doc-head">
+    <div class="doc-type">Internal Team Brief — Project Board</div>
+    <h1 class="doc-title" style="font-size:20px;">Chital Paper — E-Commerce Website</h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Project</div><div class="v accent">HW-INT-CHP-2026-001</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">13 June 2026</div></div>
+      <div class="cell"><div class="k">Value</div><div class="v">₹50k–₹1L + ₹10k/mo</div></div>
+      <div class="cell"><div class="k">Status</div><div class="v" style="color:var(--gold);">Awaiting Advance</div></div>
+    </div>
+  </div>
+
+  <div class="kanban-grid">
+
+    <!-- COL 1: TO DO -->
+    <div class="kanban-col col-todo">
+      <div class="col-head">To Do<div class="col-sub">Before advance received</div></div>
+      <div class="col-body">
+        <div class="kanban-card"><strong>Confirm product count</strong> — 13–15 / up to 30 / up to 50? (determines quote)</div>
+        <div class="kanban-card"><strong>Domain status</strong> — does client already have a domain? Or need new? (₹800–₹1,500)</div>
+        <div class="kanban-card"><strong>Payment gateway</strong> — Razorpay or PayU preference?</div>
+        <div class="kanban-card"><strong>Platform decision</strong> — Custom coded or Shopify? Confirm based on expected daily traffic</div>
+        <div class="kanban-card"><strong>Collect from client:</strong> product images + descriptions (first batch)</div>
+      </div>
+    </div>
+
+    <!-- COL 2: IN PROGRESS WEEK 1 -->
+    <div class="kanban-col col-prog1">
+      <div class="col-head">In Progress<div class="col-sub">After advance · Week 1</div></div>
+      <div class="col-body">
+        <div class="kanban-card"><strong>Server setup</strong> + hosting configuration (GPU server, domain pointing)</div>
+        <div class="kanban-card"><strong>UI/UX design mockup</strong> — home, product page, cart, checkout</div>
+        <div class="kanban-card"><strong>Product upload</strong> — first batch (images, descriptions, pricing)</div>
+        <div class="kanban-card"><strong>Payment gateway integration</strong> — Razorpay/PayU test mode</div>
+        <div class="kanban-card"><strong>Mobile responsiveness</strong> — test all breakpoints</div>
+      </div>
+    </div>
+
+    <!-- COL 3: IN PROGRESS WEEK 2 -->
+    <div class="kanban-col col-prog2">
+      <div class="col-head">In Progress<div class="col-sub">Week 2</div></div>
+      <div class="col-body">
+        <div class="kanban-card"><strong>Admin panel build</strong> — add/edit/delete products, order view</div>
+        <div class="kanban-card"><strong>SEO meta setup</strong> — titles, descriptions, sitemaps, robots.txt</div>
+        <div class="kanban-card"><strong>WhatsApp + contact form</strong> — floating button + enquiry form</div>
+        <div class="kanban-card"><strong>Cross-device testing</strong> — mobile, tablet, desktop</div>
+        <div class="kanban-card"><strong>Speed optimisation</strong> — image compression, caching, Core Web Vitals</div>
+      </div>
+    </div>
+
+    <!-- COL 4: DONE -->
+    <div class="kanban-col col-done">
+      <div class="col-head">Done / Delivered<div class="col-sub">Completion checklist</div></div>
+      <div class="col-body">
+        <div class="kanban-card">☐ &nbsp;<strong>Client approval</strong> of design mockup (signed off)</div>
+        <div class="kanban-card">☐ &nbsp;<strong>All products live</strong> — images, prices, descriptions verified</div>
+        <div class="kanban-card">☐ &nbsp;<strong>Payment gateway tested</strong> — live transaction completed</div>
+        <div class="kanban-card">☐ &nbsp;<strong>Handover + training</strong> — admin panel walkthrough done</div>
+        <div class="kanban-card">☐ &nbsp;<strong>1-month support</strong> period started — log start date</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="notes-box">
+    <div class="note-title">Team Notes</div>
+    <div class="note-item"><strong>Shopify note:</strong> If client picks Shopify, we cannot quote a fixed price. Explain that Shopify costs depend on apps chosen + order volume. Quote setup fee + our monthly support separately — do not give a total number until apps are confirmed.</div>
+    <div class="note-item"><strong>Advance rule:</strong> Always collect 50% advance before starting ANY work. Send the roadmap document the same day the advance is received — this sets the professional tone immediately.</div>
+    <div class="note-item"><strong>Server billing:</strong> Monthly server fee (₹10,000/mo) billing starts from go-live month. Ensure this is in the contract before signing.</div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-INT-CHP-2026-001 · INTERNAL</div>
+    <div class="center">Page 1 of 1</div>
+    <div class="right">Hyperwrike Internal — Do Not Share</div>
+  </footer>
+</div>
+
+</body>
+</html>

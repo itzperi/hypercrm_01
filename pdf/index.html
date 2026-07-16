@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperwrike — Client Document Hub</title>
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+  body { padding: 0; background: #E8ECF1; }
+  .hub {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 54px 40px 80px;
+  }
+  .hub-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 26px; margin-bottom: 8px;
+  }
+  .hub-head .brand .logo { width: 54px; height: 54px; }
+  .hub-head .brand-name { font-size: 30px; }
+  .hub-head .brand-tag { font-size: 10px; }
+  .hub-head .meta {
+    text-align: right; font-family: var(--mono); font-size: 9.5px;
+    color: var(--muted); line-height: 1.8;
+  }
+  .hub-head .meta .lime { color: var(--lime); }
+  .hub-title {
+    font-family: var(--label); text-transform: uppercase; letter-spacing: 0.3em;
+    font-size: 11px; color: var(--lime); margin: 30px 0 4px;
+  }
+  .hub-sub { font-size: 13px; color: var(--muted); margin-bottom: 30px; max-width: 620px; line-height: 1.6; }
+
+  .client-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-left: 3px solid var(--lime);
+    border-radius: 8px;
+    padding: 22px 26px 24px;
+    margin-bottom: 18px;
+  }
+  .client-card.usd { border-left-color: var(--gold); }
+  .cc-top {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 18px; gap: 20px; flex-wrap: wrap;
+  }
+  .cc-id {
+    font-family: var(--mono); font-size: 10px; color: var(--navy);
+    background: var(--lime); border-radius: 4px; padding: 3px 9px; font-weight: 700;
+  }
+  .usd .cc-id { background: var(--gold); }
+  .cc-name { font-family: var(--display); font-weight: 700; font-size: 21px; margin: 9px 0 4px; }
+  .cc-desc { font-size: 11.5px; color: var(--muted); line-height: 1.5; max-width: 560px; }
+  .cc-region {
+    font-family: var(--label); text-transform: uppercase; letter-spacing: 0.16em;
+    font-size: 9px; color: var(--muted-2); margin-top: 8px;
+  }
+  .cc-value { text-align: right; flex: none; }
+  .cc-value .amt { font-family: var(--mono); font-weight: 700; font-size: 19px; color: var(--lime); }
+  .cc-value .amt-cap { font-family: var(--label); text-transform: uppercase; letter-spacing: 0.14em; font-size: 8px; color: var(--muted-2); margin-top: 3px; }
+
+  .doc-links { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .doc-link {
+    display: block; text-decoration: none;
+    background: var(--navy);
+    border: 1px solid var(--hairline);
+    border-radius: 6px;
+    padding: 13px 14px 14px;
+    transition: border-color .15s, transform .15s, background .15s;
+  }
+  .doc-link:hover { border-color: var(--lime-line); background: var(--surface-2); transform: translateY(-2px); }
+  .doc-link .dl-type {
+    font-family: var(--label); text-transform: uppercase; letter-spacing: 0.12em;
+    font-size: 9.5px; font-weight: 600; color: var(--ink); display: flex; align-items: center; gap: 7px;
+  }
+  .doc-link .dl-type::before {
+    content: ""; width: 7px; height: 7px; border-radius: 2px;
+    background: var(--lime); flex: none;
+  }
+  .usd .doc-link .dl-type::before { background: var(--gold); }
+  .doc-link .dl-ref { font-family: var(--mono); font-size: 8.5px; color: var(--muted-2); margin-top: 8px; }
+  .doc-link .dl-arrow { font-family: var(--mono); font-size: 10px; color: var(--lime); margin-top: 6px; opacity: 0; transition: opacity .15s; }
+  .doc-link:hover .dl-arrow { opacity: 1; }
+
+  .hub-foot {
+    margin-top: 34px; padding-top: 18px; border-top: 0.5px solid var(--gold-soft);
+    display: flex; justify-content: space-between; font-family: var(--mono);
+    font-size: 9px; color: var(--muted-2); letter-spacing: 0.03em;
+  }
+  @media (max-width: 720px) {
+    .doc-links { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="hub">
+
+  <header class="hub-head">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Hyperwrike">
+        <rect class="bar" x="3"  y="30" width="7" height="14" rx="2"/>
+        <rect class="bar" x="13" y="24" width="7" height="20" rx="2"/>
+        <rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/>
+        <circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div>
+        <div class="brand-name">Hyperwrike</div>
+        <div class="brand-tag">AI Voice &amp; Automation Solutions</div>
+      </div>
+    </div>
+    <div class="meta">
+      <div><span class="lime">5</span> clients · <span class="lime">20</span> documents</div>
+      <div>Issued 04 June 2026</div>
+      <div>hello@hyperwrike.com</div>
+    </div>
+  </header>
+
+  <div class="hub-title">Client Document Hub</div>
+  <p class="hub-sub">Proposal, Scope of Work, Client Contract and Invoice for each engagement. Click any document to open it. Each is print-ready A4 — use your browser's Print &rarr; Save as PDF.</p>
+
+  <!-- CLIENT 1 -->
+  <div class="client-card">
+    <div class="cc-top">
+      <div>
+        <span class="cc-id">Client 01</span>
+        <div class="cc-name">VS Hospitals</div>
+        <div class="cc-desc">AI Voice Agent &amp; Chat System — single-branch deployment. Inbound/outbound voice, chat, Zoho CRM + Ozonetel, ROI dashboard.</div>
+        <div class="cc-region">Chennai, Tamil Nadu · India · INR</div>
+      </div>
+      <div class="cc-value"><div class="amt">₹1,77,000</div><div class="amt-cap">Contract Value</div></div>
+    </div>
+    <div class="doc-links">
+      <a class="doc-link" href="vs-hospitals/proposal.html"><div class="dl-type">Proposal</div><div class="dl-ref">HW-PROP-VSH-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="vs-hospitals/scope-of-work.html"><div class="dl-type">Scope of Work</div><div class="dl-ref">HW-SOW-VSH-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="vs-hospitals/contract.html"><div class="dl-type">Contract</div><div class="dl-ref">HW-CC-VSH-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="vs-hospitals/invoice.html"><div class="dl-type">Invoice</div><div class="dl-ref">HW-INV-VSH-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+    </div>
+  </div>
+
+  <!-- CLIENT 2 -->
+  <div class="client-card usd">
+    <div class="cc-top">
+      <div>
+        <span class="cc-id">Client 02</span>
+        <div class="cc-name">Article Verification Platform</div>
+        <div class="cc-desc">AI-powered article verification &amp; publishing — a 6-metric scoring engine that auto-approves or rejects user-submitted news articles.</div>
+        <div class="cc-region">United States · USD</div>
+      </div>
+      <div class="cc-value"><div class="amt">$500<span style="font-size:12px;color:var(--muted)"> + $239/mo</span></div><div class="amt-cap">Setup + Monthly</div></div>
+    </div>
+    <div class="doc-links">
+      <a class="doc-link" href="article-verification/proposal.html"><div class="dl-type">Proposal</div><div class="dl-ref">HW-PROP-AVP-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="article-verification/scope-of-work.html"><div class="dl-type">Scope of Work</div><div class="dl-ref">HW-SOW-AVP-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="article-verification/contract.html"><div class="dl-type">Contract</div><div class="dl-ref">HW-CC-AVP-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="article-verification/invoice.html"><div class="dl-type">Invoice</div><div class="dl-ref">HW-INV-AVP-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+    </div>
+  </div>
+
+  <!-- CLIENT 3 -->
+  <div class="client-card usd">
+    <div class="cc-top">
+      <div>
+        <span class="cc-id">Client 03</span>
+        <div class="cc-name">Dr. Parma</div>
+        <div class="cc-desc">LeadHunter + ReputationGuard — dual AI agents that find new-patient leads and protect online reputation 24/7 for a family physician clinic.</div>
+        <div class="cc-region">United States · USD</div>
+      </div>
+      <div class="cc-value"><div class="amt">$800<span style="font-size:12px;color:var(--muted)"> + $299/mo</span></div><div class="amt-cap">Setup + Monthly</div></div>
+    </div>
+    <div class="doc-links">
+      <a class="doc-link" href="dr-parma/proposal.html"><div class="dl-type">Proposal</div><div class="dl-ref">HW-PROP-PRM-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="dr-parma/scope-of-work.html"><div class="dl-type">Scope of Work</div><div class="dl-ref">HW-SOW-PRM-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="dr-parma/contract.html"><div class="dl-type">Contract</div><div class="dl-ref">HW-CC-PRM-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="dr-parma/invoice.html"><div class="dl-type">Invoice</div><div class="dl-ref">HW-INV-PRM-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+    </div>
+  </div>
+
+  <!-- CLIENT 4 -->
+  <div class="client-card">
+    <div class="cc-top">
+      <div>
+        <span class="cc-id">Client 04</span>
+        <div class="cc-name">Pannasuna Chit Funds</div>
+        <div class="cc-desc">Mobile app (Android + iOS) + website — member portal, admin dashboard and central database. Complete development, hosting &amp; maintenance.</div>
+        <div class="cc-region">India · INR</div>
+      </div>
+      <div class="cc-value"><div class="amt">₹1,77,000</div><div class="amt-cap">Contract Value</div></div>
+    </div>
+    <div class="doc-links">
+      <a class="doc-link" href="pannasuna-chit-funds/proposal.html"><div class="dl-type">Proposal</div><div class="dl-ref">HW-PROP-PCF-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="pannasuna-chit-funds/scope-of-work.html"><div class="dl-type">Scope of Work</div><div class="dl-ref">HW-SOW-PCF-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="pannasuna-chit-funds/contract.html"><div class="dl-type">Contract</div><div class="dl-ref">HW-CC-PCF-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="pannasuna-chit-funds/invoice.html"><div class="dl-type">Invoice</div><div class="dl-ref">HW-INV-PCF-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+    </div>
+  </div>
+
+  <!-- CLIENT 5 -->
+  <div class="client-card usd">
+    <div class="cc-top">
+      <div>
+        <span class="cc-id">Client 05</span>
+        <div class="cc-name">FixDirectly.com</div>
+        <div class="cc-desc">Dual AI agent system — a customer lead scraper and an AI voice-agent service-provider recruiter, building both sides of the marketplace 24/7.</div>
+        <div class="cc-region">United States · USD</div>
+      </div>
+      <div class="cc-value"><div class="amt">$1,500<span style="font-size:12px;color:var(--muted)"> + API</span></div><div class="amt-cap">Setup + Pass-through</div></div>
+    </div>
+    <div class="doc-links">
+      <a class="doc-link" href="fixdirectly/proposal.html"><div class="dl-type">Proposal</div><div class="dl-ref">HW-PROP-FDX-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="fixdirectly/scope-of-work.html"><div class="dl-type">Scope of Work</div><div class="dl-ref">HW-SOW-FDX-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="fixdirectly/contract.html"><div class="dl-type">Contract</div><div class="dl-ref">HW-CC-FDX-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+      <a class="doc-link" href="fixdirectly/invoice.html"><div class="dl-type">Invoice</div><div class="dl-ref">HW-INV-FDX-2026-001</div><div class="dl-arrow">Open &rarr;</div></a>
+    </div>
+  </div>
+
+  <footer class="hub-foot">
+    <div>Hyperwrike — AI Voice &amp; Automation Solutions</div>
+    <div>Confidential · Chittoor, Andhra Pradesh — 517001</div>
+  </footer>
+</div>
+</body>
+</html>

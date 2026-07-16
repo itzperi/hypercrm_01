@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>Hyperwrike — Dr. Param — All 5 Documents</title>
+<style>/* ============================================================
+   HYPERWRIKE — Document Brand System
+   AI Voice & Automation Solutions
+   Premium dark-navy A4 document set
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --navy:        #FFFFFF;   /* base sheet background    */
+  --surface:     #F3F6FA;   /* card / alt row           */
+  --surface-2:   #E7EEF6;   /* table head / nested      */
+  --lime:        #4C7A0C;   /* readable green — text, lines */
+  --lime-bright: #A6E635;   /* logo + bright accent fills   */
+  --lime-soft:   rgba(166,230,53,0.20);
+  --lime-line:   rgba(76,122,12,0.32);
+  --gold:        #A6842C;   /* decorative rule          */
+  --gold-soft:   rgba(166,132,44,0.40);
+  --ink:         #15203A;   /* body text (deep navy)    */
+  --muted:       #5A6B82;   /* secondary text           */
+  --muted-2:     #8A98AB;   /* faint labels / blanks    */
+  --alert:       #D62246;   /* negative / alert         */
+  --hairline:    rgba(21,32,58,0.14);
+
+  --display: 'Sora', sans-serif;
+  --label:   'Space Grotesk', sans-serif;
+  --body:    'DM Sans', sans-serif;
+  --mono:    'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+body {
+  background: #E8ECF1;
+  font-family: var(--body);
+  color: var(--ink);
+  line-height: 1.55;
+  padding: 28px 0 60px;
+}
+
+/* ---------- A4 SHEET ---------- */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 26px;
+  background:
+    radial-gradient(120% 60% at 100% 0%, rgba(166,230,53,0.05) 0%, transparent 42%),
+    radial-gradient(90% 50% at 0% 100%, rgba(201,168,76,0.04) 0%, transparent 40%),
+    var(--navy);
+  position: relative;
+  padding: 25mm 22mm 24mm;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 14px 44px -22px rgba(21,32,58,0.28), 0 0 0 1px rgba(21,32,58,0.06);
+  overflow: hidden;
+}
+.page::before {  /* top accent band */
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--lime-bright) 0%, var(--lime-bright) 38%, transparent 38%, transparent 62%, var(--gold) 62%, var(--gold) 100%);
+  opacity: 1;
+}
+
+/* ---------- LETTERHEAD ---------- */
+.letterhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 22px;
+}
+.brand { display: flex; align-items: center; gap: 13px; }
+.brand .logo { width: 46px; height: 46px; flex: none; }
+.brand .logo .bar { fill: var(--ink); }
+.brand .logo .trend { stroke: var(--lime-bright); }
+.brand .logo .node { fill: var(--lime-bright); }
+.brand-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 23px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1;
+}
+.brand-tag {
+  font-family: var(--label);
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.letterhead .contact {
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  line-height: 1.75;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+.letterhead .contact .addr { color: var(--muted-2); }
+.letterhead .contact a { color: var(--lime); text-decoration: none; }
+
+/* ---------- RUNNING HEAD (pages 2+) ---------- */
+.running-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 20px;
+}
+.running-head .brand { gap: 9px; }
+.running-head .brand .logo { width: 26px; height: 26px; }
+.running-head .brand-name { font-size: 14px; letter-spacing: 0.05em; }
+.running-head .rh-ref {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--muted-2);
+  text-align: right;
+  letter-spacing: 0.02em;
+}
+.running-head .rh-ref .doc { color: var(--lime); text-transform: uppercase; letter-spacing: 0.16em; font-family: var(--label); font-size: 8px; }
+
+/* ---------- DOC TITLE BLOCK ---------- */
+.doc-head { margin-bottom: 20px; }
+.doc-type {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 10px;
+  color: var(--lime);
+  font-weight: 500;
+}
+.doc-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+  margin: 8px 0 14px;
+  line-height: 1.08;
+}
+.doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(21,32,58,0.03);
+}
+.doc-meta .cell {
+  padding: 9px 16px 8px;
+  border-right: 1px solid var(--hairline);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.doc-meta .cell:last-child { border-right: none; }
+.doc-meta .k {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 7.5px;
+  color: var(--muted-2);
+}
+.doc-meta .v {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink);
+  margin-top: 3px;
+  font-weight: 500;
+}
+.doc-meta .v.accent { color: var(--lime); }
+
+/* parties row */
+.parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.party {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--lime);
+  border-radius: 4px;
+  padding: 13px 16px;
+}
+.party.client { border-left-color: var(--gold); }
+.party .role {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 8px;
+  color: var(--muted-2);
+  margin-bottom: 6px;
+}
+.party .pname { font-family: var(--display); font-weight: 600; font-size: 15px; }
+.party .pdetail { font-size: 10px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+.party .pdetail .mono { font-family: var(--mono); color: var(--ink); }
+
+/* ---------- CONTENT ---------- */
+.content { padding-left: 18px; border-left: 3px solid var(--lime); }
+.content.gold-edge { border-left-color: var(--gold); }
+
+section.block { margin-bottom: 18px; }
+section.block:last-child { margin-bottom: 0; }
+
+.section-label {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--lime);
+}
+.section-heading {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--lime);
+  padding-bottom: 5px;
+  border-bottom: 0.5px solid var(--lime-line);
+  margin-bottom: 11px;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+.section-heading .num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted-2);
+  font-weight: 500;
+}
+.section-heading.gold { color: var(--gold); border-bottom-color: var(--gold-soft); }
+
+p.lead { font-size: 10.5px; color: #2A3650; line-height: 1.62; margin-bottom: 9px; }
+p.lead:last-child { margin-bottom: 0; }
+p.lead strong { color: var(--ink); font-weight: 600; }
+.muted { color: var(--muted); }
+
+/* gold divider */
+.gold-rule { height: 0; border: none; border-top: 0.5px solid var(--gold-soft); margin: 16px 0; }
+
+/* ---------- LISTS ---------- */
+ul.ticks, ol.steps, ul.plain { list-style: none; }
+ul.ticks li {
+  position: relative;
+  padding: 4px 0 4px 22px;
+  font-size: 10px;
+  color: #2A3650;
+  line-height: 1.5;
+}
+ul.ticks li::before {
+  content: "";
+  position: absolute; left: 2px; top: 9px;
+  width: 9px; height: 9px;
+  border: 1.5px solid var(--lime);
+  border-radius: 2px;
+  background: var(--lime-soft);
+}
+ul.ticks li strong { color: var(--ink); }
+
+ol.steps { counter-reset: step; }
+ol.steps li {
+  position: relative;
+  padding: 5px 0 5px 30px;
+  font-size: 10px;
+  color: #2A3650;
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+ol.steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute; left: 0; top: 4px;
+  width: 19px; height: 19px;
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  color: var(--navy); background: var(--lime);
+  border-radius: 50%;
+}
+ol.steps li strong { color: var(--ink); }
+
+ul.plain li { font-size: 10px; color: #2A3650; padding: 3px 0; line-height: 1.5; }
+
+/* two-column deliverables grid */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 26px; }
+.grid-2 ol.steps li { padding-left: 30px; }
+
+/* ---------- TABLES ---------- */
+table.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9.5px;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  overflow: hidden;
+}
+table.tbl thead th {
+  background: var(--surface-2);
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--lime);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--lime-line);
+}
+table.tbl tbody td {
+  padding: 7px 12px;
+  border-bottom: 0.5px solid var(--hairline);
+  color: #2A3650;
+  vertical-align: top;
+  line-height: 1.45;
+}
+table.tbl tbody tr:nth-child(odd) td  { background: var(--navy); }
+table.tbl tbody tr:nth-child(even) td { background: var(--surface); }
+table.tbl tbody tr:last-child td { border-bottom: none; }
+table.tbl td.num, table.tbl th.num { text-align: right; font-family: var(--mono); white-space: nowrap; }
+table.tbl td.mono { font-family: var(--mono); color: var(--ink); }
+table.tbl td.lbl { color: var(--muted); }
+table.tbl tr.total td {
+  background: var(--lime-soft) !important;
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--lime);
+  border-top: 1px solid var(--lime-line);
+  font-size: 10.5px;
+}
+table.tbl tr.subtotal td { font-family: var(--mono); color: var(--ink); }
+table.tbl td .w { font-family: var(--mono); color: var(--lime); font-weight: 600; }
+
+/* weight chip for metric tables */
+.chip {
+  display: inline-block;
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: var(--lime); background: var(--lime-soft);
+  border: 1px solid var(--lime-line);
+  border-radius: 3px; padding: 1px 7px;
+}
+
+/* ---------- COMMERCIAL HIGHLIGHT ---------- */
+.headline-figure {
+  display: flex; align-items: baseline; gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--lime-line);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 4px 0 12px;
+}
+.headline-figure .big {
+  font-family: var(--mono); font-weight: 700; font-size: 30px;
+  color: var(--lime); letter-spacing: -0.02em; line-height: 1;
+}
+.headline-figure .cap { font-size: 10px; color: var(--muted); }
+.headline-figure .cap strong { color: var(--ink); display: block; font-family: var(--display); font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+
+/* callout / quote box */
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+  padding: 11px 15px;
+  font-size: 9.5px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.callout strong { color: var(--ink); }
+.script-quote {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 9.5px;
+  color: #33405A;
+  line-height: 1.6;
+}
+
+/* scoring rows */
+.score-row { display: flex; align-items: center; gap: 10px; font-size: 9.5px; padding: 3px 0; }
+.score-row .pts { font-family: var(--mono); font-weight: 700; width: 38px; text-align: right; }
+.score-row .pts.pos { color: var(--lime); }
+.score-row .pts.neg { color: var(--alert); }
+
+/* ---------- SIGNATURE ---------- */
+.signatures {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 26px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 0.5px solid var(--gold-soft);
+}
+.sig .sig-for {
+  font-family: var(--label); text-transform: uppercase; letter-spacing: 0.18em;
+  font-size: 8.5px; color: var(--lime); margin-bottom: 18px;
+}
+.sig .sig-for .co { color: var(--ink); font-weight: 600; }
+.sig-field { margin-bottom: 13px; }
+.sig-line {
+  border-bottom: 1px solid var(--lime-line);
+  height: 17px;
+}
+.sig-field .fl {
+  font-family: var(--label); text-transform: uppercase; letter-spacing: 0.12em;
+  font-size: 7.5px; color: var(--muted-2); margin-top: 4px;
+}
+.blank { color: var(--muted-2); border-bottom: 1px dotted var(--muted-2); padding: 0 3px; font-style: italic; }
+
+/* ---------- FOOTER ---------- */
+.page-footer {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 0.5px solid var(--gold-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.03em;
+  color: var(--muted-2);
+}
+.page-footer .center { color: var(--muted); }
+.page-footer .right { color: var(--muted); }
+.page-footer .lime { color: var(--lime); }
+
+/* small helpers */
+.mt-0 { margin-top: 0; }
+.two-col { column-count: 2; column-gap: 26px; }
+.two-col li { break-inside: avoid; }
+.note-line { font-size: 9px; color: var(--muted); font-style: italic; margin-top: 7px; }
+.kbd-amount { font-family: var(--mono); color: var(--lime); font-weight: 600; }
+.neg { color: var(--alert); }
+
+/* ---------- PRINT ---------- */
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: #fff; padding: 0; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+  .page:last-child { page-break-after: auto; }
+  .no-print { display: none !important; }
+}
+</style>
+<style>.version-card{border:1px solid var(--hairline);border-radius:6px;overflow:hidden;margin-bottom:12px;}
+.vc-head{padding:11px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--hairline);}
+.vc-v{font-family:var(--display);font-weight:800;font-size:15px;}
+.vc-meta{font-family:var(--mono);font-size:10px;color:var(--muted);}
+.vc-badge{font-family:var(--label);font-size:8px;text-transform:uppercase;letter-spacing:.16em;padding:3px 10px;border-radius:3px;font-weight:700;}
+.badge-v1{background:rgba(76,122,12,.14);color:#4C7A0C;}
+.badge-v2{background:rgba(201,168,76,.14);color:var(--gold);}
+.badge-v3{background:rgba(58,107,168,.14);color:#3A6BA8;}
+.vc-body{padding:12px 16px;background:var(--surface);}
+.persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
+.persona-card{border:1px solid var(--hairline);border-radius:5px;padding:11px 13px;background:var(--navy);}
+.persona-name{font-family:var(--display);font-weight:700;font-size:11px;margin-bottom:5px;}
+.persona-who{font-size:9px;color:var(--muted);margin-bottom:5px;line-height:1.45;}
+.persona-need{font-size:9px;color:var(--ink);line-height:1.45;}
+.article-block{margin-bottom:13px;}
+.article-head{font-family:var(--display);font-weight:700;font-size:11px;color:var(--lime);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid var(--hairline);}
+.clause{font-size:9.5px;line-height:1.65;color:var(--ink);padding:3px 0;border-bottom:.5px solid var(--hairline);}
+.clause:last-child{border-bottom:none;}
+.clause-n{font-family:var(--mono);font-weight:700;color:var(--muted);margin-right:7px;font-size:9px;}
+</style>
+<style>
+  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{background:#E8ECF1;}
+  @page{size:A4 portrait;margin:0;}
+  @media print{
+    body{background:white!important;padding:0!important;}
+    .page{margin:0!important;box-shadow:none!important;page-break-after:always!important;break-after:page!important;}
+    .page:last-child{page-break-after:auto!important;break-after:auto!important;}
+    *,*::before,*::after{animation-delay:-99s!important;animation-duration:.001s!important;transition-duration:0s!important;}
+  }
+</style>
+</head><body>
+<!-- PAGE 1 -->
+<div class="page" data-screen-label="PRD p1">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/>
+        <rect class="bar" x="13" y="24" width="7" height="20" rx="2"/>
+        <rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/>
+        <circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div><div class="brand-name">Hyperwrike</div><div class="brand-tag">AI Voice &amp; Automation Solutions</div></div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:team@hyperwrike.com">team@hyperwrike.com</a> · <a href="https://www.hyperwrike.com">www.hyperwrike.com</a></div>
+      <div class="addr">Shop No. 01, Door No. 27-971, Madina Complex, Palamaner Road, Chittoor, AP — 517001</div>
+      <div>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+  </header>
+
+  <div class="doc-head">
+    <div class="doc-type">Product Requirements Document</div>
+    <h1 class="doc-title">OpenLoop-Style Telemedicine Platform</h1>
+    <div style="font-family:var(--label);font-size:12px;color:var(--gold);letter-spacing:.04em;margin-bottom:14px;">Find-a-Doctor &amp; Open-Loop Care Model</div>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Ref No.</div><div class="v accent">HW-PRD-PRM-2026-001</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">16 June 2026</div></div>
+      <div class="cell"><div class="k">Version</div><div class="v">1.0</div></div>
+      <div class="cell"><div class="k">Prepared For</div><div class="v">Dr. Param</div></div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div class="party"><div class="role">Prepared By</div><div class="pname">Hyperwrike</div><div class="pdetail">AI Voice &amp; Automation Solutions<br>Chittoor, Andhra Pradesh — 517001<br><span class="mono">team@hyperwrike.com</span></div></div>
+    <div class="party client"><div class="role">Prepared For</div><div class="pname">Dr. Param</div><div class="pdetail">Family Physician Clinic<br>United States<br>Classification: <strong>Confidential</strong></div></div>
+  </div>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">01</span> Executive Summary</div>
+      <p class="lead">Dr. Param is building a direct-to-consumer telemedicine platform modelled on Sesame, Zocdoc, and Klarity, with the clinical and operational backbone of an "open-loop" provider network similar to OpenLoop Health. The platform lets a patient discover a service, complete a guided intake, get matched with a licensed clinician, receive care by video or asynchronous review, and leave with a prescription, lab order, or care plan — while a separate clinician workspace and an internal operations console run everything behind the scenes.</p>
+      <p class="lead">The platform is three connected products — the <strong>Patient App</strong>, the <strong>Provider Dashboard</strong>, and the <strong>Admin Console</strong> — released across three versions so the client can launch fast, prove the model with real patients and providers, and only invest in heavier infrastructure (insurance billing, controlled-substance prescribing, multi-brand white-label) once V1 has validated demand.</p>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">02</span> Product Vision &amp; Goals</div>
+      <ul class="ticks">
+        <li>Let a patient go from "I need care" to "a licensed clinician has seen my case" in under 10 minutes for async visits, or one scheduled video call for sync visits.</li>
+        <li>Give clinicians a single queue-driven workspace to review intakes, run visits, document care, and prescribe — without juggling separate EHR, eRx, and video tools.</li>
+        <li>Give Dr. Param's operations team full visibility and control: provider supply, compliance status, complaints, and revenue, in one console.</li>
+        <li>Build on a HIPAA-eligible technical foundation from day one so V2/V3 features can be added without re-architecting.</li>
+        <li>Ship a real, prescribable, billable V1 in approximately 17 weeks for a fixed investment of <strong>$44,000</strong>.</li>
+      </ul>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">03</span> Target Users &amp; Personas</div>
+      <div class="persona-grid">
+        <div class="persona-card">
+          <div class="persona-name" style="color:var(--lime);">Patient</div>
+          <div class="persona-who">Adult self-pay (and later insured) consumer looking for fast, convenient access to a specific service (weight loss, mental health, primary care).</div>
+          <div class="persona-need"><strong>Need:</strong> Be seen quickly by a real, licensed clinician without visiting a clinic.</div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-name" style="color:var(--gold);">Clinician / Provider</div>
+          <div class="persona-who">Licensed NP, PA, or physician contracted or employed by the platform, often working across multiple states.</div>
+          <div class="persona-need"><strong>Need:</strong> Review cases and run visits efficiently inside one workspace; get paid correctly and on time.</div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-name" style="color:#3A6BA8;">Platform Admin / Ops</div>
+          <div class="persona-who">Dr. Param's internal team — operations, compliance, and support staff.</div>
+          <div class="persona-need"><strong>Need:</strong> See everything happening on the platform and intervene when something needs attention.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-PRD-PRM-2026-001</div>
+    <div class="center">Page 1 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" data-screen-label="PRD p2">
+  <header class="running-head">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg>
+      <div class="brand-name">Hyperwrike</div>
+    </div>
+    <div class="rh-ref"><span class="doc">PRD</span><br>HW-PRD-PRM-2026-001 · Dr. Param</div>
+  </header>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">04</span> Versioned Scope Overview</div>
+
+      <div class="version-card">
+        <div class="vc-head">
+          <div><div class="vc-v">Version 1 — Launch MVP</div><div class="vc-meta">~17 weeks · $44,000 fixed price</div></div>
+          <span class="vc-badge badge-v1">Build Now</span>
+        </div>
+        <div class="vc-body">
+          <p class="lead" style="margin-bottom:8px;">Goal: prove the core loop — discovery → intake → match → visit → prescription/care plan → payment — for one or two initial service lines, cash-pay only, sync video visits only.</p>
+          <table class="tbl">
+            <thead><tr><th style="width:140px">Portal</th><th>In Scope for V1</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Patient App</strong></td><td>Marketing landing page; account creation &amp; identity verification; HIPAA + telehealth consent; condition-specific intake questionnaire (1–2 service lines); provider matching by state availability; sync video visit booking; visit summary &amp; care plan; ePrescription hand-off to pharmacy; card payment via Stripe; rating prompt.</td></tr>
+              <tr><td><strong>Provider Dashboard</strong></td><td>Provider onboarding (license, NPI, DEA upload, e-signature); daily queue of scheduled visits; in-call dashboard with patient chart side-by-side; SOAP note charting; ICD-10/CPT code entry; eRx for non-controlled medications; availability &amp; schedule management.</td></tr>
+              <tr><td><strong>Admin Console</strong></td><td>Patient &amp; provider directory; manual provider approval; visit log &amp; basic reporting (visits/day, revenue, conversion); flagged-case review; refund handling.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="version-card">
+        <div class="vc-head">
+          <div><div class="vc-v">Version 2 — Scale &amp; Monetize</div><div class="vc-meta">~14–16 weeks · $58,000–$72,000 (planning estimate)</div></div>
+          <span class="vc-badge badge-v2">After V1</span>
+        </div>
+        <div class="vc-body">
+          <p class="lead" style="margin-bottom:8px;">Goal: remove the friction points that cap growth — add asynchronous visits, insurance, ongoing-care workflows, and native mobile.</p>
+          <table class="tbl">
+            <thead><tr><th style="width:140px">Portal</th><th>Added in V2</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Patient App</strong></td><td>Async (store-and-forward) visits; secure patient–provider messaging; medication refill requests; lab result delivery; subscription/package billing; insurance eligibility check &amp; co-pay collection; native iOS &amp; Android apps.</td></tr>
+              <tr><td><strong>Provider Dashboard</strong></td><td>Async case queue with approve/decline/request-info/refer actions; lab ordering; refill approval workflow; earnings &amp; pay-stub view; license renewal tracking.</td></tr>
+              <tr><td><strong>Admin Console</strong></td><td>Automated provider credentialing workflow &amp; background-check integration; multi-state license-to-patient-state matching; advanced reporting (cohort, retention, CAC); compliance monitoring dashboard.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="version-card">
+        <div class="vc-head">
+          <div><div class="vc-v">Version 3 — Mature Platform</div><div class="vc-meta">~12+ weeks or ongoing retainer · $75,000–$95,000</div></div>
+          <span class="vc-badge badge-v3">Scale Phase</span>
+        </div>
+        <div class="vc-body">
+          <p class="lead">Goal: the parts that matter once the platform has real volume — controlled substances, automation, interoperability, and white-label scale.</p>
+          <ul class="ticks" style="margin-top:8px;">
+            <li>AI-assisted symptom intake / triage; expanded service lines; loyalty / referral programs</li>
+            <li>EPCS-compliant controlled-substance prescribing (two-factor DEA authentication)</li>
+            <li>Direct lab integrations (Quest/LabCorp); productivity analytics</li>
+            <li>Insurance claims automation (837/835, clearinghouse integration)</li>
+            <li>SOC 2–ready audit infrastructure; white-label multi-brand configuration</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-PRD-PRM-2026-001</div>
+    <div class="center">Page 2 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" data-screen-label="PRD p3">
+  <header class="running-head">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg>
+      <div class="brand-name">Hyperwrike</div>
+    </div>
+    <div class="rh-ref"><span class="doc">PRD</span><br>HW-PRD-PRM-2026-001 · Dr. Param</div>
+  </header>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">05</span> Technical Architecture Principles</div>
+      <ul class="ticks">
+        <li><strong>HIPAA-eligible from day one</strong> — every PHI-touching service runs behind a signed BAA; retrofitting compliance later is far more expensive.</li>
+        <li><strong>Data-driven configuration</strong> — service lines, intake questionnaires, and state coverage are configured, not hard-coded, so adding a new condition or state in V2/V3 doesn't require new code.</li>
+        <li><strong>Vendor stack (V1)</strong> — Stripe (payments), DoseSpot or Doxy.me (eRx), video vendor TBD at discovery, Twilio or AWS Transcribe (comms), AWS/GCP with HIPAA BAA (hosting).</li>
+        <li><strong>Shared data model</strong> — Patient App, Provider Dashboard, and Admin Console all share one underlying patient/provider/visit data model, built once, used three ways.</li>
+      </ul>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">06</span> Risk Register</div>
+      <table class="tbl">
+        <thead><tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr></thead>
+        <tbody>
+          <tr><td>Client delays BAA execution with PHI vendors</td><td class="mono" style="color:var(--alert);">High</td><td>Hard dependency flagged in SOW; module development cannot begin until BAA confirmed</td></tr>
+          <tr><td>Initial service line or launch state not confirmed by Week 1</td><td class="mono" style="color:var(--alert);">High</td><td>Provider matching and intake cannot be built without this; blocks M2</td></tr>
+          <tr><td>Scope creep via informal requests</td><td class="mono" style="color:var(--gold);">Medium</td><td>All changes via signed change order; no out-of-scope items developed without written agreement</td></tr>
+          <tr><td>eRx vendor integration delays</td><td class="mono" style="color:var(--gold);">Medium</td><td>Vendor selection finalised at Week 1; Hyperwrike has prior integration experience with DoseSpot</td></tr>
+          <tr><td>Clinician supply shortfall at launch</td><td class="mono" style="color:var(--gold);">Medium</td><td>Client's responsibility to supply licensed clinicians; admin console built to handle small provider lists</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">07</span> Investment Summary</div>
+      <div class="grid-2" style="gap:14px">
+        <div class="headline-figure" style="margin:0">
+          <div class="big">$44,000</div>
+          <div class="cap">Version 1 — Fixed Price<br><strong>~17 weeks</strong> to go-live</div>
+        </div>
+        <div>
+          <table class="tbl">
+            <tbody>
+              <tr><td>Version 2 (planning estimate)</td><td class="num mono">$58k–$72k</td></tr>
+              <tr><td>Version 3 (planning estimate)</td><td class="num mono">$75k–$95k</td></tr>
+              <tr><td>V2 &amp; V3 re-scoped at phase start</td><td class="num mono" style="color:var(--muted);">Not fixed yet</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <hr class="gold-rule">
+    <div class="signatures">
+      <div class="sig"><div class="sig-for">For <span class="co">Hyperwrike</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+      <div class="sig"><div class="sig-for">For <span class="co">Dr. Param</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-PRD-PRM-2026-001</div>
+    <div class="center">Page 3 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+<!-- PAGE 1 -->
+<div class="page" data-screen-label="Proposal p1">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg>
+      <div><div class="brand-name">Hyperwrike</div><div class="brand-tag">AI Voice &amp; Automation Solutions</div></div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:team@hyperwrike.com">team@hyperwrike.com</a> · <a href="https://www.hyperwrike.com">www.hyperwrike.com</a></div>
+      <div class="addr">Madina Complex, Palamaner Road, Chittoor, AP — 517001</div>
+      <div>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+  </header>
+  <div class="doc-head">
+    <div class="doc-type">Project Proposal</div>
+    <h1 class="doc-title">A Find-a-Doctor Telemedicine Platform<br><span style="font-size:18px;font-weight:400;color:var(--muted)">Built and Launched in 3 Phases</span></h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Ref No.</div><div class="v accent">HW-PROP-PRM-2026-002</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">16 June 2026</div></div>
+      <div class="cell"><div class="k">Valid For</div><div class="v">30 days</div></div>
+      <div class="cell"><div class="k">Prepared For</div><div class="v">Dr. Param</div></div>
+    </div>
+  </div>
+  <div class="parties">
+    <div class="party"><div class="role">From — Service Provider</div><div class="pname">Hyperwrike</div><div class="pdetail">AI Voice &amp; Automation Solutions<br>Chittoor, Andhra Pradesh — 517001<br><span class="mono">team@hyperwrike.com</span></div></div>
+    <div class="party client"><div class="role">To — Client</div><div class="pname">Dr. Param</div><div class="pdetail">Family Physician Clinic<br>United States</div></div>
+  </div>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">01</span> A Note Before You Read This</div>
+      <p class="lead">Thank you for sharing the vision for the platform. What you're describing — a Sesame/Zocdoc/Klarity-style experience for patients, backed by an OpenLoop-style clinical network — is a well-understood category, but it's genuinely <strong>three products in one</strong>: a patient app, a clinician workspace, and an internal operations console.</p>
+      <p class="lead">The clinician and ops sides are usually more complex to build than the patient-facing app, and they're also where most telehealth projects quietly blow their budget and timeline. This proposal lays out how we'd build this in three versions — a lean, real, prescribing <strong>V1 you can put in front of patients in about 17 weeks</strong>, followed by V2 and V3 that add insurance billing, scale, and the heavier compliance features once V1 has proven the model.</p>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">02</span> Three Connected Products</div>
+      <table class="tbl">
+        <thead><tr><th>Product</th><th>Who Uses It</th><th>What It Does</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Patient App</strong></td><td>The end patient</td><td>Discovery, sign-up, intake, booking, the visit itself, prescriptions/care plan, and payment.</td></tr>
+          <tr><td><strong>Provider Dashboard</strong></td><td>Contracted/employed clinicians</td><td>Case queue, video visits, charting, e-prescribing, schedule and earnings.</td></tr>
+          <tr><td><strong>Admin Console</strong></td><td>Dr. Param's ops team</td><td>Oversight of every patient and provider, approvals, compliance, reporting, and refunds.</td></tr>
+        </tbody>
+      </table>
+      <p class="lead" style="margin-top:8px;">All three share one underlying patient/provider/visit data model — built once, used three ways — rather than three disconnected systems stitched together later.</p>
+    </section>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-PROP-PRM-2026-002</div>
+    <div class="center">Page 1 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" data-screen-label="Proposal p2">
+  <header class="running-head">
+    <div class="brand"><svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg><div class="brand-name">Hyperwrike</div></div>
+    <div class="rh-ref"><span class="doc">Proposal</span><br>HW-PROP-PRM-2026-002 · Dr. Param</div>
+  </header>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">03</span> Our Phased Approach</div>
+      <table class="tbl">
+        <thead><tr><th>Version</th><th>Timeline</th><th>Investment</th><th>Goal</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>V1 — Launch MVP</strong></td>
+            <td class="mono">~17 weeks</td>
+            <td class="num mono" style="color:var(--lime);font-weight:700;">$44,000</td>
+            <td>Live prescribing platform for 1–2 service lines, cash-pay, sync video only</td>
+          </tr>
+          <tr>
+            <td><strong>V2 — Scale &amp; Monetize</strong></td>
+            <td class="mono">~14–16 weeks</td>
+            <td class="num mono">$58k–$72k</td>
+            <td>Insurance, async visits, secure messaging, native mobile apps</td>
+          </tr>
+          <tr>
+            <td><strong>V3 — Mature Platform</strong></td>
+            <td class="mono">~12+ weeks</td>
+            <td class="num mono">$75k–$95k</td>
+            <td>Controlled substances, EHR interoperability, white-label, SOC 2</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:10px">V2 and V3 numbers are good-faith planning estimates, not fixed quotes — we'll re-scope and re-quote each one at the start of its phase based on what V1 tells us patients and providers actually need.</div>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">04</span> V1 Timeline — 17 Weeks</div>
+      <table class="tbl">
+        <thead><tr><th style="width:140px">Phase</th><th>Weeks</th><th>What Happens</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Discovery &amp; Architecture</strong></td><td class="mono">1–2</td><td>Requirements sign-off, technical architecture, BAA vendor selection, environment setup.</td></tr>
+          <tr><td><strong>UI/UX Design</strong></td><td class="mono">3–5</td><td>Wireframes, design system, high-fidelity screens for all three portals.</td></tr>
+          <tr><td><strong>Core Development</strong></td><td class="mono">6–12</td><td>Patient app, provider dashboard, admin console, and all integrations built and unit-tested.</td></tr>
+          <tr><td><strong>Integration &amp; Security Testing</strong></td><td class="mono">13–14</td><td>End-to-end testing, security review, HIPAA compliance walkthrough.</td></tr>
+          <tr><td><strong>UAT &amp; Bug Fixing</strong></td><td class="mono">15–16</td><td>Client testing window, fixes, sign-off.</td></tr>
+          <tr><td><strong>Launch</strong></td><td class="mono">17</td><td>Deployment, go-live, knowledge transfer and handover documentation.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">05</span> How We'll Work</div>
+      <ul class="ticks">
+        <li><strong>Compliance-first architecture</strong> — every PHI-touching service runs behind a signed BAA from week one, even in the lean V1.</li>
+        <li><strong>Data-driven configuration</strong> — service lines, intake questionnaires, and state coverage are configured, not hard-coded.</li>
+        <li><strong>Weekly demo + async standup updates</strong> — you see working software every week, not a status report.</li>
+        <li><strong>Staging environment</strong> with synthetic data for your team to test against before every release.</li>
+        <li><strong>Formal UAT window</strong> before go-live, with a defined bug-severity triage process.</li>
+      </ul>
+    </section>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-PROP-PRM-2026-002</div>
+    <div class="center">Page 2 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" data-screen-label="Proposal p3">
+  <header class="running-head">
+    <div class="brand"><svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg><div class="brand-name">Hyperwrike</div></div>
+    <div class="rh-ref"><span class="doc">Proposal</span><br>HW-PROP-PRM-2026-002 · Dr. Param</div>
+  </header>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">06</span> V1 Investment — $44,000 Fixed Price</div>
+      <div class="headline-figure">
+        <div class="big">$44,000</div>
+        <div class="cap">Version 1 · Fixed Price · ~17 Weeks</div>
+      </div>
+      <table class="tbl">
+        <thead><tr><th>Role</th><th>Engagement</th><th>Duration</th><th class="num">Cost</th></tr></thead>
+        <tbody>
+          <tr><td>Project Manager / Business Analyst</td><td>Part-time (50%)</td><td>4 months</td><td class="num mono">$4,800</td></tr>
+          <tr><td>UI/UX Designer</td><td>Full-time</td><td>1.5 months</td><td class="num mono">$2,250</td></tr>
+          <tr><td>Senior Backend Engineer</td><td>Full-time</td><td>4 months</td><td class="num mono">$11,200</td></tr>
+          <tr><td>Backend Engineer</td><td>Full-time</td><td>4 months</td><td class="num mono">$8,000</td></tr>
+          <tr><td>Frontend Engineer</td><td>Full-time</td><td>4 months</td><td class="num mono">$8,800</td></tr>
+          <tr><td>QA Engineer</td><td>Part-time (50%)</td><td>4 months</td><td class="num mono">$4,000</td></tr>
+          <tr><td>DevOps / Security</td><td>Part-time (25%)</td><td>4 months</td><td class="num mono">$2,400</td></tr>
+          <tr><td>Contingency &amp; overhead</td><td>—</td><td>—</td><td class="num mono">$2,550</td></tr>
+          <tr class="total"><td colspan="3"><strong>Total V1 Fixed Price</strong></td><td class="num"><strong>$44,000</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="lead" style="margin-top:8px;font-size:9.5px;color:var(--muted);">This breakdown is provided for transparency and is not itemized for billing. V1 is billed as a fixed-price engagement against the milestone schedule in the Scope of Work. Third-party vendor fees (hosting, video, eRx, Stripe) are billed directly by those vendors to Dr. Param.</p>
+    </section>
+    <hr class="gold-rule">
+    <div class="signatures">
+      <div class="sig"><div class="sig-for">For <span class="co">Hyperwrike</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+      <div class="sig"><div class="sig-for">For <span class="co">Dr. Param</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-PROP-PRM-2026-002</div>
+    <div class="center">Page 3 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+<!-- PAGE 1 -->
+<div class="page" data-screen-label="SOW p1">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg>
+      <div><div class="brand-name">Hyperwrike</div><div class="brand-tag">AI Voice &amp; Automation Solutions</div></div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:team@hyperwrike.com">team@hyperwrike.com</a> · <a href="https://www.hyperwrike.com">www.hyperwrike.com</a></div>
+      <div class="addr">Madina Complex, Palamaner Road, Chittoor, AP — 517001</div>
+      <div>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+  </header>
+  <div class="doc-head">
+    <div class="doc-type">Scope of Work — SOW-001</div>
+    <h1 class="doc-title">Telemedicine Platform — Version 1 Launch MVP</h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">SOW No.</div><div class="v accent">HW-SOW-PRM-2026-001</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">16 June 2026</div></div>
+      <div class="cell"><div class="k">Under MSA</div><div class="v">HW-MSA-PRM-2026-001</div></div>
+      <div class="cell"><div class="k">Client</div><div class="v">Dr. Param</div></div>
+    </div>
+  </div>
+  <div class="parties">
+    <div class="party"><div class="role">Service Provider</div><div class="pname">Hyperwrike</div><div class="pdetail">Madina Complex, Palamaner Road<br>Chittoor, Andhra Pradesh — 517001<br><span class="mono">team@hyperwrike.com</span></div></div>
+    <div class="party client"><div class="role">Client</div><div class="pname">Dr. Param</div><div class="pdetail">Family Physician Clinic<br>United States</div></div>
+  </div>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">01</span> Purpose</div>
+      <p class="lead">This Scope of Work is issued under, and incorporated into, the Master Services Agreement between Hyperwrike and Dr. Param. It governs the delivery of <strong>Version 1 of the telemedicine platform</strong> as described in the Product Requirements Document v1.0 (HW-PRD-PRM-2026-001). Where this SOW conflicts with the PRD on feature scope, this SOW controls; where it conflicts with the MSA on legal terms, the MSA controls.</p>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">02</span> Deliverables</div>
+      <table class="tbl">
+        <thead><tr><th style="width:140px">Component</th><th>Deliverable</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Patient App</strong></td><td>Landing page; account creation &amp; identity verification; HIPAA/telehealth consent capture; condition-specific intake (1–2 service lines); provider matching; sync video visit booking; visit summary &amp; care plan delivery; ePrescription hand-off; Stripe payment; rating prompt.</td></tr>
+          <tr><td><strong>Provider Dashboard</strong></td><td>Provider onboarding &amp; credential upload; daily visit queue; in-call dashboard with patient chart; SOAP charting with ICD-10/CPT coding; non-controlled-substance eRx; schedule and availability management; earnings/pay-stub view.</td></tr>
+          <tr><td><strong>Admin Console</strong></td><td>Patient/provider directory; manual provider approval; flagged-case review; operational reporting (visits, revenue, conversion); refund handling; role-based access control.</td></tr>
+          <tr><td><strong>Supporting Deliverables</strong></td><td>Technical architecture document; BAA-eligible infrastructure setup; integrations (video, eRx, payments, identity verification, e-signature per PRD §7); staging environment; deployment runbook; 2-week post-launch warranty period for defect fixes.</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-SOW-PRM-2026-001</div>
+    <div class="center">Page 1 of 2</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" data-screen-label="SOW p2">
+  <header class="running-head">
+    <div class="brand"><svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg><div class="brand-name">Hyperwrike</div></div>
+    <div class="rh-ref"><span class="doc">SOW-001</span><br>HW-SOW-PRM-2026-001 · Dr. Param</div>
+  </header>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">03</span> Out of Scope (V1)</div>
+      <ul class="ticks" style="columns:2;gap:18px;">
+        <li>Insurance eligibility checks, claims submission, or payer billing</li>
+        <li>Asynchronous (store-and-forward) visits</li>
+        <li>Secure in-app messaging beyond visit-bound notes</li>
+        <li>Native iOS/Android applications (V1 = responsive web app)</li>
+        <li>Controlled-substance e-prescribing / EPCS workflow</li>
+        <li>Automated background-check or credentialing integrations</li>
+        <li>EHR interoperability, SOC 2 audit support, white-label/multi-brand</li>
+        <li>Recruiting, contracting, payroll, or malpractice insurance for clinicians</li>
+        <li>Paid marketing, content writing, or SEO beyond structural landing page</li>
+      </ul>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">04</span> Milestones &amp; Payment Schedule</div>
+      <table class="tbl">
+        <thead><tr><th>Milestone</th><th>Target Week</th><th>Deliverable</th><th class="num">Amount</th></tr></thead>
+        <tbody>
+          <tr><td><strong>M1 — Kickoff</strong></td><td class="mono">Week 1</td><td>Signed SOW, project plan, environment &amp; vendor accounts provisioned. Kickoff meeting held.</td><td class="num mono" style="color:var(--lime);font-weight:700;">$13,200</td></tr>
+          <tr><td><strong>M2 — Design Sign-off</strong></td><td class="mono">Week 5</td><td>Approved wireframes &amp; high-fidelity UI for all three portals. Written client approval.</td><td class="num mono">$13,200</td></tr>
+          <tr><td><strong>M3 — UAT Ready</strong></td><td class="mono">Week 14</td><td>Feature-complete build deployed to staging. Client UAT test script completed within 10 business days.</td><td class="num mono">$13,200</td></tr>
+          <tr><td><strong>M4 — Go-Live</strong></td><td class="mono">Week 17</td><td>Production deployment, knowledge transfer session, handover documentation. Platform live on production domain.</td><td class="num mono">$4,400</td></tr>
+          <tr class="total"><td colspan="3"><strong>Total Fixed Price — Version 1</strong></td><td class="num"><strong>$44,000</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="lead" style="margin-top:8px;font-size:9.5px;color:var(--muted);">All amounts exclusive of applicable taxes. Each milestone payment due within 5 business days of invoice. Late payments beyond 15 days may pause development per the MSA.</p>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">05</span> Roles &amp; Responsibilities</div>
+      <div class="grid-2" style="gap:14px">
+        <div>
+          <div class="section-label">Hyperwrike Will:</div>
+          <ul class="ticks" style="margin-top:8px;">
+            <li>Deliver all items in §2 per the timeline in §4</li>
+            <li>Maintain staging environment and provide weekly demos</li>
+            <li>Flag risks and scope questions within 2 business days</li>
+          </ul>
+        </div>
+        <div>
+          <div class="section-label">Dr. Param Will:</div>
+          <ul class="ticks" style="margin-top:8px;">
+            <li>Execute BAAs with all PHI-touching vendors before module development begins</li>
+            <li>Supply brand assets (logo, colors, copy) by end of Week 2</li>
+            <li>Provide licensed clinicians and confirm initial service line(s) and launch state(s) by end of Week 1</li>
+            <li>Designate one single point of contact authorized to approve milestones and change requests</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <hr class="gold-rule">
+    <div class="signatures">
+      <div class="sig"><div class="sig-for">For <span class="co">Hyperwrike</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+      <div class="sig"><div class="sig-for">For <span class="co">Dr. Param</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-SOW-PRM-2026-001</div>
+    <div class="center">Page 2 of 2</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+<!-- PAGE 1 -->
+<div class="page" data-screen-label="MSA p1">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg>
+      <div><div class="brand-name">Hyperwrike</div><div class="brand-tag">AI Voice &amp; Automation Solutions</div></div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:team@hyperwrike.com">team@hyperwrike.com</a> · <a href="https://www.hyperwrike.com">www.hyperwrike.com</a></div>
+      <div class="addr">Madina Complex, Palamaner Road, Chittoor, AP — 517001</div>
+      <div>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+  </header>
+  <div class="doc-head">
+    <div class="doc-type">Master Services Agreement</div>
+    <h1 class="doc-title">Software Development &amp; Delivery<br><span style="font-size:18px;font-weight:400;color:var(--muted)">Telemedicine Platform</span></h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Ref No.</div><div class="v accent">HW-MSA-PRM-2026-001</div></div>
+      <div class="cell"><div class="k">Effective Date</div><div class="v">16 June 2026</div></div>
+      <div class="cell"><div class="k">Governing Law</div><div class="v">State of Delaware, USA</div></div>
+    </div>
+  </div>
+  <div class="parties">
+    <div class="party"><div class="role">Service Provider ("Hyperwrike")</div><div class="pname">Hyperwrike</div><div class="pdetail">Madina Complex, Palamaner Road<br>Chittoor, Andhra Pradesh — 517001<br><span class="mono">team@hyperwrike.com</span></div></div>
+    <div class="party client"><div class="role">Client ("Dr. Param")</div><div class="pname">Dr. Param</div><div class="pdetail">Family Physician Clinic<br>United States<br>[Address to be confirmed]</div></div>
+  </div>
+  <div class="content">
+    <p class="lead" style="font-style:italic;color:var(--muted);margin-bottom:14px;">WHEREAS, Client wishes to engage Service Provider to design, develop, and deliver a telemedicine software platform, and Service Provider wishes to provide such services, on the terms set out below and in each Scope of Work ("SOW") executed under this Agreement.</p>
+
+    <div class="article-block">
+      <div class="article-head">Article 1 — Definitions</div>
+      <div class="clause"><span class="clause-n">1.1</span><strong>"Services"</strong> means the software design, development, testing, deployment, and related professional services described in any SOW executed under this Agreement.</div>
+      <div class="clause"><span class="clause-n">1.2</span><strong>"Deliverables"</strong> means the source code, documentation, designs, and other work product Service Provider produces specifically for Client under an SOW.</div>
+      <div class="clause"><span class="clause-n">1.3</span><strong>"SOW"</strong> means a Scope of Work document referencing this Agreement, describing specific deliverables, timeline, and fees, signed by both Parties.</div>
+      <div class="clause"><span class="clause-n">1.4</span><strong>"Confidential Information"</strong> means non-public information disclosed by either Party that is marked confidential or that a reasonable person would understand to be confidential.</div>
+      <div class="clause"><span class="clause-n">1.5</span><strong>"PHI"</strong> means Protected Health Information as defined under HIPAA and its implementing regulations.</div>
+      <div class="clause"><span class="clause-n">1.6</span><strong>"BAA"</strong> means a Business Associate Agreement as required under HIPAA, to be executed separately as Exhibit B if Service Provider's role requires access to PHI.</div>
+    </div>
+
+    <div class="article-block">
+      <div class="article-head">Article 2 — Services &amp; Scope of Work</div>
+      <div class="clause"><span class="clause-n">2.1</span>Service Provider will perform the Services described in each SOW. Each SOW, once signed by both Parties, is incorporated into and governed by this Agreement.</div>
+      <div class="clause"><span class="clause-n">2.2</span>In the event of a conflict between this Agreement and an SOW, this Agreement controls on legal/commercial terms and the SOW controls on technical scope and feature detail.</div>
+      <div class="clause"><span class="clause-n">2.3</span>Either Party may propose changes to an active SOW only through the written change-request process defined in that SOW.</div>
+    </div>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-MSA-PRM-2026-001</div>
+    <div class="center">Page 1 of 2</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" data-screen-label="MSA p2">
+  <header class="running-head">
+    <div class="brand"><svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg><div class="brand-name">Hyperwrike</div></div>
+    <div class="rh-ref"><span class="doc">MSA</span><br>HW-MSA-PRM-2026-001 · Dr. Param</div>
+  </header>
+  <div class="content">
+    <div class="article-block">
+      <div class="article-head">Article 3 — Term &amp; Termination</div>
+      <div class="clause"><span class="clause-n">3.1</span>This Agreement begins on the Effective Date and continues until all active SOWs are completed or terminated.</div>
+      <div class="clause"><span class="clause-n">3.2</span>Either Party may terminate an SOW for material breach if the breaching Party fails to cure within <strong>15 days</strong> of written notice.</div>
+      <div class="clause"><span class="clause-n">3.3</span>Client may terminate an SOW for convenience on <strong>15 days'</strong> written notice; Client pays for all Services performed and non-cancellable costs committed through the effective date of termination.</div>
+      <div class="clause"><span class="clause-n">3.4</span>Upon termination, Service Provider delivers all completed and in-progress Deliverables for which payment has been made. Confidentiality, IP, and payment obligations survive termination.</div>
+    </div>
+    <div class="article-block">
+      <div class="article-head">Article 4 — Fees, Invoicing &amp; Taxes</div>
+      <div class="clause"><span class="clause-n">4.1</span>Fees for each SOW are as set out in that SOW's payment schedule. Unless otherwise stated, fees are quoted exclusive of applicable taxes.</div>
+      <div class="clause"><span class="clause-n">4.2</span>Invoices are payable within <strong>5 business days</strong> of issuance. Amounts unpaid more than 15 days past due may accrue interest at <strong>1.5% per month</strong> or the maximum permitted by law, whichever is lower. Service Provider may suspend Services until payment is current.</div>
+      <div class="clause"><span class="clause-n">4.3</span>If Services qualify as a zero-rated export of services, Service Provider will issue invoices accordingly upon Client furnishing required documentation. Each Party should confirm the correct tax treatment with its own advisors.</div>
+      <div class="clause"><span class="clause-n">4.4</span>Client is responsible for all third-party/vendor costs named in the applicable SOW (hosting, video, eRx, payment processing) billed directly by those vendors.</div>
+    </div>
+    <div class="article-block">
+      <div class="article-head">Article 5 — Intellectual Property</div>
+      <div class="clause"><span class="clause-n">5.1</span>Upon full payment of all fees due for an SOW, Service Provider assigns to Client all right, title, and interest in the Deliverables created specifically for Client under that SOW, excluding Background IP.</div>
+      <div class="clause"><span class="clause-n">5.2</span><strong>"Background IP"</strong> means tools, libraries, frameworks, templates, and know-how owned by Service Provider prior to the engagement. Service Provider grants Client a perpetual, royalty-free licence to use Background IP embedded in the Deliverables solely as part of the Deliverables.</div>
+      <div class="clause"><span class="clause-n">5.3</span>Client retains ownership of all data it provides, including patient and provider data generated through use of the platform. Service Provider claims no ownership over Client's business data.</div>
+    </div>
+    <div class="article-block">
+      <div class="article-head">Article 6 — Confidentiality</div>
+      <div class="clause"><span class="clause-n">6.1</span>Each Party will protect the other's Confidential Information with at least the same degree of care it uses for its own confidential information, and not less than reasonable care.</div>
+      <div class="clause"><span class="clause-n">6.2</span>These obligations do not apply to information that is or becomes public through no fault of the receiving Party, was already known to the receiving Party, or is required to be disclosed by law.</div>
+    </div>
+    <div class="article-block">
+      <div class="article-head">Article 7 — Governing Law &amp; Disputes</div>
+      <div class="clause"><span class="clause-n">7.1</span>This Agreement is governed by the laws of the <strong>State of Delaware, USA</strong>. The Parties consent to jurisdiction in Delaware courts for any dispute not resolved by the process in §7.2.</div>
+      <div class="clause"><span class="clause-n">7.2</span>The Parties will attempt to resolve any dispute by good-faith negotiation for 30 days before initiating arbitration or litigation.</div>
+    </div>
+    <hr class="gold-rule">
+    <div class="signatures">
+      <div class="sig"><div class="sig-for">For <span class="co">Hyperwrike</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+      <div class="sig"><div class="sig-for">For <span class="co">Dr. Param</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-MSA-PRM-2026-001</div>
+    <div class="center">Page 2 of 2</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+<div class="page" data-screen-label="Invoice">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg>
+      <div><div class="brand-name">Hyperwrike</div><div class="brand-tag">AI Voice &amp; Automation Solutions</div></div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:team@hyperwrike.com">team@hyperwrike.com</a> · <a href="https://www.hyperwrike.com">www.hyperwrike.com</a></div>
+      <div class="addr">Shop No. 01, Door No. 27-971, Madina Complex, Palamaner Road, Chittoor, AP — 517001</div>
+      <div>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+  </header>
+
+  <div class="doc-head">
+    <div class="doc-type">Tax Invoice</div>
+    <h1 class="doc-title">Invoice — Telemedicine Platform<br><span style="font-size:16px;font-weight:400;color:var(--muted)">Milestone 1 (Kickoff) — 30% Advance</span></h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Invoice No.</div><div class="v accent">HW-INV-PRM-2026-001</div></div>
+      <div class="cell"><div class="k">Invoice Date</div><div class="v">16 June 2026</div></div>
+      <div class="cell"><div class="k">Due Date</div><div class="v">21 June 2026</div></div>
+      <div class="cell"><div class="k">Ref SOW</div><div class="v">HW-SOW-PRM-2026-001</div></div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div class="party">
+      <div class="role">Billed By</div>
+      <div class="pname">Hyperwrike</div>
+      <div class="pdetail">Shop No. 01, Door No. 27-971<br>Madina Complex, Palamaner Road<br>Chittoor, Andhra Pradesh — 517001<br>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+    <div class="party client">
+      <div class="role">Billed To</div>
+      <div class="pname">Dr. Param</div>
+      <div class="pdetail">Family Physician Clinic<br>United States<br>[Billing Address]</div>
+    </div>
+  </div>
+
+  <div class="content gold-edge">
+    <section class="block">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:26px">#</th>
+            <th>Description</th>
+            <th class="num">SAC Code</th>
+            <th class="num">Qty</th>
+            <th class="num">Amount (USD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono" style="color:var(--muted)">01</td>
+            <td>
+              <strong>Telemedicine Platform — Version 1 Development</strong><br>
+              <span style="font-size:9px;color:var(--muted)">Milestone 1 (Kickoff) — 30% of fixed-price Version 1 scope per SOW HW-SOW-PRM-2026-001</span>
+            </td>
+            <td class="num mono">998314</td>
+            <td class="num">1</td>
+            <td class="num mono">$13,200.00</td>
+          </tr>
+          <tr class="subtotal"><td colspan="4" style="text-align:right">Subtotal</td><td class="num mono">$13,200.00</td></tr>
+          <tr><td colspan="4" style="text-align:right;font-size:9.5px;color:var(--muted)">Tax treatment: Export of services — zero-rated under LUT / confirm with CA</td><td class="num mono" style="color:var(--muted)">$0.00</td></tr>
+          <tr class="total"><td colspan="4"><strong>Total Amount Due</strong></td><td class="num"><strong>$13,200.00</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="lead" style="margin-top:8px;font-size:9px;color:var(--muted);">If this supply is treated as an intra-state taxable service: CGST @ 9% = $1,188 + SGST @ 9% = $1,188 = Total GST $2,376 → Total Due $15,576. Confirm correct GST treatment with your CA/GST practitioner before payment.</p>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="grid-2" style="gap:20px">
+        <div>
+          <div class="section-label">Full V1 Payment Schedule</div>
+          <table class="tbl" style="margin-top:8px">
+            <tbody>
+              <tr><td>M1 — Kickoff (30%) — <strong>Due Now</strong></td><td class="num"><span class="kbd-amount">$13,200</span></td></tr>
+              <tr><td>M2 — Design Sign-off (30%)</td><td class="num mono">$13,200</td></tr>
+              <tr><td>M3 — UAT Ready (30%)</td><td class="num mono">$13,200</td></tr>
+              <tr><td>M4 — Go-Live (10%)</td><td class="num mono">$4,400</td></tr>
+              <tr class="total"><td><strong>Total V1 Fixed Price</strong></td><td class="num"><strong>$44,000</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="section-label">Payment Details</div>
+          <div style="margin-top:8px;font-size:10px;line-height:2.0;">
+            <div>Account Name: <span class="blank">__________________</span></div>
+            <div>Bank &amp; Branch: <span class="blank">__________________</span></div>
+            <div>Account No: <span class="blank">____________________</span></div>
+            <div>IFSC: <span class="blank">______________________</span></div>
+            <div>SWIFT: <span class="blank">_____________________</span></div>
+            <div style="margin-top:6px;font-size:9px;color:var(--muted)">Payment reference: HW-INV-PRM-2026-001</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block" style="margin-bottom:8px">
+      <div class="callout">
+        <strong>Terms:</strong> Payment due within 5 business days of invoice date per SOW HW-SOW-PRM-2026-001. Late payments beyond 15 days may accrue interest per Article 4.2 of the Master Services Agreement (HW-MSA-PRM-2026-001). This invoice is raised under and subject to the MSA and SOW referenced above.
+      </div>
+    </section>
+
+    <div class="signatures">
+      <div class="sig"><div class="sig-for">For <span class="co">Hyperwrike</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+      <div class="sig"><div class="sig-for">For <span class="co">Dr. Param</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Acknowledgement</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-INV-PRM-2026-001</div>
+    <div class="center">Page 1 of 1</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<script>(function(){function go(){setTimeout(function(){window.print();},900);}if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){window.requestAnimationFrame(go);});}else{window.addEventListener('load',go);}})();</script>
+</body></html>

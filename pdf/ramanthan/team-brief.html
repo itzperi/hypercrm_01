@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperwrike — Ramanthan — Internal Technical Brief</title>
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+.internal-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 3px;
+  background: rgba(201,168,76,0.15); color: var(--gold);
+  font-family: var(--label); font-size: 8px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em;
+}
+.tech-chip {
+  display: inline-block; padding: 3px 9px; border-radius: 3px;
+  background: var(--surface-2); border: 1px solid var(--hairline);
+  font-family: var(--mono); font-size: 8.5px; color: var(--ink);
+  margin: 2px;
+}
+.risk-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 8px; }
+.risk-card { border: 1px solid var(--hairline); border-radius: 5px; padding: 11px 13px; background: var(--surface); }
+.risk-label { font-family: var(--label); font-size: 8px; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; margin-bottom: 5px; }
+.risk-label.risk { color: var(--alert); }
+.risk-label.mit  { color: var(--lime); }
+.tier-pill {
+  display: inline-block; padding: 2px 8px; border-radius: 3px;
+  font-family: var(--label); font-size: 8px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.tier-a { background: rgba(90,107,130,0.12); color: var(--muted); }
+.tier-b { background: var(--lime-soft); color: var(--lime); }
+</style>
+</head>
+<body>
+
+<!-- ======= PAGE 1 ======= -->
+<div class="page" data-screen-label="Technical Brief p1">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/>
+        <rect class="bar" x="13" y="24" width="7" height="20" rx="2"/>
+        <rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/>
+        <circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div>
+        <div class="brand-name">Hyperwrike</div>
+        <div class="brand-tag">Internal Technical Brief — Not for Client Distribution</div>
+      </div>
+    </div>
+    <div class="contact"><span class="internal-badge">Internal Only</span></div>
+  </header>
+
+  <div class="doc-head">
+    <div class="doc-type">Internal Technical Brief</div>
+    <h1 class="doc-title" style="font-size:22px;">MedTranscribe — Ramanthan</h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Project</div><div class="v accent">HW-INT-RMN-2026-001</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">13 June 2026</div></div>
+      <div class="cell"><div class="k">Client</div><div class="v">Ramanthan</div></div>
+      <div class="cell"><div class="k">Value</div><div class="v">₹20,000–₹30,000</div></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">01</span> Tech Stack</div>
+      <table class="tbl">
+        <thead><tr><th style="width:120px">Component</th><th>Tool / Library</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Recording</strong></td>
+            <td><span class="tech-chip">System-level call capture</span> or <span class="tech-chip">SIP/VoIP tap</span></td>
+            <td>Depends on Ramanthan's phone infra — audit first</td>
+          </tr>
+          <tr>
+            <td><strong>Transcription</strong></td>
+            <td><span class="tech-chip">OpenAI Whisper</span> (local, open-source)</td>
+            <td>Medium model for Tier A, Large model for Tier B</td>
+          </tr>
+          <tr>
+            <td><strong>Diarization</strong></td>
+            <td><span class="tech-chip">pyannote.audio</span> (local, no API)</td>
+            <td><span class="tier-pill tier-b">Tier B only</span> — labels Doctor vs Patient</td>
+          </tr>
+          <tr>
+            <td><strong>Storage</strong></td>
+            <td><span class="tech-chip">SQLite</span> or <span class="tech-chip">PostgreSQL</span></td>
+            <td>Local transcript archive — no cloud storage</td>
+          </tr>
+          <tr>
+            <td><strong>Frontend</strong></td>
+            <td><span class="tech-chip">React</span> dashboard</td>
+            <td><span class="tier-pill tier-b">Tier B only</span> — searchable by date/doctor/keyword</td>
+          </tr>
+          <tr>
+            <td><strong>Export</strong></td>
+            <td><span class="tech-chip">plain .txt</span> + <span class="tech-chip">reportlab PDF</span></td>
+            <td>Formatted layout PDF in Tier B</td>
+          </tr>
+          <tr>
+            <td><strong>Target WER</strong></td>
+            <td><span class="tech-chip">Word Error Rate &lt; 15%</span></td>
+            <td>Test with sample calls before delivery</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">02</span> Setup Steps</div>
+      <ol class="steps">
+        <li><strong>Audit Ramanthan's call infrastructure</strong> — IP phone, mobile, or SIP? Determines recording approach.</li>
+        <li><strong>Deploy Whisper + pyannote</strong> on their server — GPU preferred for real-time speed, CPU fallback for Tier A</li>
+        <li><strong>Build call capture pipeline</strong> — tap into call stream, route audio to Whisper input</li>
+        <li><strong>Test with sample calls</strong> — check WER, target &lt;15%; fine-tune on Tamil/English medical vocabulary if needed</li>
+        <li><strong>Build archive + search system</strong> — tag each transcript: Date, Doctor name, Patient ID, Duration</li>
+        <li><span class="tier-pill tier-b">Tier B</span> <strong>Build React dashboard UI</strong> — search, filter, browse, export</li>
+        <li><strong>Handover + staff training session</strong> — walk through the full workflow with Ramanthan's team</li>
+      </ol>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-INT-RMN-2026-001 · INTERNAL</div>
+    <div class="center">Page 1 of 2</div>
+    <div class="right">Hyperwrike Internal — Do Not Share</div>
+  </footer>
+</div>
+
+<!-- ======= PAGE 2 ======= -->
+<div class="page" data-screen-label="Technical Brief p2">
+  <header class="running-head">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div class="brand-name">Hyperwrike</div>
+    </div>
+    <div class="rh-ref"><span class="doc">Technical Brief</span><br>HW-INT-RMN-2026-001 · Ramanthan</div>
+  </header>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">03</span> Implementation Timeline</div>
+      <table class="tbl">
+        <thead><tr><th style="width:90px">Window</th><th>Activity</th><th style="width:80px">Tier</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">Days 1–2</td><td>Infrastructure audit + Whisper/pyannote model setup</td><td><span class="tier-pill tier-a">A</span> <span class="tier-pill tier-b">B</span></td></tr>
+          <tr><td class="mono">Days 3–5</td><td>Recording pipeline — call capture &amp; audio routing</td><td><span class="tier-pill tier-a">A</span> <span class="tier-pill tier-b">B</span></td></tr>
+          <tr><td class="mono">Days 6–8</td><td>Transcription + diarization integration (Doctor/Patient labels)</td><td><span class="tier-pill tier-a">A</span> <span class="tier-pill tier-b">B</span></td></tr>
+          <tr><td class="mono">Days 9–11</td><td>Archive + search system + React dashboard UI</td><td><span class="tier-pill tier-b">B only</span></td></tr>
+          <tr><td class="mono">Days 12–13</td><td>Testing + QA — check WER, edge cases, simultaneous call load</td><td><span class="tier-pill tier-a">A</span> <span class="tier-pill tier-b">B</span></td></tr>
+          <tr><td class="mono">Day 14</td><td>Delivery + staff training session + handover</td><td><span class="tier-pill tier-a">A</span> <span class="tier-pill tier-b">B</span></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">04</span> Risks &amp; Mitigations</div>
+      <div class="risk-row">
+        <div class="risk-card">
+          <div class="risk-label risk">⚠ Risk</div>
+          <p style="font-size:9.5px;color:#2A3650;">Ramanthan uses <strong>analogue phones</strong> — standard VoIP tap won't work</p>
+        </div>
+        <div class="risk-card">
+          <div class="risk-label mit">✓ Mitigation</div>
+          <p style="font-size:9.5px;color:#2A3650;">Use <strong>hardware audio tap</strong> on the phone line; feed audio into the pipeline directly</p>
+        </div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-card">
+          <div class="risk-label risk">⚠ Risk</div>
+          <p style="font-size:9.5px;color:#2A3650;">Tamil/medical accent causing <strong>low transcription accuracy</strong> (&gt;15% WER)</p>
+        </div>
+        <div class="risk-card">
+          <div class="risk-label mit">✓ Mitigation</div>
+          <p style="font-size:9.5px;color:#2A3650;"><strong>Fine-tune Whisper</strong> on Tamil-English medical vocabulary; use Large model if medium falls short</p>
+        </div>
+      </div>
+      <div class="risk-row">
+        <div class="risk-card">
+          <div class="risk-label risk">⚠ Risk</div>
+          <p style="font-size:9.5px;color:#2A3650;"><strong>High simultaneous call volume</strong> overwhelming processing queue</p>
+        </div>
+        <div class="risk-card">
+          <div class="risk-label mit">✓ Mitigation</div>
+          <p style="font-size:9.5px;color:#2A3650;">Implement <strong>queue system</strong> so calls process sequentially without data loss; prioritise by doctor</p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">05</span> Team Notes</div>
+      <div class="callout">
+        Always collect <strong>50% advance</strong> (₹10,000 Tier A / ₹15,000 Tier B) before starting any work.<br>
+        Send planning + roadmap document within 24 hours of advance receipt.<br>
+        Confirm tier selection before kicking off — Tier B adds 4+ days of dashboard work.
+      </div>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-INT-RMN-2026-001 · INTERNAL</div>
+    <div class="center">Page 2 of 2</div>
+    <div class="right">Hyperwrike Internal — Do Not Share</div>
+  </footer>
+</div>
+
+</body>
+</html>

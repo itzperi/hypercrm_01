@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><title>Hyperwrike — Dr Parma — Invoice</title>
+<style>/* ============================================================
+   HYPERWRIKE — Document Brand System
+   AI Voice & Automation Solutions
+   Premium dark-navy A4 document set
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --navy:        #FFFFFF;   /* base sheet background    */
+  --surface:     #F3F6FA;   /* card / alt row           */
+  --surface-2:   #E7EEF6;   /* table head / nested      */
+  --lime:        #4C7A0C;   /* readable green — text, lines */
+  --lime-bright: #A6E635;   /* logo + bright accent fills   */
+  --lime-soft:   rgba(166,230,53,0.20);
+  --lime-line:   rgba(76,122,12,0.32);
+  --gold:        #A6842C;   /* decorative rule          */
+  --gold-soft:   rgba(166,132,44,0.40);
+  --ink:         #15203A;   /* body text (deep navy)    */
+  --muted:       #5A6B82;   /* secondary text           */
+  --muted-2:     #8A98AB;   /* faint labels / blanks    */
+  --alert:       #D62246;   /* negative / alert         */
+  --hairline:    rgba(21,32,58,0.14);
+
+  --display: 'Sora', sans-serif;
+  --label:   'Space Grotesk', sans-serif;
+  --body:    'DM Sans', sans-serif;
+  --mono:    'JetBrains Mono', monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+body {
+  background: #E8ECF1;
+  font-family: var(--body);
+  color: var(--ink);
+  line-height: 1.55;
+  padding: 28px 0 60px;
+}
+
+/* ---------- A4 SHEET ---------- */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 26px;
+  background:
+    radial-gradient(120% 60% at 100% 0%, rgba(166,230,53,0.05) 0%, transparent 42%),
+    radial-gradient(90% 50% at 0% 100%, rgba(201,168,76,0.04) 0%, transparent 40%),
+    var(--navy);
+  position: relative;
+  padding: 25mm 22mm 24mm;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 14px 44px -22px rgba(21,32,58,0.28), 0 0 0 1px rgba(21,32,58,0.06);
+  overflow: hidden;
+}
+.page::before {  /* top accent band */
+  content: "";
+  position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--lime-bright) 0%, var(--lime-bright) 38%, transparent 38%, transparent 62%, var(--gold) 62%, var(--gold) 100%);
+  opacity: 1;
+}
+
+/* ---------- LETTERHEAD ---------- */
+.letterhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 22px;
+}
+.brand { display: flex; align-items: center; gap: 13px; }
+.brand .logo { width: 46px; height: 46px; flex: none; }
+.brand .logo .bar { fill: var(--ink); }
+.brand .logo .trend { stroke: var(--lime-bright); }
+.brand .logo .node { fill: var(--lime-bright); }
+.brand-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 23px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1;
+}
+.brand-tag {
+  font-family: var(--label);
+  font-weight: 300;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+}
+.letterhead .contact {
+  text-align: right;
+  font-family: var(--mono);
+  font-size: 8.5px;
+  line-height: 1.75;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+.letterhead .contact .addr { color: var(--muted-2); }
+.letterhead .contact a { color: var(--lime); text-decoration: none; }
+
+/* ---------- RUNNING HEAD (pages 2+) ---------- */
+.running-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 20px;
+}
+.running-head .brand { gap: 9px; }
+.running-head .brand .logo { width: 26px; height: 26px; }
+.running-head .brand-name { font-size: 14px; letter-spacing: 0.05em; }
+.running-head .rh-ref {
+  font-family: var(--mono);
+  font-size: 8px;
+  color: var(--muted-2);
+  text-align: right;
+  letter-spacing: 0.02em;
+}
+.running-head .rh-ref .doc { color: var(--lime); text-transform: uppercase; letter-spacing: 0.16em; font-family: var(--label); font-size: 8px; }
+
+/* ---------- DOC TITLE BLOCK ---------- */
+.doc-head { margin-bottom: 20px; }
+.doc-type {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 10px;
+  color: var(--lime);
+  font-weight: 500;
+}
+.doc-title {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+  margin: 8px 0 14px;
+  line-height: 1.08;
+}
+.doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  overflow: hidden;
+  background: rgba(21,32,58,0.03);
+}
+.doc-meta .cell {
+  padding: 9px 16px 8px;
+  border-right: 1px solid var(--hairline);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.doc-meta .cell:last-child { border-right: none; }
+.doc-meta .k {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 7.5px;
+  color: var(--muted-2);
+}
+.doc-meta .v {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink);
+  margin-top: 3px;
+  font-weight: 500;
+}
+.doc-meta .v.accent { color: var(--lime); }
+
+/* parties row */
+.parties {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.party {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--lime);
+  border-radius: 4px;
+  padding: 13px 16px;
+}
+.party.client { border-left-color: var(--gold); }
+.party .role {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 8px;
+  color: var(--muted-2);
+  margin-bottom: 6px;
+}
+.party .pname { font-family: var(--display); font-weight: 600; font-size: 15px; }
+.party .pdetail { font-size: 10px; color: var(--muted); margin-top: 4px; line-height: 1.5; }
+.party .pdetail .mono { font-family: var(--mono); color: var(--ink); }
+
+/* ---------- CONTENT ---------- */
+.content { padding-left: 18px; border-left: 3px solid var(--lime); }
+.content.gold-edge { border-left-color: var(--gold); }
+
+section.block { margin-bottom: 18px; }
+section.block:last-child { margin-bottom: 0; }
+
+.section-label {
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 9px;
+  font-weight: 500;
+  color: var(--lime);
+}
+.section-heading {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--lime);
+  padding-bottom: 5px;
+  border-bottom: 0.5px solid var(--lime-line);
+  margin-bottom: 11px;
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+}
+.section-heading .num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted-2);
+  font-weight: 500;
+}
+.section-heading.gold { color: var(--gold); border-bottom-color: var(--gold-soft); }
+
+p.lead { font-size: 10.5px; color: #2A3650; line-height: 1.62; margin-bottom: 9px; }
+p.lead:last-child { margin-bottom: 0; }
+p.lead strong { color: var(--ink); font-weight: 600; }
+.muted { color: var(--muted); }
+
+/* gold divider */
+.gold-rule { height: 0; border: none; border-top: 0.5px solid var(--gold-soft); margin: 16px 0; }
+
+/* ---------- LISTS ---------- */
+ul.ticks, ol.steps, ul.plain { list-style: none; }
+ul.ticks li {
+  position: relative;
+  padding: 4px 0 4px 22px;
+  font-size: 10px;
+  color: #2A3650;
+  line-height: 1.5;
+}
+ul.ticks li::before {
+  content: "";
+  position: absolute; left: 2px; top: 9px;
+  width: 9px; height: 9px;
+  border: 1.5px solid var(--lime);
+  border-radius: 2px;
+  background: var(--lime-soft);
+}
+ul.ticks li strong { color: var(--ink); }
+
+ol.steps { counter-reset: step; }
+ol.steps li {
+  position: relative;
+  padding: 5px 0 5px 30px;
+  font-size: 10px;
+  color: #2A3650;
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+ol.steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute; left: 0; top: 4px;
+  width: 19px; height: 19px;
+  display: grid; place-items: center;
+  font-family: var(--mono); font-size: 9px; font-weight: 600;
+  color: var(--navy); background: var(--lime);
+  border-radius: 50%;
+}
+ol.steps li strong { color: var(--ink); }
+
+ul.plain li { font-size: 10px; color: #2A3650; padding: 3px 0; line-height: 1.5; }
+
+/* two-column deliverables grid */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 26px; }
+.grid-2 ol.steps li { padding-left: 30px; }
+
+/* ---------- TABLES ---------- */
+table.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9.5px;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  overflow: hidden;
+}
+table.tbl thead th {
+  background: var(--surface-2);
+  font-family: var(--label);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--lime);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--lime-line);
+}
+table.tbl tbody td {
+  padding: 7px 12px;
+  border-bottom: 0.5px solid var(--hairline);
+  color: #2A3650;
+  vertical-align: top;
+  line-height: 1.45;
+}
+table.tbl tbody tr:nth-child(odd) td  { background: var(--navy); }
+table.tbl tbody tr:nth-child(even) td { background: var(--surface); }
+table.tbl tbody tr:last-child td { border-bottom: none; }
+table.tbl td.num, table.tbl th.num { text-align: right; font-family: var(--mono); white-space: nowrap; }
+table.tbl td.mono { font-family: var(--mono); color: var(--ink); }
+table.tbl td.lbl { color: var(--muted); }
+table.tbl tr.total td {
+  background: var(--lime-soft) !important;
+  font-family: var(--mono);
+  font-weight: 700;
+  color: var(--lime);
+  border-top: 1px solid var(--lime-line);
+  font-size: 10.5px;
+}
+table.tbl tr.subtotal td { font-family: var(--mono); color: var(--ink); }
+table.tbl td .w { font-family: var(--mono); color: var(--lime); font-weight: 600; }
+
+/* weight chip for metric tables */
+.chip {
+  display: inline-block;
+  font-family: var(--mono); font-size: 9px; font-weight: 700;
+  color: var(--lime); background: var(--lime-soft);
+  border: 1px solid var(--lime-line);
+  border-radius: 3px; padding: 1px 7px;
+}
+
+/* ---------- COMMERCIAL HIGHLIGHT ---------- */
+.headline-figure {
+  display: flex; align-items: baseline; gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--lime-line);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 4px 0 12px;
+}
+.headline-figure .big {
+  font-family: var(--mono); font-weight: 700; font-size: 30px;
+  color: var(--lime); letter-spacing: -0.02em; line-height: 1;
+}
+.headline-figure .cap { font-size: 10px; color: var(--muted); }
+.headline-figure .cap strong { color: var(--ink); display: block; font-family: var(--display); font-size: 12px; font-weight: 600; margin-bottom: 2px; }
+
+/* callout / quote box */
+.callout {
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  border-left: 3px solid var(--gold);
+  border-radius: 4px;
+  padding: 11px 15px;
+  font-size: 9.5px;
+  color: var(--muted);
+  line-height: 1.55;
+}
+.callout strong { color: var(--ink); }
+.script-quote {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 9.5px;
+  color: #33405A;
+  line-height: 1.6;
+}
+
+/* scoring rows */
+.score-row { display: flex; align-items: center; gap: 10px; font-size: 9.5px; padding: 3px 0; }
+.score-row .pts { font-family: var(--mono); font-weight: 700; width: 38px; text-align: right; }
+.score-row .pts.pos { color: var(--lime); }
+.score-row .pts.neg { color: var(--alert); }
+
+/* ---------- SIGNATURE ---------- */
+.signatures {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 26px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 0.5px solid var(--gold-soft);
+}
+.sig .sig-for {
+  font-family: var(--label); text-transform: uppercase; letter-spacing: 0.18em;
+  font-size: 8.5px; color: var(--lime); margin-bottom: 18px;
+}
+.sig .sig-for .co { color: var(--ink); font-weight: 600; }
+.sig-field { margin-bottom: 13px; }
+.sig-line {
+  border-bottom: 1px solid var(--lime-line);
+  height: 17px;
+}
+.sig-field .fl {
+  font-family: var(--label); text-transform: uppercase; letter-spacing: 0.12em;
+  font-size: 7.5px; color: var(--muted-2); margin-top: 4px;
+}
+.blank { color: var(--muted-2); border-bottom: 1px dotted var(--muted-2); padding: 0 3px; font-style: italic; }
+
+/* ---------- FOOTER ---------- */
+.page-footer {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 0.5px solid var(--gold-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 7.5px;
+  letter-spacing: 0.03em;
+  color: var(--muted-2);
+}
+.page-footer .center { color: var(--muted); }
+.page-footer .right { color: var(--muted); }
+.page-footer .lime { color: var(--lime); }
+
+/* small helpers */
+.mt-0 { margin-top: 0; }
+.two-col { column-count: 2; column-gap: 26px; }
+.two-col li { break-inside: avoid; }
+.note-line { font-size: 9px; color: var(--muted); font-style: italic; margin-top: 7px; }
+.kbd-amount { font-family: var(--mono); color: var(--lime); font-weight: 600; }
+.neg { color: var(--alert); }
+
+/* ---------- PRINT ---------- */
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: #fff; padding: 0; }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+  .page:last-child { page-break-after: auto; }
+  .no-print { display: none !important; }
+}
+</style>
+
+<style>
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { background: #E8ECF1; }
+  @page { size: A4 portrait; margin: 0; }
+  @media print {
+    body { background: white !important; padding: 0 !important; }
+    .page { margin: 0 !important; box-shadow: none !important; page-break-after: always !important; break-after: page !important; }
+    .page:last-child { page-break-after: auto !important; break-after: auto !important; }
+    *, *::before, *::after { animation-delay:-99s !important; animation-duration:.001s !important; transition-duration:0s !important; }
+  }
+</style></head><body>
+<div class="page" data-screen-label="Invoice">
+
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Hyperwrike">
+        <rect class="bar" x="3"  y="30" width="7" height="14" rx="2"/>
+        <rect class="bar" x="13" y="24" width="7" height="20" rx="2"/>
+        <rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/>
+        <circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div>
+        <div class="brand-name">Hyperwrike</div>
+        <div class="brand-tag">AI Voice &amp; Automation Solutions</div>
+      </div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:hello@hyperwrike.com">hello@hyperwrike.com</a> · <a href="https://www.hyperwrike.com">www.hyperwrike.com</a></div>
+      <div class="addr">Chittoor, Andhra Pradesh — 517001, India</div>
+    </div>
+  </header>
+
+  <div class="doc-head">
+    <div class="doc-type">Invoice</div>
+    <h1 class="doc-title">Invoice</h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Invoice No.</div><div class="v accent">HW-INV-PRM-2026-001</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">04 Jun 2026</div></div>
+      <div class="cell"><div class="k">Due Date</div><div class="v">11 Jun 2026</div></div>
+      <div class="cell"><div class="k">Currency</div><div class="v">USD</div></div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div class="party">
+      <div class="role">Billed By</div>
+      <div class="pname">Hyperwrike</div>
+      <div class="pdetail">Chittoor, Andhra Pradesh — 517001, India</div>
+    </div>
+    <div class="party client">
+      <div class="role">Billed To</div>
+      <div class="pname">Dr. Parma</div>
+      <div class="pdetail">Family Physician Clinic · United States</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">—</span> Line Items</div>
+      <table class="tbl">
+        <thead><tr><th>Description</th><th class="num">Amount (USD)</th></tr></thead>
+        <tbody>
+          <tr><td>Setup Fee — LeadHunter + ReputationGuard dual AI agent build</td><td class="num mono">$800.00</td></tr>
+          <tr class="total"><td>Total Due</td><td class="num">$800.00</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="headline-figure">
+      <div class="big">$800.00</div>
+      <div class="cap"><strong>Amount Due — 11 June 2026</strong>One-time setup. Build starts immediately on receipt. Monthly operation of $299 begins at go-live.</div>
+    </div>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading gold"><span class="num">—</span> Payment Details</div>
+      <div class="callout">
+        <strong>Pay via Bank Transfer or Stripe.</strong><br>
+        Bank — <span class="blank">________________</span> · Account No. <span class="blank">____________</span> · Routing / SWIFT <span class="blank">__________</span><br>
+        Stripe — <span class="blank">hyperwrike.com/pay/prm-001</span>
+      </div>
+      <p class="note-line">Recurring operation billed at $299/month, commencing at go-live, per Contract HW-CC-PRM-2026-001.</p>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-INV-PRM-2026-001</div>
+    <div class="center">Page 1 of 1</div>
+    <div class="right">Confidential — <span class="lime">Dr. Parma</span></div>
+  </footer>
+</div>
+<script>(function(){function go(){setTimeout(function(){window.print();},800);}if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){window.requestAnimationFrame(go);});}else{window.addEventListener('load',go);}})();</script>
+</body></html>

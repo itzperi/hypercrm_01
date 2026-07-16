@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperwrike — Chital Paper — Ecom Proposal &amp; Invoice</title>
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+.option-card {
+  border: 1px solid var(--hairline); border-radius: 6px;
+  overflow: hidden; background: var(--surface);
+}
+.option-card.recommended { border-color: var(--lime); }
+.opt-head {
+  padding: 11px 14px 10px; border-bottom: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.opt-name { font-family: var(--display); font-weight: 700; font-size: 14px; }
+.opt-badge {
+  font-family: var(--label); font-size: 7.5px; text-transform: uppercase;
+  letter-spacing: 0.12em; padding: 3px 9px; border-radius: 3px;
+  background: var(--lime-soft); color: var(--lime); font-weight: 700;
+}
+.opt-when {
+  font-family: var(--mono); font-size: 8px; color: var(--gold); margin-top:2px;
+}
+.opt-body { padding: 11px 14px; }
+.opt-row { font-size: 9.5px; padding: 3px 0; display: flex; gap: 6px; line-height:1.4; }
+.tick { color: var(--lime); font-weight: 700; flex: none; }
+.cross { color: var(--alert); font-weight: 700; flex: none; }
+.inv-total-row td { background: var(--lime-soft) !important; font-weight: 700; font-size: 11px; }
+.inv-ref { font-family: var(--mono); font-size: 9px; color: var(--muted); }
+.price-tier-row td:first-child { font-family: var(--mono); font-weight: 600; color: var(--lime); }
+</style>
+</head>
+<body>
+
+<!-- ======= PAGE 1: TWO PATHS ======= -->
+<div class="page" data-screen-label="Proposal — Option Comparison">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/>
+        <rect class="bar" x="13" y="24" width="7" height="20" rx="2"/>
+        <rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/>
+        <circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div>
+        <div class="brand-name">Hyperwrike</div>
+        <div class="brand-tag">Elevate. Engage. Exceed.</div>
+      </div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:team@hyperwrike.com">team@hyperwrike.com</a> · <a href="https://www.hyperwrike.com">www.hyperwrike.com</a></div>
+      <div class="addr">Shop No. 01, Door No. 27-971, Madina Complex,</div>
+      <div class="addr">Palamaner Road, Chittoor, Andhra Pradesh — 517001</div>
+      <div>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+  </header>
+
+  <div class="doc-head">
+    <div class="doc-type">Commercial Proposal + Invoice</div>
+    <h1 class="doc-title" style="font-size:20px;">Your E-Commerce Website — Two Paths to Online Sales</h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Ref No.</div><div class="v accent">HW-PROP-CHP-2026-001</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">13 June 2026</div></div>
+      <div class="cell"><div class="k">Client</div><div class="v">Chital Paper Company</div></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">01</span> The Decision Framework</div>
+      <div class="callout">
+        <strong>The right platform depends on one number: how many customers visit your site per day.</strong><br>
+        Under 100 visitors/day → Custom Coded Website. Over 100 visitors/day → Shopify.
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+
+        <div class="option-card recommended">
+          <div class="opt-head">
+            <div>
+              <div class="opt-name">Option 1 — Custom Coded</div>
+              <div class="opt-when">Best if &lt; 100 visitors / day</div>
+            </div>
+            <div class="opt-badge">Our Pick</div>
+          </div>
+          <div class="opt-body">
+            <div class="opt-row"><span class="tick">✓</span><span>One-time build — <strong>yours forever</strong>, no monthly platform fee</span></div>
+            <div class="opt-row"><span class="tick">✓</span><span>Full control over design, features, integrations</span></div>
+            <div class="opt-row"><span class="tick">✓</span><span>Adding new features later: cost-effective (pay once per feature)</span></div>
+            <div class="opt-row"><span class="cross">✗</span><span>Each new feature requires a developer (cheaper long-term than Shopify)</span></div>
+            <p style="font-size:9px;color:var(--muted);margin-top:8px;font-family:var(--label);text-transform:uppercase;letter-spacing:0.1em;">Pricing by product count:</p>
+            <table class="tbl" style="margin-top:4px">
+              <tbody>
+                <tr class="price-tier-row"><td>13–15 products</td><td class="num mono">₹50,000</td></tr>
+                <tr class="price-tier-row"><td>Up to 30 products</td><td class="num mono">₹70,000</td></tr>
+                <tr class="price-tier-row"><td>Up to 50 products</td><td class="num mono">₹1,00,000</td></tr>
+              </tbody>
+            </table>
+            <div style="font-size:9px;color:var(--muted);margin-top:7px;">+ Server: <strong>₹10,000/month</strong> · Domain: ₹800–₹1,500/yr (if new)</div>
+          </div>
+        </div>
+
+        <div class="option-card">
+          <div class="opt-head">
+            <div>
+              <div class="opt-name">Option 2 — Shopify</div>
+              <div class="opt-when">Best if &gt; 100 visitors / day</div>
+            </div>
+          </div>
+          <div class="opt-body">
+            <div class="opt-row"><span class="tick">✓</span><span>Built for high traffic, scales automatically</span></div>
+            <div class="opt-row"><span class="tick">✓</span><span>Built-in payment gateway, inventory, analytics</span></div>
+            <div class="opt-row"><span class="tick">✓</span><span>Fast to launch — no custom dev for standard features</span></div>
+            <div class="opt-row"><span class="cross">✗</span><span>Monthly platform fee: <strong>₹1,500–₹5,000/month</strong></span></div>
+            <div class="opt-row"><span class="cross">✗</span><span>Transaction fees: 0.5%–2% on every order</span></div>
+            <div class="opt-row"><span class="cross">✗</span><span>Shopify apps: ₹500–₹3,000/month each — adds up fast</span></div>
+            <div class="opt-row"><span class="cross">✗</span><span>Cannot be quoted exactly upfront — depends on apps chosen</span></div>
+            <div style="font-size:9px;color:var(--muted);margin-top:7px;">Domain: ₹800–₹1,500/yr (if new). Shopify plan fees paid directly to Shopify.</div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="callout" style="margin-top:12px;border-left-color:var(--gold)">
+        <strong>Our Recommendation for Chital Paper:</strong><br>
+        If you're launching fresh and expect under 100 visitors/day initially, the <strong>custom coded website gives you the best value</strong> — you own it completely, no recurring platform fees, and every rupee goes into your business. Start with ₹50,000 for 13–15 products and scale up as your catalogue grows.
+      </div>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-PROP-CHP-2026-001</div>
+    <div class="center">Page 1 of 3</div>
+    <div class="right">Confidential — <span class="lime">Chital Paper Company</span></div>
+  </footer>
+</div>
+
+<!-- ======= PAGE 2: WHAT'S INCLUDED ======= -->
+<div class="page" data-screen-label="What's Included">
+  <header class="running-head">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div class="brand-name">Hyperwrike</div>
+    </div>
+    <div class="rh-ref"><span class="doc">Proposal</span><br>HW-PROP-CHP-2026-001 · Chital Paper</div>
+  </header>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">02</span> Included — Custom Coded Website (Any Tier)</div>
+      <div class="grid-2">
+        <ul class="ticks">
+          <li>Full e-commerce site — product pages, cart, checkout, order confirmation</li>
+          <li>Payment gateway integration — <strong>Razorpay or PayU</strong></li>
+          <li>Mobile responsive design (all screen sizes)</li>
+          <li>Admin panel — add/edit/delete products yourself, no developer needed</li>
+        </ul>
+        <ul class="ticks">
+          <li>Basic SEO setup — meta tags, sitemaps, page titles</li>
+          <li>Contact form + WhatsApp chat button</li>
+          <li>1 month free support after delivery</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">03</span> Included — Shopify (if chosen)</div>
+      <ul class="ticks">
+        <li>Store setup + product upload + theme customisation</li>
+        <li>Payment gateway + shipping setup</li>
+        <li>1 month of guidance support</li>
+        <li class="muted" style="color:var(--muted)">Note: Shopify monthly plan fees paid by Chital Paper directly to Shopify</li>
+      </ul>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading gold"><span class="num">04</span> Server &amp; Maintenance (Custom Coded)</div>
+      <table class="tbl">
+        <tbody>
+          <tr><td><strong>Monthly server</strong> — hosting, uptime monitoring, backup, security updates</td><td class="num"><span class="kbd-amount">₹10,000/mo</span></td></tr>
+        </tbody>
+      </table>
+      <p class="lead" style="margin-top:8px;font-size:9.5px;">This keeps your website fast, secure, and always online. Managed entirely by Hyperwrike — no technical work on your end.</p>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">05</span> Payment Terms</div>
+      <table class="tbl">
+        <tbody>
+          <tr><td>Advance to begin (50%)</td><td class="num mono">₹25,000</td></tr>
+          <tr><td>Balance on project delivery (50%)</td><td class="num mono">₹25,000</td></tr>
+          <tr><td>Planning + roadmap document delivered</td><td class="num mono">Within 24 hrs of advance</td></tr>
+          <tr><td>Estimated timeline</td><td class="num mono">2–3 weeks</td></tr>
+          <tr><td>Monthly server billing starts</td><td class="num mono">From go-live month</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-PROP-CHP-2026-001</div>
+    <div class="center">Page 2 of 3</div>
+    <div class="right">Confidential — <span class="lime">Chital Paper Company</span></div>
+  </footer>
+</div>
+
+<!-- ======= PAGE 3: INVOICE ======= -->
+<div class="page" data-screen-label="Invoice">
+  <header class="running-head">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div class="brand-name">Hyperwrike</div>
+    </div>
+    <div class="rh-ref"><span class="doc">Tax Invoice</span><br>HW-INV-CHP-2026-001 · Chital Paper</div>
+  </header>
+
+  <div class="doc-head">
+    <div class="doc-type">Tax Invoice</div>
+    <h2 style="font-family:var(--display);font-weight:700;font-size:22px;margin:6px 0 12px;">Invoice — E-Commerce Website Development</h2>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Invoice No.</div><div class="v accent">HW-INV-CHP-2026-001</div></div>
+      <div class="cell"><div class="k">Invoice Date</div><div class="v">13 June 2026</div></div>
+      <div class="cell"><div class="k">Due Date</div><div class="v">20 June 2026</div></div>
+      <div class="cell"><div class="k">Against Ref</div><div class="v">HW-PROP-CHP-2026-001</div></div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div class="party">
+      <div class="role">From — Billed By</div>
+      <div class="pname">Hyperwrike</div>
+      <div class="pdetail">Shop No. 01, Door No. 27-971, Madina Complex,<br>Palamaner Road, Chittoor, AP — 517001<br>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+    <div class="party client">
+      <div class="role">To — Billed To</div>
+      <div class="pname">Chital Paper Company</div>
+      <div class="pdetail">[Client Address]<br>[City, State, PIN]<br>GSTIN <span class="mono">—</span></div>
+    </div>
+  </div>
+
+  <div class="content gold-edge">
+    <section class="block">
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th style="width:26px">#</th>
+            <th>Description</th>
+            <th class="num">HSN/SAC</th>
+            <th class="num">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono" style="color:var(--muted)">01</td>
+            <td>E-commerce website build — Custom coded (13–15 products)<br><span class="inv-ref">Ref: HW-PROP-CHP-2026-001, Option 1</span></td>
+            <td class="num mono">998314</td>
+            <td class="num mono">₹50,000</td>
+          </tr>
+          <tr>
+            <td class="mono" style="color:var(--muted)">02</td>
+            <td>Domain registration (new domain — if required)</td>
+            <td class="num mono">998314</td>
+            <td class="num mono">₹1,200</td>
+          </tr>
+          <tr>
+            <td class="mono" style="color:var(--muted)">03</td>
+            <td>Monthly server hosting — Month 1 (hosting, monitoring, backup, security)</td>
+            <td class="num mono">998315</td>
+            <td class="num mono">₹10,000</td>
+          </tr>
+          <tr><td colspan="3" style="text-align:right;font-weight:600;font-size:10px;">Subtotal</td><td class="num mono">₹61,200</td></tr>
+          <tr><td colspan="3" style="text-align:right;font-size:10px;">CGST @ 9%</td><td class="num mono">₹5,508</td></tr>
+          <tr><td colspan="3" style="text-align:right;font-size:10px;">SGST @ 9%</td><td class="num mono">₹5,508</td></tr>
+          <tr><td colspan="3" style="text-align:right;font-size:10px;">Total GST @ 18%</td><td class="num mono">₹11,016</td></tr>
+          <tr class="total inv-total-row"><td colspan="3">Total Amount Due</td><td class="num">₹72,016</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="grid-2" style="gap:20px;">
+        <div>
+          <div class="section-label">Payment Schedule</div>
+          <table class="tbl" style="margin-top:8px">
+            <tbody>
+              <tr><td>Advance (50%) — Due Now</td><td class="num"><span class="kbd-amount">₹36,008</span></td></tr>
+              <tr><td>Balance (50%) — On Delivery</td><td class="num mono">₹36,008</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="section-label">Bank Details</div>
+          <div style="margin-top:8px;font-size:10px;line-height:1.8;">
+            <div>Bank: <span class="blank">________________________</span></div>
+            <div>Account No: <span class="blank">____________________</span></div>
+            <div>IFSC: <span class="blank">________________________</span></div>
+            <div>UPI: <span class="blank">_________________________</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="signatures" style="margin-top:22px;">
+      <div class="sig">
+        <div class="sig-for">For <span class="co">Hyperwrike</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+      <div class="sig">
+        <div class="sig-for">For <span class="co">Chital Paper Company</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-INV-CHP-2026-001</div>
+    <div class="center">Page 3 of 3</div>
+    <div class="right">Confidential — <span class="lime">Chital Paper Company</span></div>
+  </footer>
+</div>
+
+</body>
+</html>

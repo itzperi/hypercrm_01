@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperwrike — Sai Client — Internal Team Brief</title>
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+.internal-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 3px;
+  background: rgba(201,168,76,0.15); color: var(--gold);
+  font-family: var(--label); font-size: 8px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em;
+}
+.sop-card {
+  border: 1px solid var(--hairline); border-radius: 5px;
+  padding: 12px 14px; background: var(--surface); margin-bottom: 10px;
+}
+.sop-card:last-child { margin-bottom: 0; }
+.sop-platform {
+  font-family: var(--display); font-weight: 700; font-size: 12px;
+  margin-bottom: 6px;
+}
+.sop-field {
+  display: grid; grid-template-columns: 80px 1fr; gap: 4px;
+  font-size: 9px; padding: 2px 0; border-bottom: 0.5px solid var(--hairline);
+}
+.sop-field:last-child { border-bottom: none; }
+.sop-key { font-family: var(--label); font-size: 8px; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--muted); padding-top: 2px; }
+.crm-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 12px; margin: 1px;
+  font-family: var(--label); font-size: 8px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.crm-new    { background: rgba(74,111,163,0.12); color: #3A6BA8; }
+.crm-cont   { background: rgba(201,168,76,0.12); color: var(--gold); }
+.crm-resp   { background: rgba(76,122,12,0.12);  color: var(--lime); }
+.crm-booked { background: rgba(60,160,100,0.12); color: #2A8A5A; }
+.crm-closed { background: rgba(76,122,12,0.18);  color: var(--lime); font-weight:800; }
+.crm-lost   { background: rgba(214,34,70,0.10);  color: var(--alert); }
+.score-chip {
+  display: inline-block; padding: 2px 9px; border-radius: 12px;
+  font-family: var(--label); font-size: 8px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+.hot  { background: rgba(214,34,70,0.12); color: #D62246; }
+.warm { background: rgba(201,168,76,0.15); color: var(--gold); }
+.cold { background: rgba(90,107,130,0.15); color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- ======= PAGE 1 ======= -->
+<div class="page" data-screen-label="Team Brief p1">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/>
+        <rect class="bar" x="13" y="24" width="7" height="20" rx="2"/>
+        <rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/>
+        <circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div>
+        <div class="brand-name">Hyperwrike</div>
+        <div class="brand-tag">Internal Document — Not for Client Distribution</div>
+      </div>
+    </div>
+    <div class="contact">
+      <span class="internal-badge">Internal Only</span>
+    </div>
+  </header>
+
+  <div class="doc-head">
+    <div class="doc-type">Internal Team Operations Brief</div>
+    <h1 class="doc-title" style="font-size:22px;">B2B Lead Scraping — Sai Client</h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Project</div><div class="v accent">HW-INT-SAI-2026-001</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">13 June 2026</div></div>
+      <div class="cell"><div class="k">Client</div><div class="v">Sai Client</div></div>
+      <div class="cell"><div class="k">Goal</div><div class="v">B2B Leads — Chennai Market</div></div>
+    </div>
+  </div>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">01</span> Project Overview</div>
+      <table class="tbl">
+        <tbody>
+          <tr><td style="width:120px"><strong>Client</strong></td><td>Sai Client — Digital Marketing Agency, Chennai</td></tr>
+          <tr><td><strong>Goal</strong></td><td>Generate qualified B2B leads in Chennai from social platforms</td></tr>
+          <tr><td><strong>Platforms</strong></td><td>Facebook Groups · Instagram · X/Twitter · Reddit · LinkedIn</td></tr>
+          <tr><td><strong>Target</strong></td><td>Businesses needing digital marketing, web dev, mobile apps, cloud, SEO, social media, paid ads, IT support</td></tr>
+          <tr><td><strong>Delivery</strong></td><td>50–200 qualified leads/week as Google Sheet</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">02</span> Platform SOPs</div>
+      <div class="sop-card">
+        <div class="sop-platform">Facebook Groups</div>
+        <div class="sop-field"><div class="sop-key">Search</div><div>"need website Chennai", "digital marketing help", "app developer", local business groups: Chennai Business Network, Chennai Startups, BNI Chennai</div></div>
+        <div class="sop-field"><div class="sop-key">Qualifies</div><div>Posts asking for marketing help, website/app, or businesses with no website/social presence in Chennai</div></div>
+        <div class="sop-field"><div class="sop-key">Capture</div><div>Business name · Contact person · Phone (if visible) · Pain point (exact quote) · Platform · Date · Lead score</div></div>
+      </div>
+      <div class="sop-card">
+        <div class="sop-platform">Reddit</div>
+        <div class="sop-field"><div class="sop-key">Search</div><div>r/Chennai, r/india — keywords: "need agency", "website help", "marketing", "digital presence", "IT support"</div></div>
+        <div class="sop-field"><div class="sop-key">Qualifies</div><div>Business owners asking for digital services or complaining about current providers</div></div>
+        <div class="sop-field"><div class="sop-key">Capture</div><div>Username · Subreddit · Post URL · Pain point · Date · Lead score</div></div>
+      </div>
+      <div class="sop-card">
+        <div class="sop-platform">LinkedIn</div>
+        <div class="sop-field"><div class="sop-key">Search</div><div>Founders, Marketing Heads, CEOs in Chennai — filter: company size 1–50, industry: retail, healthcare, F&amp;B, manufacturing</div></div>
+        <div class="sop-field"><div class="sop-key">Qualifies</div><div>Decision makers at small-medium Chennai companies with weak or no digital marketing presence</div></div>
+        <div class="sop-field"><div class="sop-key">Capture</div><div>Full name · Title · Company · Phone (if on profile) · Pain point inferred · Lead score</div></div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-INT-SAI-2026-001 · INTERNAL</div>
+    <div class="center">Page 1 of 2</div>
+    <div class="right">Hyperwrike Internal — Do Not Share</div>
+  </footer>
+</div>
+
+<!-- ======= PAGE 2 ======= -->
+<div class="page" data-screen-label="Team Brief p2">
+  <header class="running-head">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div class="brand-name">Hyperwrike</div>
+    </div>
+    <div class="rh-ref"><span class="doc">Internal Brief</span><br>HW-INT-SAI-2026-001 · Sai Client</div>
+  </header>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">03</span> Lead Scoring Matrix</div>
+      <table class="tbl">
+        <thead><tr><th style="width:80px">Score</th><th>Trigger Conditions</th><th style="width:100px">Team Action</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="score-chip hot">🔥 Hot</span></td>
+            <td>Posted in last <strong>7 days</strong> + phone number visible + <strong>explicit need stated</strong> (e.g. "need a website", "looking for agency")</td>
+            <td style="font-family:var(--mono);font-size:8.5px;color:#D62246;font-weight:600;">Outreach same day</td>
+          </tr>
+          <tr>
+            <td><span class="score-chip warm">◉ Warm</span></td>
+            <td>Posted <strong>7–30 days</strong> ago + indirect need inferred from context or profile activity</td>
+            <td style="font-family:var(--mono);font-size:8.5px;color:var(--gold);font-weight:600;">Within 48 hours</td>
+          </tr>
+          <tr>
+            <td><span class="score-chip cold">○ Cold</span></td>
+            <td>Old post (30+ days) or vague signal — no explicit digital need mentioned</td>
+            <td style="font-family:var(--mono);font-size:8.5px;color:var(--muted);">Nurture list only</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">04</span> Sales Closer Protocol</div>
+      <ol class="steps">
+        <li>Lead responds to outreach → <strong>assign to closer immediately</strong>, do not let it sit</li>
+        <li>Closer opens with: <em style="color:var(--muted);font-size:9.5px;">"Hi [Name], I came across your post about [pain point] — we've helped similar businesses in Chennai with exactly this. Can I show you what we did for them?"</em></li>
+        <li>Goal: <strong>Book a 15-min discovery call within first exchange</strong></li>
+        <li>Log every interaction in <strong>Zoho CRM</strong> immediately after contact</li>
+      </ol>
+      <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:4px;">
+        <span class="crm-tag crm-new">New</span>
+        <span class="crm-tag crm-cont">Contacted</span>
+        <span class="crm-tag crm-resp">Responded</span>
+        <span class="crm-tag crm-booked">Call Booked</span>
+        <span class="crm-tag crm-closed">Closed</span>
+        <span class="crm-tag crm-lost">Lost</span>
+      </div>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">05</span> Delivery Schedule</div>
+      <table class="tbl">
+        <thead><tr><th>Period</th><th>Deliverable</th><th>Format</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Week 1</strong></td><td>Setup + tool configuration (API infra, scraping pipeline)</td><td class="mono" style="font-size:8.5px;">Internal only</td></tr>
+          <tr><td><strong>Week 2 onward</strong></td><td>50–200 qualified leads per week</td><td class="mono" style="font-size:8.5px;">Google Sheet</td></tr>
+          <tr><td><strong>Monthly</strong></td><td>Leads generated · Response rate · Deals closed</td><td class="mono" style="font-size:8.5px;">PDF Report</td></tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:11px;">
+        <strong>Team reminder:</strong> Always collect 50% advance (₹7,500) before starting any work. Send the onboarding document the same day the advance is received.
+      </div>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-INT-SAI-2026-001 · INTERNAL</div>
+    <div class="center">Page 2 of 2</div>
+    <div class="right">Hyperwrike Internal — Do Not Share</div>
+  </footer>
+</div>
+
+</body>
+</html>

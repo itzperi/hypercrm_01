@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style data-omelette-print-defaults>
+@media print {
+  @page { margin: 0.5in; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  figure, table, pre, blockquote, img, svg, tr, [class~="card" i] { break-inside: avoid; }
+  img, svg { max-width: 100%; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hyperwrike — Dr. Param — Product Requirements Document</title>
+<link rel="stylesheet" href="../assets/brand.css">
+<style>
+.version-card{border:1px solid var(--hairline);border-radius:6px;overflow:hidden;margin-bottom:12px;}
+.vc-head{padding:11px 16px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--hairline);}
+.vc-v{font-family:var(--display);font-weight:800;font-size:15px;}
+.vc-meta{font-family:var(--mono);font-size:10px;color:var(--muted);}
+.vc-badge{font-family:var(--label);font-size:8px;text-transform:uppercase;letter-spacing:.16em;padding:3px 10px;border-radius:3px;font-weight:700;}
+.badge-v1{background:rgba(76,122,12,.14);color:#4C7A0C;}
+.badge-v2{background:rgba(201,168,76,.14);color:var(--gold);}
+.badge-v3{background:rgba(58,107,168,.14);color:#3A6BA8;}
+.vc-body{padding:12px 16px;background:var(--surface);}
+.persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px;}
+.persona-card{border:1px solid var(--hairline);border-radius:5px;padding:11px 13px;background:var(--navy);}
+.persona-name{font-family:var(--display);font-weight:700;font-size:11px;margin-bottom:5px;}
+.persona-who{font-size:9px;color:var(--muted);margin-bottom:5px;line-height:1.45;}
+.persona-need{font-size:9px;color:var(--ink);line-height:1.45;}
+</style>
+</head>
+<body>
+<!-- PAGE 1 -->
+<div class="page" data-screen-label="PRD p1">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect class="bar" x="3" y="30" width="7" height="14" rx="2"/>
+        <rect class="bar" x="13" y="24" width="7" height="20" rx="2"/>
+        <rect class="bar" x="23" y="16" width="7" height="28" rx="2"/>
+        <path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/>
+        <circle class="node" cx="41.5" cy="9.5" r="4"/>
+      </svg>
+      <div><div class="brand-name">Hyperwrike</div><div class="brand-tag">AI Voice &amp; Automation Solutions</div></div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:team@hyperwrike.com">team@hyperwrike.com</a> · <a href="https://www.hyperwrike.com">www.hyperwrike.com</a></div>
+      <div class="addr">Shop No. 01, Door No. 27-971, Madina Complex, Palamaner Road, Chittoor, AP — 517001</div>
+      <div>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+  </header>
+
+  <div class="doc-head">
+    <div class="doc-type">Product Requirements Document</div>
+    <h1 class="doc-title">OpenLoop-Style Telemedicine Platform</h1>
+    <div style="font-family:var(--label);font-size:12px;color:var(--gold);letter-spacing:.04em;margin-bottom:14px;">Find-a-Doctor &amp; Open-Loop Care Model</div>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Ref No.</div><div class="v accent">HW-PRD-PRM-2026-001</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">16 June 2026</div></div>
+      <div class="cell"><div class="k">Version</div><div class="v">1.0</div></div>
+      <div class="cell"><div class="k">Prepared For</div><div class="v">Dr. Param</div></div>
+    </div>
+  </div>
+
+  <div class="parties">
+    <div class="party"><div class="role">Prepared By</div><div class="pname">Hyperwrike</div><div class="pdetail">AI Voice &amp; Automation Solutions<br>Chittoor, Andhra Pradesh — 517001<br><span class="mono">team@hyperwrike.com</span></div></div>
+    <div class="party client"><div class="role">Prepared For</div><div class="pname">Dr. Param</div><div class="pdetail">Family Physician Clinic<br>United States<br>Classification: <strong>Confidential</strong></div></div>
+  </div>
+
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">01</span> Executive Summary</div>
+      <p class="lead">Dr. Param is building a direct-to-consumer telemedicine platform modelled on Sesame, Zocdoc, and Klarity, with the clinical and operational backbone of an "open-loop" provider network similar to OpenLoop Health. The platform lets a patient discover a service, complete a guided intake, get matched with a licensed clinician, receive care by video or asynchronous review, and leave with a prescription, lab order, or care plan — while a separate clinician workspace and an internal operations console run everything behind the scenes.</p>
+      <p class="lead">The platform is three connected products — the <strong>Patient App</strong>, the <strong>Provider Dashboard</strong>, and the <strong>Admin Console</strong> — released across three versions so the client can launch fast, prove the model with real patients and providers, and only invest in heavier infrastructure (insurance billing, controlled-substance prescribing, multi-brand white-label) once V1 has validated demand.</p>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">02</span> Product Vision &amp; Goals</div>
+      <ul class="ticks">
+        <li>Let a patient go from "I need care" to "a licensed clinician has seen my case" in under 10 minutes for async visits, or one scheduled video call for sync visits.</li>
+        <li>Give clinicians a single queue-driven workspace to review intakes, run visits, document care, and prescribe — without juggling separate EHR, eRx, and video tools.</li>
+        <li>Give Dr. Param's operations team full visibility and control: provider supply, compliance status, complaints, and revenue, in one console.</li>
+        <li>Build on a HIPAA-eligible technical foundation from day one so V2/V3 features can be added without re-architecting.</li>
+        <li>Ship a real, prescribable, billable V1 in approximately 17 weeks for a fixed investment of <strong>$44,000</strong>.</li>
+      </ul>
+    </section>
+
+    <hr class="gold-rule">
+
+    <section class="block">
+      <div class="section-heading"><span class="num">03</span> Target Users &amp; Personas</div>
+      <div class="persona-grid">
+        <div class="persona-card">
+          <div class="persona-name" style="color:var(--lime);">Patient</div>
+          <div class="persona-who">Adult self-pay (and later insured) consumer looking for fast, convenient access to a specific service (weight loss, mental health, primary care).</div>
+          <div class="persona-need"><strong>Need:</strong> Be seen quickly by a real, licensed clinician without visiting a clinic.</div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-name" style="color:var(--gold);">Clinician / Provider</div>
+          <div class="persona-who">Licensed NP, PA, or physician contracted or employed by the platform, often working across multiple states.</div>
+          <div class="persona-need"><strong>Need:</strong> Review cases and run visits efficiently inside one workspace; get paid correctly and on time.</div>
+        </div>
+        <div class="persona-card">
+          <div class="persona-name" style="color:#3A6BA8;">Platform Admin / Ops</div>
+          <div class="persona-who">Dr. Param's internal team — operations, compliance, and support staff.</div>
+          <div class="persona-need"><strong>Need:</strong> See everything happening on the platform and intervene when something needs attention.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="page-footer">
+    <div class="left">HW-PRD-PRM-2026-001</div>
+    <div class="center">Page 1 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" data-screen-label="PRD p2">
+  <header class="running-head">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg>
+      <div class="brand-name">Hyperwrike</div>
+    </div>
+    <div class="rh-ref"><span class="doc">PRD</span><br>HW-PRD-PRM-2026-001 · Dr. Param</div>
+  </header>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">04</span> Versioned Scope Overview</div>
+
+      <div class="version-card">
+        <div class="vc-head">
+          <div><div class="vc-v">Version 1 — Launch MVP</div><div class="vc-meta">~17 weeks · $44,000 fixed price</div></div>
+          <span class="vc-badge badge-v1">Build Now</span>
+        </div>
+        <div class="vc-body">
+          <p class="lead" style="margin-bottom:8px;">Goal: prove the core loop — discovery → intake → match → visit → prescription/care plan → payment — for one or two initial service lines, cash-pay only, sync video visits only.</p>
+          <table class="tbl">
+            <thead><tr><th style="width:140px">Portal</th><th>In Scope for V1</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Patient App</strong></td><td>Marketing landing page; account creation &amp; identity verification; HIPAA + telehealth consent; condition-specific intake questionnaire (1–2 service lines); provider matching by state availability; sync video visit booking; visit summary &amp; care plan; ePrescription hand-off to pharmacy; card payment via Stripe; rating prompt.</td></tr>
+              <tr><td><strong>Provider Dashboard</strong></td><td>Provider onboarding (license, NPI, DEA upload, e-signature); daily queue of scheduled visits; in-call dashboard with patient chart side-by-side; SOAP note charting; ICD-10/CPT code entry; eRx for non-controlled medications; availability &amp; schedule management.</td></tr>
+              <tr><td><strong>Admin Console</strong></td><td>Patient &amp; provider directory; manual provider approval; visit log &amp; basic reporting (visits/day, revenue, conversion); flagged-case review; refund handling.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="version-card">
+        <div class="vc-head">
+          <div><div class="vc-v">Version 2 — Scale &amp; Monetize</div><div class="vc-meta">~14–16 weeks · $58,000–$72,000 (planning estimate)</div></div>
+          <span class="vc-badge badge-v2">After V1</span>
+        </div>
+        <div class="vc-body">
+          <p class="lead" style="margin-bottom:8px;">Goal: remove the friction points that cap growth — add asynchronous visits, insurance, ongoing-care workflows, and native mobile.</p>
+          <table class="tbl">
+            <thead><tr><th style="width:140px">Portal</th><th>Added in V2</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Patient App</strong></td><td>Async (store-and-forward) visits; secure patient–provider messaging; medication refill requests; lab result delivery; subscription/package billing; insurance eligibility check &amp; co-pay collection; native iOS &amp; Android apps.</td></tr>
+              <tr><td><strong>Provider Dashboard</strong></td><td>Async case queue with approve/decline/request-info/refer actions; lab ordering; refill approval workflow; earnings &amp; pay-stub view; license renewal tracking.</td></tr>
+              <tr><td><strong>Admin Console</strong></td><td>Automated provider credentialing workflow &amp; background-check integration; multi-state license-to-patient-state matching; advanced reporting (cohort, retention, CAC); compliance monitoring dashboard.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="version-card">
+        <div class="vc-head">
+          <div><div class="vc-v">Version 3 — Mature Platform</div><div class="vc-meta">~12+ weeks or ongoing retainer · $75,000–$95,000</div></div>
+          <span class="vc-badge badge-v3">Scale Phase</span>
+        </div>
+        <div class="vc-body">
+          <p class="lead">Goal: the parts that matter once the platform has real volume — controlled substances, automation, interoperability, and white-label scale.</p>
+          <ul class="ticks" style="margin-top:8px;">
+            <li>AI-assisted symptom intake / triage; expanded service lines; loyalty / referral programs</li>
+            <li>EPCS-compliant controlled-substance prescribing (two-factor DEA authentication)</li>
+            <li>Direct lab integrations (Quest/LabCorp); productivity analytics</li>
+            <li>Insurance claims automation (837/835, clearinghouse integration)</li>
+            <li>SOC 2–ready audit infrastructure; white-label multi-brand configuration</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-PRD-PRM-2026-001</div>
+    <div class="center">Page 2 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" data-screen-label="PRD p3">
+  <header class="running-head">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg>
+      <div class="brand-name">Hyperwrike</div>
+    </div>
+    <div class="rh-ref"><span class="doc">PRD</span><br>HW-PRD-PRM-2026-001 · Dr. Param</div>
+  </header>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">05</span> Technical Architecture Principles</div>
+      <ul class="ticks">
+        <li><strong>HIPAA-eligible from day one</strong> — every PHI-touching service runs behind a signed BAA; retrofitting compliance later is far more expensive.</li>
+        <li><strong>Data-driven configuration</strong> — service lines, intake questionnaires, and state coverage are configured, not hard-coded, so adding a new condition or state in V2/V3 doesn't require new code.</li>
+        <li><strong>Vendor stack (V1)</strong> — Stripe (payments), DoseSpot or Doxy.me (eRx), video vendor TBD at discovery, Twilio or AWS Transcribe (comms), AWS/GCP with HIPAA BAA (hosting).</li>
+        <li><strong>Shared data model</strong> — Patient App, Provider Dashboard, and Admin Console all share one underlying patient/provider/visit data model, built once, used three ways.</li>
+      </ul>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">06</span> Risk Register</div>
+      <table class="tbl">
+        <thead><tr><th>Risk</th><th>Impact</th><th>Mitigation</th></tr></thead>
+        <tbody>
+          <tr><td>Client delays BAA execution with PHI vendors</td><td class="mono" style="color:var(--alert);">High</td><td>Hard dependency flagged in SOW; module development cannot begin until BAA confirmed</td></tr>
+          <tr><td>Initial service line or launch state not confirmed by Week 1</td><td class="mono" style="color:var(--alert);">High</td><td>Provider matching and intake cannot be built without this; blocks M2</td></tr>
+          <tr><td>Scope creep via informal requests</td><td class="mono" style="color:var(--gold);">Medium</td><td>All changes via signed change order; no out-of-scope items developed without written agreement</td></tr>
+          <tr><td>eRx vendor integration delays</td><td class="mono" style="color:var(--gold);">Medium</td><td>Vendor selection finalised at Week 1; Hyperwrike has prior integration experience with DoseSpot</td></tr>
+          <tr><td>Clinician supply shortfall at launch</td><td class="mono" style="color:var(--gold);">Medium</td><td>Client's responsibility to supply licensed clinicians; admin console built to handle small provider lists</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">07</span> Investment Summary</div>
+      <div class="grid-2" style="gap:14px">
+        <div class="headline-figure" style="margin:0">
+          <div class="big">$44,000</div>
+          <div class="cap">Version 1 — Fixed Price<br><strong>~17 weeks</strong> to go-live</div>
+        </div>
+        <div>
+          <table class="tbl">
+            <tbody>
+              <tr><td>Version 2 (planning estimate)</td><td class="num mono">$58k–$72k</td></tr>
+              <tr><td>Version 3 (planning estimate)</td><td class="num mono">$75k–$95k</td></tr>
+              <tr><td>V2 &amp; V3 re-scoped at phase start</td><td class="num mono" style="color:var(--muted);">Not fixed yet</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <hr class="gold-rule">
+    <div class="signatures">
+      <div class="sig"><div class="sig-for">For <span class="co">Hyperwrike</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+      <div class="sig"><div class="sig-for">For <span class="co">Dr. Param</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-PRD-PRM-2026-001</div>
+    <div class="center">Page 3 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+<script>
+(async () => {
+  if (!document.title || !document.title.trim()) document.title = "prd";
+  // rAF raced with a short timeout: inside a cross-origin iframe (PrintMode),
+  // rAF can be throttled or paused even while the tab is focused, which would
+  // hang the scroll loop and never reach print(). Same pattern as
+  // buildExportSettleScript (export/shared.ts).
+  var raf = function () {
+    return Promise.race([
+      new Promise(function (r) { requestAnimationFrame(r); }),
+      new Promise(function (r) { setTimeout(r, 50); }),
+    ]);
+  };
+  var t0 = performance.now();
+  var mark = function (phase) {
+    var ms = Math.round(performance.now() - t0);
+    console.info('[autoprint]', phase, ms + 'ms');
+    try { parent.postMessage({ __omelette_autoprint: { phase: phase, ms: ms } }, '*'); } catch (e) {}
+  };
+  mark('start');
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    print-color-adjust: exact; -webkit-print-color-adjust: exact;\n    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    // A placeholder whose fetch failed (.sc-placeholder-error inside) keeps
+    // .sc-placeholder forever — don't wait on it. JS loop, not :has(), so an
+    // engine without :has() support can't throw out of the while and skip
+    // print() entirely.
+    var pendingPlaceholders = function () {
+      var all = settleRoot.querySelectorAll('.sc-placeholder'), n = 0;
+      for (var i = 0; i < all.length; i++)
+        if (!all[i].querySelector('.sc-placeholder-error')) n++;
+      return n;
+    };
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        pendingPlaceholders() === 0;
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  mark('settle-done' + (settleRoot ? ' (errs=' + settleRoot.querySelectorAll('.sc-placeholder-error').length + ' pending=' + pendingPlaceholders() + ')' : ''));
+  // Project support.js may predate runtime default-seeding; push via bridge.
+  if (isDc && window.__dcSetProps && window.__dcRootName) {
+    try {
+      const dpEl = document.querySelector('script[data-dc-script]');
+      const meta = JSON.parse((dpEl && dpEl.getAttribute('data-props')) || '{}');
+      const bag = {};
+      for (const k in meta)
+        if (k[0] !== '$' && meta[k] && meta[k].default !== undefined)
+          bag[k] = meta[k].default;
+      if (Object.keys(bag).length) {
+        window.__dcSetProps(window.__dcRootName(), bag);
+        await new Promise((r) => setTimeout(r, 50));
+      }
+    } catch (e) {}
+  }
+  // Reveal content gated on scroll or visibility before printing. Lazy <img>,
+  // IntersectionObserver fade-ins, and collapsed <details> don't render while
+  // off-screen, so a long page would print with them blank or closed. Open
+  // every <details>, force native-lazy images eager, and scroll the document
+  // through its full height to trip lazy-load + IO; then wait (bounded) for the
+  // newly-triggered images. Inert for deck-stage (slides aren't scroll-gated).
+  try {
+    for (const d of document.querySelectorAll('details')) d.open = true;
+    for (const img of document.querySelectorAll('img[loading="lazy"]'))
+      img.loading = 'eager';
+    const scroller = document.scrollingElement || document.documentElement;
+    const full = Math.max(scroller.scrollHeight, document.body.scrollHeight);
+    const step = window.innerHeight || 800;
+    var scrollDeadline = Date.now() + 4000;
+    for (let y = 0; y <= full && Date.now() < scrollDeadline; y += step) {
+      window.scrollTo(0, y);
+      await raf();
+    }
+    window.scrollTo(0, 0);
+    await Promise.race([
+      Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((res) => {
+                img.addEventListener('load', res, { once: true });
+                img.addEventListener('error', res, { once: true });
+              })
+        )
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  } catch (e) {}
+  mark('scroll-done');
+  try { await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 3000))]); } catch (e) {}
+  mark('fonts-done');
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  // Re-append deck-stage's @page last so no author @page can add a margin and
+  // spill each full-bleed slide onto two sheets. Backstop for old copies.
+  if (ds) {
+    let pg = document.getElementById('deck-stage-print-page');
+    if (!pg) {
+      pg = document.createElement('style');
+      pg.textContent = '@page{size:' + (+ds.getAttribute('width') || 1920) +
+        'px ' + (+ds.getAttribute('height') || 1080) + 'px;margin:0}';
+    }
+    document.body.appendChild(pg);
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await raf();
+    sweep();
+    await raf();
+  } catch (e) {}
+  // A document that owns its print CSS (the doc-page starter injects the
+  // meta at runtime; hand-rolled print designs author it) gets no automatic
+  // page geometry and keeps its forced breaks: strip the injected default
+  // @page — write time cannot see a runtime-injected meta — skip the frame
+  // override below, and skip the fakepage-flattening further down. What
+  // still applies: the print baseline and break-hygiene defaults (no @page
+  // in either; low specificity, so the document's own print CSS wins) and
+  // the break-inside relaxation on >page elements (avoid on those cannot
+  // be honored whoever authored it).
+  var ownsPrint = !!document.querySelector('meta[name="omelette-owns-print" i]');
+  if (ownsPrint) {
+    var dst = document.querySelector('style[data-omelette-print-defaults]');
+    if (dst && dst.textContent) {
+      dst.textContent = dst.textContent.replace(/@page\b[^{}]*\{[^}]*\}/, '');
+    }
+  }
+  // Size the PDF page to the rendered design unless the file opted into
+  // standard paper via @page{size:letter|A4|…} or declared print ownership
+  // via the meta above. Decks own their own @page.
+  // Wrappers (body, …) lose padding+margin so the frame sits at (0,0); the
+  // frame itself loses only margin — its padding is INSIDE the measured
+  // rect and must stay, or content shifts and leaves a gap at bottom/right.
+  var __m = null;
+  try { __m = (() => {
+  var STAMP = true;
+  var docEl = document.documentElement;
+  var doc = { width: docEl.scrollWidth, height: docEl.scrollHeight };
+  // Name-presence check, case-insensitive — the same contract as the
+  // instant-PDF path's runtime check in deck-stage-export.ts. The name is
+  // a string literal here because that file interpolates this script into
+  // its print script, so importing a shared constant from it would be a
+  // cycle; measure.test.ts pins the literal so the two cannot drift apart
+  // silently.
+  var ownsPrint = !!document.querySelector('meta[name="omelette-owns-print" i]');
+
+  var ds = document.querySelector('deck-stage');
+  if (ds) {
+    var dw = Number(ds.getAttribute('width')) || 1920;
+    var dh = Number(ds.getAttribute('height')) || 1080;
+    var n = typeof ds.length === 'number' ? ds.length : ds.children.length;
+    var idx = typeof ds.index === 'number' ? ds.index : 0;
+    var frames = [];
+    for (var i = 0; i < n; i++) frames.push({ left: 0, top: 0, width: dw, height: dh });
+    return { kind: 'deck', source: 'declared', doc: doc, frames: frames,
+      authored: frames.map(function(){return{width:true,height:true}}),
+      deck: { width: dw, height: dh, slideCount: n, index: idx },
+      signals: { paperPage: false, pxPage: false, ownsPrint: ownsPrint } };
+  }
+
+  // Declared kind: a doc-page tag names the kind outright, so no signal
+  // heuristics run (like the deck branch above, signals report false —
+  // they describe inferred classifications only). The tag alone is not
+  // trusted: the element must have upgraded (shadowRoot present), so a
+  // leftover tag whose script was deleted falls through to the heuristics
+  // that handle plain markup.
+  var stageSx = window.scrollX || 0, stageSy = window.scrollY || 0;
+  var dp = document.querySelector('doc-page');
+  if (dp && dp.shadowRoot) {
+    // Crop to the sheet, not the host — the desk around it is screen-only
+    // chrome that must not land in PNG exports.
+    var sheet = dp.shadowRoot.querySelector('.sheet');
+    var sr = (sheet || dp).getBoundingClientRect();
+    return { kind: 'paper-doc', source: 'declared', doc: doc,
+      frames: [{ left: sr.left + stageSx, top: sr.top + stageSy,
+        width: sr.width, height: sr.height }],
+      authored: [{ width: false, height: false }],
+      signals: { paperPage: false, pxPage: false, ownsPrint: ownsPrint } };
+  }
+  var paperPage = false, pxPage = false;
+  var eachRule = function (fn) {
+    for (var s = 0; s < document.styleSheets.length; s++) {
+      var rs; try { rs = document.styleSheets[s].cssRules; } catch (e) { continue; }
+      for (var r = 0; r < rs.length; r++) {
+        fn(rs[r]);
+        if (rs[r].cssRules) for (var n = 0; n < rs[r].cssRules.length; n++) fn(rs[r].cssRules[n]);
+      }
+    }
+  };
+  eachRule(function (r) {
+    if (r.type !== 6) return;
+    var m = /\bsize\s*:\s*([^;}]+)/i.exec(r.cssText || '');
+    if (!m) return;
+    if (/\b(letter|a[3-5]|legal|ledger)\b/i.test(m[1])) paperPage = true;
+    if (/\d+(?:\.\d+)?px\b/i.test(m[1])) pxPage = true;
+  });
+  var signals = { paperPage: paperPage, pxPage: pxPage, ownsPrint: ownsPrint };
+
+  var pxVal = function (v) {
+    var m = /^(\d+(?:\.\d+)?)px$/.exec(v || ''); return m ? +m[1] : 0;
+  };
+  var authoredPx = function (el, prop) {
+    if (pxVal(el.style[prop])) return true;
+    var attr = el.getAttribute(prop);
+    if (attr && /^\d+$/.test(attr)) return true;
+    var hit = false;
+    eachRule(function (r) {
+      if (hit || r.type !== 1 || !r.style) return;
+      try { if (el.matches(r.selectorText) && pxVal(r.style[prop])) hit = true; } catch (e) {}
+    });
+    return hit;
+  };
+
+  var el = document.body, rootPxW = false;
+  for (;;) {
+    var kids = [];
+    for (var c = 0; c < el.children.length; c++) {
+      var t = el.children[c].tagName;
+      if (t !== 'SCRIPT' && t !== 'STYLE' && t !== 'TEMPLATE') kids.push(el.children[c]);
+    }
+    if (kids.length !== 1 || !(kids[0] instanceof HTMLElement)) break;
+    if (STAMP) el.setAttribute('data-om-frame-wrap', '');
+    el = kids[0];
+    rootPxW = authoredPx(el, 'width');
+    if (rootPxW) break;
+  }
+  if (!rootPxW) rootPxW = authoredPx(el, 'width');
+
+  // @page{size:letter} alone is a flowing doc; with a px-width root it's a
+  // fixed sheet pretending to be paper — fall through and size to render.
+  if (paperPage && !rootPxW) {
+    return { kind: 'paper-doc', source: 'inferred', doc: doc, signals: signals,
+      frames: [{ left: 0, top: 0, width: doc.width, height: doc.height }],
+      authored: [{ width: false, height: false }] };
+  }
+
+  var sx = window.scrollX || 0, sy = window.scrollY || 0;
+  var rectOf = function (e) {
+    var r = e.getBoundingClientRect();
+    var oy; try { oy = getComputedStyle(e).overflowY; } catch (err) {}
+    var h = oy === 'visible' ? Math.max(r.height, e.scrollHeight || 0) : r.height;
+    return { left: r.left + sx, top: r.top + sy, width: r.width, height: h };
+  };
+
+  // Multi-frame: off unless the page opts in via data-om-multi-frame on the
+  // stop element — the explicit opt-in is what guards against card grids
+  // and pricing tables that match the geometry but aren't separate
+  // canvases. Two ways to name the frames, explicit first:
+  // 1. Descendants marked data-om-frame-export (the social-frames starter
+  //    marks each asset frame; shells/panels around them are presentation,
+  //    so nesting is expected). Document order.
+  // 2. Fallback, no marked descendants: direct children with an authored px
+  //    width AND height (the original geometry heuristic).
+  // Frames may be different sizes (a gallery mixes 1080×1920 stories with
+  // 728×90 banners); data-om-frame-label rides along for export filenames.
+  if (el.hasAttribute('data-om-multi-frame')) {
+    var visOk = function (e) {
+      var cs; try { cs = getComputedStyle(e); } catch (err) { return false; }
+      return cs.display !== 'none' && cs.visibility !== 'hidden' && cs.position !== 'fixed';
+    };
+    // A frame's crop is its VISUAL box — never the scrollHeight-inflated
+    // rect that rectOf computes for page roots. Shadow-DOM hover controls
+    // (image-slot's Replace bar parks 29px below its host) and similar
+    // escaping UI contribute scrollable overflow to the frame, and the
+    // inflated height both squashes the nominal-size resize and drags
+    // content below the frame into the crop. Zoom-independent; bit every
+    // slot-bearing frame.
+    var frameRectOf = function (e) {
+      var r = e.getBoundingClientRect();
+      return { left: r.left + sx, top: r.top + sy, width: r.width, height: r.height };
+    };
+    var pushCand = function (list, e) {
+      if (!visOk(e)) return;
+      var rc = frameRectOf(e);
+      if (rc.width < 2 || rc.height < 2) return;
+      var lbl = e.getAttribute('data-om-frame-label');
+      if (lbl) rc.label = lbl;
+      list.push(rc);
+    };
+    var cands = [];
+    var marked = el.querySelectorAll('[data-om-frame-export]');
+    if (marked.length) {
+      for (var mk = 0; mk < marked.length; mk++) pushCand(cands, marked[mk]);
+    } else {
+      for (var k = 0; k < el.children.length; k++) {
+        var ch = el.children[k];
+        if (!authoredPx(ch, 'width') || !authoredPx(ch, 'height')) continue;
+        pushCand(cands, ch);
+      }
+    }
+    if (cands.length >= 2) {
+      return { kind: 'multi-frame', source: 'inferred', doc: doc, signals: signals,
+        frames: cands, authored: cands.map(function(){return{width:true,height:true}}) };
+    }
+  }
+
+  if (STAMP) el.setAttribute('data-om-frame', '');
+  return { kind: 'single-canvas', source: 'inferred', doc: doc, signals: signals,
+    frames: [rectOf(el)],
+    authored: [{ width: rootPxW, height: authoredPx(el, 'height') }] };
+})(); } catch (e) {}
+  var frame = null;
+  if (!ownsPrint && __m && __m.kind === 'single-canvas') {
+    var f = __m.frames && __m.frames[0];
+    if (f && f.width >= 200 && f.height >= 200) {
+      frame = f;
+      var fst = document.createElement('style');
+      fst.textContent = '@media print{@page{size:' + Math.ceil(f.width) + 'px ' +
+        Math.ceil(f.height) + 'px;margin:0}' +
+        'html,body,[data-om-frame-wrap]{padding:0!important;margin:0!important;background:none!important}' +
+        '[data-om-frame]{margin:0!important}}';
+      document.body.appendChild(fst);
+    }
+  }
+  // Relax break-inside on oversized elements. An element taller than a
+  // printable page can't honor break-inside: avoid — browsers either overflow
+  // it or push it whole to the next page, leaving a blank gap, then break it
+  // anyway at an arbitrary point. After the final layout (content revealed,
+  // animations jumped), find elements taller than a page that still compute
+  // break-inside: avoid and reset them to auto, so the browser breaks them at
+  // their children's boundaries instead (children keep their own avoid). PAGE_PX
+  // is a conservative portrait estimate at 96 CSS px/in — Letter/A4 usable
+  // height minus our 0.5in margins — so only clearly-oversized elements are
+  // touched and under-page elements still stay whole. Skipped for decks (slides
+  // are sized to the page) and for fixed-size canvases (frame set, or an author
+  // px-based @page) — runs as before for flowing docs on letter/A4.
+  try {
+    if (!ds && !frame && !(__m && __m.signals && __m.signals.pxPage)) {
+      const PAGE_PX = 1024;
+      // Our print defaults add a real @page margin only when the source has
+      // no @page of its own; computed style can't tell us (it reports screen
+      // media), so read the injected rule directly.
+      const defaults = document.querySelector('style[data-omelette-print-defaults]');
+      const pageInset = /@page\s*\{[^}]*margin/.test(defaults ? defaults.textContent || '' : '');
+      const SEL = 'section,article,figure,table,pre,blockquote,[class~="card" i],[class~="page" i],[class~="sheet" i]';
+      for (const el of document.body.querySelectorAll(SEL)) {
+        if (el instanceof HTMLElement && el.offsetHeight > PAGE_PX) {
+          el.setAttribute('data-om-oversized', '');
+          // Fake-paged docs simulate sheets with over-tall break-after:page
+          // boxes; honoring the break spills half-blank pages and ends a
+          // colored box mid-sheet. Flow them, and (only when we own the page
+          // inset) drop the redundant padding/background via the rule below.
+          const cs = getComputedStyle(el);
+          // An owns-print doc's forced breaks are intentional sheet
+          // boundaries, never fake-paged simulation — don't strip them.
+          // The break-inside relaxation above still applies: avoid on a
+          // >page element is impossible to honor whoever authored it.
+          if (
+            !ownsPrint &&
+            (cs.breakAfter === 'page' || cs.pageBreakAfter === 'always')
+          ) {
+            el.setAttribute('data-om-fakepage', '');
+          }
+        }
+      }
+      const ost = document.createElement('style');
+      ost.textContent = '@media print{' +
+        '[data-om-oversized]{break-inside:auto !important;page-break-inside:auto !important}' +
+        '[data-om-fakepage]{break-after:auto !important;page-break-after:auto !important}' +
+        (pageInset ? '[data-om-fakepage]{padding:0 !important;background:none !important}' : '') +
+        '}';
+      document.head.appendChild(ost);
+    }
+  } catch (e) {}
+  // macOS Preview renders Skia-PDF Luminosity soft-masks as opaque grey boxes;
+  // swap the CSS that triggers them for Preview-safe forms.
+  try {
+    for (const el of document.body.querySelectorAll('*')) {
+      const cs = getComputedStyle(el);
+
+      if (cs.boxShadow !== 'none' && cs.filter === 'none') {
+        const outs = [], kept = [];
+        for (const s of cs.boxShadow.split(/,(?![^(]*[)])/)) {
+          const t = s.trim();
+          const m = t.match(/^(rgba?[(][^)]+[)]) (-?[0-9.]+px) (-?[0-9.]+px) ([0-9.]+px) -?[0-9.]+px$/);
+          if (m && parseFloat(m[4]) > 0) outs.push('drop-shadow(' + m[2] + ' ' + m[3] + ' ' + m[4] + ' ' + m[1] + ')');
+          else kept.push(t);
+        }
+        if (outs.length) {
+          el.style.setProperty('filter', outs.join(' '), 'important');
+          el.style.setProperty('box-shadow', kept.join(', ') || 'none', 'important');
+        }
+      }
+
+      const mask = cs.maskImage && cs.maskImage !== 'none' ? cs.maskImage : cs.webkitMaskImage;
+      if (mask && mask !== 'none' && cs.filter === 'none') el.style.setProperty('filter', 'opacity(1)', 'important');
+    }
+  } catch (e) {}
+  mark('print-calling');
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style data-omelette-print-defaults>
+@media print {
+  @page { margin: 0.5in; }
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+  figure, table, pre, blockquote, img, svg, li, tr { break-inside: avoid; }
+  section, article, [class*="card" i] { break-inside: avoid; }
+  img, svg { max-width: 100%; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hyperwrike — Dr. Param — Project Proposal</title>
+<link rel="stylesheet" href="../assets/brand.css">
+</head>
+<body>
+<!-- PAGE 1 -->
+<div class="page" data-screen-label="Proposal p1">
+  <header class="letterhead">
+    <div class="brand">
+      <svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg>
+      <div><div class="brand-name">Hyperwrike</div><div class="brand-tag">AI Voice &amp; Automation Solutions</div></div>
+    </div>
+    <div class="contact">
+      <div><a href="mailto:team@hyperwrike.com">team@hyperwrike.com</a> · <a href="https://www.hyperwrike.com">www.hyperwrike.com</a></div>
+      <div class="addr">Madina Complex, Palamaner Road, Chittoor, AP — 517001</div>
+      <div>GSTIN <span class="mono">37ABCDH1234M1Z5</span></div>
+    </div>
+  </header>
+  <div class="doc-head">
+    <div class="doc-type">Project Proposal</div>
+    <h1 class="doc-title">A Find-a-Doctor Telemedicine Platform<br><span style="font-size:18px;font-weight:400;color:var(--muted)">Built and Launched in 3 Phases</span></h1>
+    <div class="doc-meta">
+      <div class="cell"><div class="k">Ref No.</div><div class="v accent">HW-PROP-PRM-2026-002</div></div>
+      <div class="cell"><div class="k">Date</div><div class="v">16 June 2026</div></div>
+      <div class="cell"><div class="k">Valid For</div><div class="v">30 days</div></div>
+      <div class="cell"><div class="k">Prepared For</div><div class="v">Dr. Param</div></div>
+    </div>
+  </div>
+  <div class="parties">
+    <div class="party"><div class="role">From — Service Provider</div><div class="pname">Hyperwrike</div><div class="pdetail">AI Voice &amp; Automation Solutions<br>Chittoor, Andhra Pradesh — 517001<br><span class="mono">team@hyperwrike.com</span></div></div>
+    <div class="party client"><div class="role">To — Client</div><div class="pname">Dr. Param</div><div class="pdetail">Family Physician Clinic<br>United States</div></div>
+  </div>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">01</span> A Note Before You Read This</div>
+      <p class="lead">Thank you for sharing the vision for the platform. What you're describing — a Sesame/Zocdoc/Klarity-style experience for patients, backed by an OpenLoop-style clinical network — is a well-understood category, but it's genuinely <strong>three products in one</strong>: a patient app, a clinician workspace, and an internal operations console.</p>
+      <p class="lead">The clinician and ops sides are usually more complex to build than the patient-facing app, and they're also where most telehealth projects quietly blow their budget and timeline. This proposal lays out how we'd build this in three versions — a lean, real, prescribing <strong>V1 you can put in front of patients in about 17 weeks</strong>, followed by V2 and V3 that add insurance billing, scale, and the heavier compliance features once V1 has proven the model.</p>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">02</span> Three Connected Products</div>
+      <table class="tbl">
+        <thead><tr><th>Product</th><th>Who Uses It</th><th>What It Does</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Patient App</strong></td><td>The end patient</td><td>Discovery, sign-up, intake, booking, the visit itself, prescriptions/care plan, and payment.</td></tr>
+          <tr><td><strong>Provider Dashboard</strong></td><td>Contracted/employed clinicians</td><td>Case queue, video visits, charting, e-prescribing, schedule and earnings.</td></tr>
+          <tr><td><strong>Admin Console</strong></td><td>Dr. Param's ops team</td><td>Oversight of every patient and provider, approvals, compliance, reporting, and refunds.</td></tr>
+        </tbody>
+      </table>
+      <p class="lead" style="margin-top:8px;">All three share one underlying patient/provider/visit data model — built once, used three ways — rather than three disconnected systems stitched together later.</p>
+    </section>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-PROP-PRM-2026-002</div>
+    <div class="center">Page 1 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" data-screen-label="Proposal p2">
+  <header class="running-head">
+    <div class="brand"><svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg><div class="brand-name">Hyperwrike</div></div>
+    <div class="rh-ref"><span class="doc">Proposal</span><br>HW-PROP-PRM-2026-002 · Dr. Param</div>
+  </header>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">03</span> Our Phased Approach</div>
+      <table class="tbl">
+        <thead><tr><th>Version</th><th>Timeline</th><th>Investment</th><th>Goal</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>V1 — Launch MVP</strong></td>
+            <td class="mono">~17 weeks</td>
+            <td class="num mono" style="color:var(--lime);font-weight:700;">$30,000</td>
+            <td>Live prescribing platform for 1–2 service lines, cash-pay, sync video only</td>
+          </tr>
+          <tr>
+            <td><strong>V2 — Scale &amp; Monetize</strong></td>
+            <td class="mono">~14–16 weeks</td>
+            <td class="num mono">$58k–$72k</td>
+            <td>Insurance, async visits, secure messaging, native mobile apps</td>
+          </tr>
+          <tr>
+            <td><strong>V3 — Mature Platform</strong></td>
+            <td class="mono">~12+ weeks</td>
+            <td class="num mono">$75k–$95k</td>
+            <td>Controlled substances, EHR interoperability, white-label, SOC 2</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout" style="margin-top:10px">V2 and V3 numbers are good-faith planning estimates, not fixed quotes — we'll re-scope and re-quote each one at the start of its phase based on what V1 tells us patients and providers actually need.</div>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">04</span> V1 Timeline — 17 Weeks</div>
+      <table class="tbl">
+        <thead><tr><th style="width:140px">Phase</th><th>Weeks</th><th>What Happens</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Discovery &amp; Architecture</strong></td><td class="mono">1–2</td><td>Requirements sign-off, technical architecture, BAA vendor selection, environment setup.</td></tr>
+          <tr><td><strong>UI/UX Design</strong></td><td class="mono">3–5</td><td>Wireframes, design system, high-fidelity screens for all three portals.</td></tr>
+          <tr><td><strong>Core Development</strong></td><td class="mono">6–12</td><td>Patient app, provider dashboard, admin console, and all integrations built and unit-tested.</td></tr>
+          <tr><td><strong>Integration &amp; Security Testing</strong></td><td class="mono">13–14</td><td>End-to-end testing, security review, HIPAA compliance walkthrough.</td></tr>
+          <tr><td><strong>UAT &amp; Bug Fixing</strong></td><td class="mono">15–16</td><td>Client testing window, fixes, sign-off.</td></tr>
+          <tr><td><strong>Launch</strong></td><td class="mono">17</td><td>Deployment, go-live, knowledge transfer and handover documentation.</td></tr>
+        </tbody>
+      </table>
+    </section>
+    <hr class="gold-rule">
+    <section class="block">
+      <div class="section-heading"><span class="num">05</span> How We'll Work</div>
+      <ul class="ticks">
+        <li><strong>Compliance-first architecture</strong> — every PHI-touching service runs behind a signed BAA from week one, even in the lean V1.</li>
+        <li><strong>Data-driven configuration</strong> — service lines, intake questionnaires, and state coverage are configured, not hard-coded.</li>
+        <li><strong>Weekly demo + async standup updates</strong> — you see working software every week, not a status report.</li>
+        <li><strong>Staging environment</strong> with synthetic data for your team to test against before every release.</li>
+        <li><strong>Formal UAT window</strong> before go-live, with a defined bug-severity triage process.</li>
+      </ul>
+    </section>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-PROP-PRM-2026-002</div>
+    <div class="center">Page 2 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" data-screen-label="Proposal p3">
+  <header class="running-head">
+    <div class="brand"><svg class="logo" viewBox="0 0 48 48" fill="none"><rect class="bar" x="3" y="30" width="7" height="14" rx="2"/><rect class="bar" x="13" y="24" width="7" height="20" rx="2"/><rect class="bar" x="23" y="16" width="7" height="28" rx="2"/><path class="trend" d="M4 35 L41 10" stroke-width="2.6" stroke-linecap="round"/><circle class="node" cx="41.5" cy="9.5" r="4"/></svg><div class="brand-name">Hyperwrike</div></div>
+    <div class="rh-ref"><span class="doc">Proposal</span><br>HW-PROP-PRM-2026-002 · Dr. Param</div>
+  </header>
+  <div class="content">
+    <section class="block">
+      <div class="section-heading"><span class="num">06</span> V1 Investment — $30,000 Fixed Price</div>
+      <div class="headline-figure">
+        <div class="big">$30,000</div>
+        <div class="cap">Version 1 · Fixed Price · ~17 Weeks</div>
+      </div>
+      <table class="tbl">
+        <thead><tr><th>Role</th><th>Engagement</th><th>Duration</th><th class="num">Cost</th></tr></thead>
+        <tbody>
+          <tr><td>Project Manager / Business Analyst</td><td>Part-time (50%)</td><td>4 months</td><td class="num mono">$3,200</td></tr>
+          <tr><td>UI/UX Designer</td><td>Full-time</td><td>1.5 months</td><td class="num mono">$1,500</td></tr>
+          <tr><td>Senior Backend Engineer</td><td>Full-time</td><td>4 months</td><td class="num mono">$7,700</td></tr>
+          <tr><td>Backend Engineer</td><td>Full-time</td><td>4 months</td><td class="num mono">$5,500</td></tr>
+          <tr><td>Frontend Engineer</td><td>Full-time</td><td>4 months</td><td class="num mono">$6,000</td></tr>
+          <tr><td>QA Engineer</td><td>Part-time (50%)</td><td>4 months</td><td class="num mono">$2,800</td></tr>
+          <tr><td>DevOps / Security</td><td>Part-time (25%)</td><td>4 months</td><td class="num mono">$1,600</td></tr>
+          <tr><td>Contingency &amp; overhead</td><td>—</td><td>—</td><td class="num mono">$1,700</td></tr>
+          <tr class="total"><td colspan="3"><strong>Total V1 Fixed Price</strong></td><td class="num"><strong>$30,000</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="lead" style="margin-top:8px;font-size:9.5px;color:var(--muted);">This breakdown is provided for transparency and is not itemized for billing. V1 is billed as a fixed-price engagement against the milestone schedule in the Scope of Work. All amounts in USD. No tax applicable — international service engagement. Third-party vendor fees (hosting, video, eRx, Stripe) are billed directly by those vendors to Dr. Param.</p>
+    </section>
+    <hr class="gold-rule">
+    <div class="signatures">
+      <div class="sig"><div class="sig-for">For <span class="co">Hyperwrike</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+      <div class="sig"><div class="sig-for">For <span class="co">Dr. Param</span></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Authorised Signatory</div></div>
+        <div class="sig-field"><div class="sig-line"></div><div class="fl">Date</div></div>
+      </div>
+    </div>
+  </div>
+  <footer class="page-footer">
+    <div class="left">HW-PROP-PRM-2026-002</div>
+    <div class="center">Page 3 of 3</div>
+    <div class="right">Confidential — <span class="lime">Dr. Param</span></div>
+  </footer>
+</div>
+<script>
+(async () => {
+  // Prepend so page-supplied @page / break rules (deck-stage's margin:0,
+  // author CSS) keep source-order precedence over the baseline.
+  const baseCss = document.createElement('style');
+  baseCss.textContent = "@media print {\n  @page { margin: 0.5cm; }\n  html, body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }\n  section, article, figure, table { break-inside: avoid; }\n  *, *::before, *::after {\n    animation-delay: -99s !important; animation-duration: .001s !important;\n    animation-iteration-count: 1 !important; animation-fill-mode: both !important;\n    animation-play-state: running !important; transition-duration: 0s !important;\n  }\n}";
+  document.head.prepend(baseCss);
+  if (document.readyState === 'loading') {
+    await new Promise((r) => document.addEventListener('DOMContentLoaded', r, { once: true }));
+  }
+  let ds = document.querySelector('deck-stage');
+  // whenDefined never resolves when nothing registers the element, so only
+  // await it when a <deck-stage> tag exists (and race a timeout regardless).
+  if (ds && !customElements.get('deck-stage')) {
+    try {
+      await Promise.race([
+        customElements.whenDefined('deck-stage'),
+        new Promise((r) => setTimeout(r, 3000)),
+      ]);
+    } catch (e) {}
+    ds = document.querySelector('deck-stage');
+  }
+  // dc-runtime assigns window.DCLogic at init and mounts into #dc-root on
+  // DOMContentLoaded; settle on that subtree so React has rendered before
+  // print(). Non-DC pages fall through to weighing body.
+  const isDc = !ds && 'DCLogic' in window;
+  const settleRoot = ds || (isDc ? document.getElementById('dc-root') : null) || document.body;
+  if (settleRoot) {
+    // Weigh only content children — skip script/style/template so inline
+    // Babel/CSS doesn't register as stable "content" before the framework
+    // has mounted anything.
+    const MEDIA = 'img,svg,canvas,video,picture,iframe,embed,object';
+    const weigh = () => {
+      let text = 0, media = 0;
+      for (const c of settleRoot.children) {
+        const t = c.tagName;
+        if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+        text += (c.textContent || '').trim().length;
+        media += c.querySelectorAll(MEDIA).length + (c.matches(MEDIA) ? 1 : 0);
+      }
+      return text + media * 100;
+    };
+    // "Non-zero and stable" alone is not sufficient to mean rendered: generic
+    // body can carry a static shell while async main content is pending, and
+    // #dc-root can carry the root DC's static text while child refs are still
+    // .sc-placeholder boxes. Gate generic on readyState 'complete', and never
+    // accept stability while a dc-runtime placeholder is present.
+    const isGeneric = settleRoot === document.body;
+    const deadline = Date.now() + 15000;
+    let last = -1, stable = 0;
+    while (Date.now() < deadline) {
+      const n = weigh();
+      const ready =
+        (!isGeneric || document.readyState === 'complete') &&
+        !settleRoot.querySelector('.sc-placeholder');
+      if (n > 0 && n === last && ready) { if (++stable >= 2) break; } else { stable = 0; }
+      last = n;
+      await new Promise((r) => setTimeout(r, 250));
+    }
+  }
+  // Reveal content gated on scroll or visibility before printing. Lazy <img>,
+  // IntersectionObserver fade-ins, and collapsed <details> don't render while
+  // off-screen, so a long page would print with them blank or closed. Open
+  // every <details>, force native-lazy images eager, and scroll the document
+  // through its full height to trip lazy-load + IO; then wait (bounded) for the
+  // newly-triggered images. Inert for deck-stage (slides aren't scroll-gated).
+  try {
+    for (const d of document.querySelectorAll('details')) d.open = true;
+    for (const img of document.querySelectorAll('img[loading="lazy"]'))
+      img.loading = 'eager';
+    const scroller = document.scrollingElement || document.documentElement;
+    const full = Math.max(scroller.scrollHeight, document.body.scrollHeight);
+    const step = window.innerHeight || 800;
+    for (let y = 0; y <= full; y += step) {
+      window.scrollTo(0, y);
+      await new Promise((r) => requestAnimationFrame(r));
+    }
+    window.scrollTo(0, 0);
+    await Promise.race([
+      Promise.all(
+        [...document.images].map((img) =>
+          img.complete
+            ? null
+            : new Promise((res) => {
+                img.addEventListener('load', res, { once: true });
+                img.addEventListener('error', res, { once: true });
+              })
+        )
+      ),
+      new Promise((r) => setTimeout(r, 4000)),
+    ]);
+  } catch (e) {}
+  try { await document.fonts.ready; } catch (e) {}
+  // Jump every animation to its end state so print() never captures a slide
+  // mid-entrance. Ordering matters: the 0s-transition style must be live
+  // BEFORE data-deck-active is set so attribute-keyed transitions don't
+  // start a (now-0s) run from the pre-active base.
+  const st = document.createElement('style');
+  st.textContent = '*,*::before,*::after{animation-delay:-99s !important;animation-duration:.001s !important;animation-iteration-count:1 !important;animation-fill-mode:both !important;animation-play-state:running !important;transition-duration:0s !important}';
+  document.head.appendChild(st);
+  for (const d of document.querySelectorAll('deck-stage')) {
+    for (const c of d.children) {
+      const t = c.tagName;
+      if (t === 'SCRIPT' || t === 'STYLE' || t === 'TEMPLATE') continue;
+      c.setAttribute('data-deck-active', '');
+    }
+  }
+  try {
+    const sweep = () => {
+      for (const a of document.getAnimations()) {
+        try { a.finish(); } catch (e) {
+          try { a.currentTime = (a.effect && a.effect.getComputedTiming().duration) || 0; a.pause(); } catch (e2) {}
+        }
+      }
+    };
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+    sweep();
+    await new Promise((r) => requestAnimationFrame(r));
+  } catch (e) {}
+  // Relax break-inside on oversized elements. An element taller than a
+  // printable page can't honor break-inside: avoid — browsers either overflow
+  // it or push it whole to the next page, leaving a blank gap, then break it
+  // anyway at an arbitrary point. After the final layout (content revealed,
+  // animations jumped), find elements taller than a page that still compute
+  // break-inside: avoid and reset them to auto, so the browser breaks them at
+  // their children's boundaries instead (children keep their own avoid). PAGE_PX
+  // is a conservative portrait estimate at 96 CSS px/in — Letter/A4 usable
+  // height minus our 0.5in margins — so only clearly-oversized elements are
+  // touched and under-page elements still stay whole. Skipped for decks, whose
+  // slides are sized to the page.
+  try {
+    if (!document.querySelector('deck-stage')) {
+      const PAGE_PX = 1024;
+      const oversized = [...document.body.querySelectorAll('*')].filter(
+        (el) => el instanceof HTMLElement && el.offsetHeight > PAGE_PX
+      );
+      for (const el of oversized) {
+        const cs = getComputedStyle(el);
+        if (cs.breakInside === 'avoid' || cs.pageBreakInside === 'avoid') {
+          el.style.breakInside = 'auto';
+          el.style.pageBreakInside = 'auto';
+        }
+      }
+    }
+  } catch (e) {}
+  setTimeout(() => { try { window.print(); } catch (e) {} }, 200);
+})();
+</script>
+</body>
+</html>

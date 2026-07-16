@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --color-brand-50: #ecfdf8;
+  --color-brand-100: #d1fae8;
+  --color-brand-200: #a7f3d6;
+  --color-brand-300: #6ee7bf;
+  --color-brand-400: #34d39e;
+  --color-brand-500: #10b981;
+  --color-brand-600: #059669;
+  --color-brand-700: #047857;
+  --color-brand-800: #065f46;
+  --color-brand-900: #064e3b;
+  --color-surface: #fafbfc;
+  --color-card: #ffffff;
+  --color-border: #e8ecf0;
+  --color-muted: #64748b;
+  --color-foreground: #0f172a;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-surface text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .card {
+    @apply bg-card rounded-xl border border-border shadow-sm;
+  }
+  .stat-value {
+    @apply text-2xl font-semibold tracking-tight font-display;
+  }
+  .stat-label {
+    @apply text-sm text-muted font-medium;
+  }
+}

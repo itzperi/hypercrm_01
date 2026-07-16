@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hyperwrike — New Documents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/brand.css">
+<style>
+body { min-height: 100vh; padding: 40px 24px 60px; }
+.hub-header {
+  max-width: 900px; margin: 0 auto 36px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 14px;
+}
+.hub-title { font-family: var(--display); font-weight: 800; font-size: 28px; color: var(--ink); }
+.hub-sub   { font-family: var(--label); font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); margin-top: 4px; }
+.hub-grid  { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 28px; }
+
+.client-block { }
+.client-label {
+  font-family: var(--label); font-size: 9px; text-transform: uppercase;
+  letter-spacing: 0.22em; font-weight: 600; color: var(--muted-2);
+  margin-bottom: 10px; padding-bottom: 6px;
+  border-bottom: 1px solid var(--hairline);
+}
+.client-label strong { color: var(--lime); font-size: 11px; text-transform: none; letter-spacing: 0; }
+.doc-row {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px;
+}
+.doc-card {
+  display: block; text-decoration: none;
+  border: 1px solid var(--hairline); border-radius: 7px;
+  padding: 14px 16px; background: #fff;
+  transition: border-color .15s, box-shadow .15s;
+  box-shadow: 0 2px 8px -4px rgba(21,32,58,0.12);
+}
+.doc-card:hover {
+  border-color: var(--lime);
+  box-shadow: 0 4px 18px -6px rgba(76,122,12,0.22);
+}
+.doc-card.internal { border-left: 3px solid var(--gold); }
+.doc-card.internal:hover { border-color: var(--gold); }
+.card-type {
+  font-family: var(--label); font-size: 8px; text-transform: uppercase;
+  letter-spacing: 0.18em; color: var(--muted-2); margin-bottom: 5px;
+}
+.card-type.int { color: var(--gold); }
+.card-name { font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--ink); line-height: 1.25; }
+.card-desc { font-size: 9px; color: var(--muted); margin-top: 4px; line-height: 1.45; }
+.card-arrow {
+  display: inline-block; margin-top: 10px;
+  font-family: var(--label); font-size: 8px; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--lime); font-weight: 600;
+}
+.doc-card.internal .card-arrow { color: var(--gold); }
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--label); font-size: 9px; text-transform: uppercase;
+  letter-spacing: 0.16em; color: var(--muted); text-decoration: none;
+}
+.back-link:hover { color: var(--lime); }
+</style>
+</head>
+<body>
+
+<div class="hub-header">
+  <div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:4px;">
+      <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+        <rect fill="var(--ink)" x="3" y="30" width="7" height="14" rx="2"/>
+        <rect fill="var(--ink)" x="13" y="24" width="7" height="20" rx="2"/>
+        <rect fill="var(--ink)" x="23" y="16" width="7" height="28" rx="2"/>
+        <path d="M4 35 L41 10" stroke="var(--lime-bright)" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+        <circle cx="41.5" cy="9.5" r="4" fill="var(--lime-bright)"/>
+      </svg>
+      <div class="hub-title">Hyperwrike</div>
+    </div>
+    <div class="hub-sub">New Client Documents — June 2026</div>
+  </div>
+  <a href="index.html" class="back-link">← All Documents</a>
+</div>
+
+<div class="hub-grid">
+
+  <!-- VS HOSPITALS ROADMAP -->
+  <div class="client-block">
+    <div class="client-label">Client 1 &nbsp;·&nbsp; <strong>VS Hospitals</strong> &nbsp;·&nbsp; Chennai</div>
+    <div class="doc-row">
+      <a href="vs-hospitals/roadmap.html" class="doc-card">
+        <div class="card-type">Client Document</div>
+        <div class="card-name">Project Roadmap + Proposal Letter</div>
+        <div class="card-desc">Formal proposal letter + 13-day checkable implementation roadmap. Advance: ₹80,000 received.</div>
+        <div class="card-arrow">View →</div>
+      </a>
+      <a href="vs-hospitals/proposal-v2.html" class="doc-card">
+        <div class="card-type">Client Document</div>
+        <div class="card-name">AI Voice Agent Proposal</div>
+        <div class="card-desc">3-branch proposal — Tondiarpet (full) + Kilpauk & Chetpet (campaign). ₹1,60,000 + GST.</div>
+        <div class="card-arrow">View →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- SAI CLIENT -->
+  <div class="client-block">
+    <div class="client-label">Client 2 &nbsp;·&nbsp; <strong>Sai Client</strong> &nbsp;·&nbsp; B2B Lead Scraping</div>
+    <div class="doc-row">
+      <a href="sai-client/proposal.html" class="doc-card">
+        <div class="card-type">Client Document</div>
+        <div class="card-name">B2B Lead Scraping Proposal</div>
+        <div class="card-desc">Precision lead generation — Chennai market. 5 platforms. ₹15,000 setup + 15% retainer.</div>
+        <div class="card-arrow">View →</div>
+      </a>
+      <a href="sai-client/team-brief.html" class="doc-card internal">
+        <div class="card-type int">Internal Brief</div>
+        <div class="card-name">Team Operations Doc</div>
+        <div class="card-desc">Platform SOPs, lead scoring matrix, closer protocol, delivery schedule.</div>
+        <div class="card-arrow">View →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- RAMANTHAN -->
+  <div class="client-block">
+    <div class="client-label">Client 3 &nbsp;·&nbsp; <strong>Ramanthan</strong> &nbsp;·&nbsp; Doctor-Patient Transcription</div>
+    <div class="doc-row">
+      <a href="ramanthan/proposal.html" class="doc-card">
+        <div class="card-type">Client Document</div>
+        <div class="card-name">MedTranscribe Proposal</div>
+        <div class="card-desc">Local on-premise transcription system. Tier A ₹20,000 / Tier B ₹30,000. No external API.</div>
+        <div class="card-arrow">View →</div>
+      </a>
+      <a href="ramanthan/team-brief.html" class="doc-card internal">
+        <div class="card-type int">Internal Brief</div>
+        <div class="card-name">Technical Team Brief</div>
+        <div class="card-desc">Tech stack, setup steps, 14-day timeline, risks & mitigations.</div>
+        <div class="card-arrow">View →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- CHITAL PAPER -->
+  <div class="client-block">
+    <div class="client-label">Client 4 &nbsp;·&nbsp; <strong>Chital Paper Company</strong> &nbsp;·&nbsp; E-Commerce</div>
+    <div class="doc-row">
+      <a href="chital-paper/proposal-invoice.html" class="doc-card">
+        <div class="card-type">Client Document</div>
+        <div class="card-name">Ecom Proposal + Invoice</div>
+        <div class="card-desc">Two-path recommendation (custom vs Shopify) + full invoice. ₹50,000–₹1,00,000 build + ₹10,000/mo.</div>
+        <div class="card-arrow">View →</div>
+      </a>
+      <a href="chital-paper/team-brief.html" class="doc-card internal">
+        <div class="card-type int">Internal Brief</div>
+        <div class="card-name">Kanban Team Brief</div>
+        <div class="card-desc">4-column project board — To Do, Week 1, Week 2, Delivered. With team notes.</div>
+        <div class="card-arrow">View →</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- DR PARMA + ARTICLE (existing, no pricing) -->
+  <div class="client-block">
+    <div class="client-label">Other Active Proposals (no pricing)</div>
+    <div class="doc-row">
+      <a href="dr-parma/proposal-no-pricing.html" class="doc-card">
+        <div class="card-type">Client Document</div>
+        <div class="card-name">Dr. Parma — LeadHunter + ReputationGuard</div>
+        <div class="card-desc">Dual AI agent proposal — scope, deliverables & workflow only. No pricing shown.</div>
+        <div class="card-arrow">View →</div>
+      </a>
+      <a href="article-verification/proposal-no-pricing.html" class="doc-card">
+        <div class="card-type">Client Document</div>
+        <div class="card-name">Article Verification Platform</div>
+        <div class="card-desc">AI-powered article verification — scope, process & timeline only. No pricing shown.</div>
+        <div class="card-arrow">View →</div>
+      </a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
