@@ -142,7 +142,15 @@ export function getCtoDashboard() {
     .prepare(
       `SELECT p.*, c.name as client_name FROM projects p JOIN clients c ON c.id = p.client_id WHERE p.status = 'active' ORDER BY p.deadline`
     )
-    .all();
+    .all() as Array<{
+    id: string;
+    name: string;
+    client_name: string;
+    percent_complete: number;
+    health: string;
+    deadline: string;
+    status: string;
+  }>;
 
   const teamWorkload = db
     .prepare(
@@ -153,7 +161,7 @@ export function getCtoDashboard() {
        WHERE u.role = 'tech_employee' OR u.role = 'cto_admin'
        GROUP BY u.id`
     )
-    .all();
+    .all() as Array<{ name: string; task_count: number; open_tasks: number }>;
 
   const deadlines = db
     .prepare(
@@ -161,7 +169,7 @@ export function getCtoDashboard() {
        JOIN clients c ON c.id = p.client_id
        WHERE p.deadline >= date('now') ORDER BY p.deadline LIMIT 10`
     )
-    .all();
+    .all() as Array<{ name: string; deadline: string; health: string; client_name: string }>;
 
   return { projects, teamWorkload, deadlines };
 }

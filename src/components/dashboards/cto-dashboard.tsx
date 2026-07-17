@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { AppShell } from "@/components/layout";
 import { Card, Badge, ProgressBar } from "@/components/ui";
 import { formatDate, HEALTH_COLORS } from "@/lib/utils";
@@ -8,21 +7,19 @@ import { SessionUser } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-export default function CtoDashboard({ user }: { user: SessionUser }) {
-  const [data, setData] = useState<Record<string, unknown> | null>(null);
-
-  useEffect(() => {
-    fetch("/api/dashboard/cto").then((r) => r.json()).then(setData);
-  }, []);
-
-  if (!data) return <AppShell user={user} title="CTO Dashboard"><div className="text-muted">Loading...</div></AppShell>;
-
-  const projects = data.projects as Array<{
+type CtoDashboardData = {
+  projects: Array<{
     id: string; name: string; client_name: string; percent_complete: number;
     health: string; deadline: string; status: string;
   }>;
-  const teamWorkload = data.teamWorkload as Array<{ name: string; task_count: number; open_tasks: number }>;
-  const deadlines = data.deadlines as Array<{ name: string; deadline: string; health: string; client_name: string }>;
+  teamWorkload: Array<{ name: string; task_count: number; open_tasks: number }>;
+  deadlines: Array<{ name: string; deadline: string; health: string; client_name: string }>;
+};
+
+export default function CtoDashboard({ user, data }: { user: SessionUser; data: CtoDashboardData }) {
+  const projects = data.projects ?? [];
+  const teamWorkload = data.teamWorkload ?? [];
+  const deadlines = data.deadlines ?? [];
 
   return (
     <AppShell user={user} title="CTO Dashboard">

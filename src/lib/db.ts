@@ -1,19 +1,26 @@
-import { DatabaseSync, type SQLInputValue } from "node:sqlite";
+import Database from "better-sqlite3";
+import os from "os";
 import path from "path";
 import fs from "fs";
 
-const DATA_DIR = path.join(process.cwd(), "data");
+const DATA_DIR = process.env.NODE_ENV === "production" ? os.tmpdir() : path.join(process.cwd(), "data");
 const DB_PATH = path.join(DATA_DIR, "hyperwrike.db");
 
-let db: DatabaseSync | null = null;
+type QueryValue = string | number | bigint | Buffer | Uint8Array | null;
+
+let db: Database | null = null;
 
 function ensureDataDir() {
+  if (process.env.NODE_ENV === "production") {
+    return;
+  }
+
   if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR, { recursive: true });
   }
 }
 
-function initSchema(database: DatabaseSync) {
+function initSchema(database: Database) {
   database.exec(`
     PRAGMA journal_mode = WAL;
     PRAGMA foreign_keys = ON;
@@ -228,10 +235,10 @@ function initSchema(database: DatabaseSync) {
   `);
 }
 
-export function getDb(): DatabaseSync {
+export function getDb(): Database {
   if (!db) {
     ensureDataDir();
-    db = new DatabaseSync(DB_PATH);
+    db = new Database(DB_PATH);
     initSchema(db);
   }
   return db;
@@ -260,10 +267,10 @@ export function logActivity(
     );
 }
 
-export function sqlGet<T>(sql: string, ...params: SQLInputValue[]): T | undefined {
+export function sqlGet<T>(sql: string, ...params: QueryValue[]): T | undefined {
   return getDb().prepare(sql).get(...params) as unknown as T | undefined;
 }
 
-export function sqlAll<T>(sql: string, ...params: SQLInputValue[]): T[] {
+export function sqlAll<T>(sql: string, ...params: QueryValue[]): T[] {
   return getDb().prepare(sql).all(...params) as unknown as T[];
 }

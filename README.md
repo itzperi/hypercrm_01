@@ -6,7 +6,7 @@ Internal CRM & Business Management System for Hyperwrike (AI automation agency).
 
 - **Frontend:** Next.js 15 + React 19 + Tailwind CSS 4
 - **Backend:** Next.js API Routes
-- **Database:** Local SQLite via Node.js built-in `node:sqlite` (stored at `data/hyperwrike.db`, requires Node 22+)
+- **Database:** SQLite for legacy local storage; Convex client support is now wired in for app state and future data migration
 - **Auth:** Session-based (iron-session) + bcrypt password hashing
 
 ## Setup
@@ -16,6 +16,8 @@ npm install
 npm run db:seed
 npm run dev
 ```
+
+To enable Convex, set `NEXT_PUBLIC_CONVEX_URL` to your deployment URL and add your Convex functions/schema in the `convex/` directory.
 
 Open [http://localhost:3000](http://localhost:3000)
 

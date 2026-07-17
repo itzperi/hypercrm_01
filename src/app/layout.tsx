@@ -1,6 +1,7 @@
 import { type ReactNode } from "react";
 import { DM_Sans, Instrument_Sans } from "next/font/google";
 import "./globals.css";
+import { AppProviders } from "./providers";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -20,7 +21,9 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${dmSans.variable} ${instrumentSans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <AppProviders>{children}</AppProviders>
+      </body>
     </html>
   );
 }
