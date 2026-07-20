@@ -32,11 +32,32 @@
 @layer utilities {
   .card {
     @apply bg-card rounded-xl border border-border shadow-sm;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  }
+  .card:hover {
+    @apply shadow-md;
+    border-color: color-mix(in srgb, var(--color-brand-300) 60%, var(--color-border));
   }
   .stat-value {
     @apply text-2xl font-semibold tracking-tight font-display;
   }
   .stat-label {
     @apply text-sm text-muted font-medium;
+  }
+}
+
+/* Smooth global transitions for interactive elements */
+button,
+a,
+input,
+select,
+textarea {
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
   }
 }

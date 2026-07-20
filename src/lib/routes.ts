@@ -9,6 +9,14 @@ export const ROLE_ROUTES: Record<UserRole, string> = {
 };
 
 export function canAccessRoute(role: UserRole, pathname: string): boolean {
+  // Endpoints every authenticated user may reach.
+  if (
+    pathname.startsWith("/api/notifications") ||
+    pathname.startsWith("/api/upload")
+  ) {
+    return true;
+  }
+
   if (role === "ceo_admin") return !pathname.startsWith("/portal");
   if (role === "cto_admin")
     return (
@@ -27,7 +35,9 @@ export function canAccessRoute(role: UserRole, pathname: string): boolean {
       pathname.startsWith("/marketing") ||
       pathname.startsWith("/api/marketing") ||
       pathname.startsWith("/team") ||
-      pathname.startsWith("/api/team")
+      pathname.startsWith("/api/team") ||
+      pathname.startsWith("/api/feature-requests") ||
+      pathname.startsWith("/api/analytics")
     );
   if (role === "sales_employee")
     return (
@@ -35,7 +45,8 @@ export function canAccessRoute(role: UserRole, pathname: string): boolean {
       pathname.startsWith("/sales") ||
       pathname.startsWith("/api/sales") ||
       pathname.startsWith("/marketing") ||
-      pathname.startsWith("/api/marketing")
+      pathname.startsWith("/api/marketing") ||
+      pathname.startsWith("/api/analytics")
     );
   if (role === "tech_employee")
     return (
@@ -46,6 +57,11 @@ export function canAccessRoute(role: UserRole, pathname: string): boolean {
       pathname.startsWith("/api/chat")
     );
   if (role === "client")
-    return pathname.startsWith("/portal") || pathname.startsWith("/api/portal");
+    return (
+      pathname.startsWith("/portal") ||
+      pathname.startsWith("/api/portal") ||
+      pathname.startsWith("/api/feature-requests") ||
+      pathname.startsWith("/api/chat")
+    );
   return false;
 }

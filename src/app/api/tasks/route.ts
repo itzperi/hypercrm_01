@@ -33,10 +33,24 @@ export async function POST(request: NextRequest) {
   const db = getDb();
 
   if (body.update) {
+    // COALESCE keeps existing assignee/due date when the caller only changes status.
+    // Re-open the overdue alert when the task is moved out of "done" or its due date changes.
     db.prepare(
-      `UPDATE tasks SET status = ?, assignee_id = ?, due_date = ?, updated_at = datetime('now') WHERE id = ?`
-    ).run(body.status, body.assignee_id ?? null, body.due_date ?? null, body.id);
-    logActivity("task", body.id, user.id, "updated", body.status);
+      `UPDATE tasks
+       SET status = COALESCE(?, status),
+           assignee_id = COALESCE(?, assignee_id),
+           due_date = COALESCE(?, due_date),
+           overdue_notified = CASE WHEN ? = 'done' THEN 0 ELSE overdue_notified END,
+           updated_at = datetime('now')
+       WHERE id = ?`
+    ).run(
+      body.status ?? null,
+      body.assignee_id ?? null,
+      body.due_date ?? null,
+      body.status ?? "",
+      body.id
+    );
+    logActivity("task", body.id, user.id, "updated", body.status ?? "assignment");
 
     const projectTasks = db
       .prepare(`SELECT status FROM tasks WHERE project_id = ?`)

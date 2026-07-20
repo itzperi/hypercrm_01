@@ -9,9 +9,11 @@ import { formatCurrency, OFFER_LABELS, CLIENT_STAGE_LABELS, PAYMENT_STATUS_COLOR
 import { SessionUser } from "@/lib/types";
 import { isExecutive } from "@/lib/admin";
 import { cn } from "@/lib/utils";
-import { KeyRound, Copy, Check } from "lucide-react";
+import { KeyRound, Copy, Check, Lightbulb } from "lucide-react";
 
 const STAGES = ["lead", "proposal", "signed", "onboarded", "active", "churned"];
+const FR_NEXT: Record<string, string> = { requested: "planned", planned: "building", building: "done" };
+const FR_LABEL: Record<string, string> = { requested: "Requested", planned: "Planned", building: "Building", done: "Shipped", declined: "Declined" };
 
 export default function ClientsPage({ user }: { user: SessionUser }) {
   const [data, setData] = useState<{ clients: Array<Record<string, unknown>>; stageCounts: Array<{ stage: string; count: number }> } | null>(null);
@@ -20,14 +22,28 @@ export default function ClientsPage({ user }: { user: SessionUser }) {
   const [modal, setModal] = useState<"new" | "edit" | null>(null);
   const [editId, setEditId] = useState<string | null>(null);
   const [form, setForm] = useState<Record<string, string>>({});
+  const [portalModal, setPortalModal] = useState<{ clientId: string; name: string } | null>(null);
+  const [portalForm, setPortalForm] = useState<{ username: string; password: string }>({ username: "", password: "" });
+  const [portalBusy, setPortalBusy] = useState(false);
+  const [features, setFeatures] = useState<Array<{ id: string; title: string; description: string; status: string; client_name: string; project_name?: string }>>([]);
 
   const canManage = isExecutive(user);
 
   function load() {
     fetch("/api/clients").then((r) => r.json()).then(setData);
+    fetch("/api/feature-requests").then((r) => r.json()).then((d) => setFeatures(d.requests || []));
   }
 
   useEffect(() => { load(); }, []);
+
+  async function setFeatureStatus(id: string, status: string) {
+    await fetch("/api/feature-requests", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ update: true, id, status }),
+    });
+    load();
+  }
 
   function openNew() {
     setForm({});
@@ -74,11 +90,27 @@ export default function ClientsPage({ user }: { user: SessionUser }) {
     load();
   }
 
-  async function createPortal(clientId: string) {
-    const res = await fetch(`/api/clients/${clientId}/portal`, { method: "POST" });
+  function openPortalModal(clientId: string, name: string) {
+    setPortalForm({ username: "", password: "" });
+    setPortalModal({ clientId, name });
+  }
+
+  async function submitPortal() {
+    if (!portalModal) return;
+    setPortalBusy(true);
+    const res = await fetch(`/api/clients/${portalModal.clientId}/portal`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(portalForm),
+    });
     const creds = await res.json();
-    if (creds.username) setPortalCreds(creds);
-    else alert(creds.error || "Failed to create portal");
+    setPortalBusy(false);
+    if (creds.username) {
+      setPortalCreds(creds);
+      setPortalModal(null);
+    } else {
+      alert(creds.error || "Failed to create portal");
+    }
   }
 
   function copyCreds() {
@@ -168,7 +200,7 @@ export default function ClientsPage({ user }: { user: SessionUser }) {
                       <RowActions
                         onEdit={() => openEdit(c)}
                         onDelete={() => deleteClient(c.id as string, c.name as string)}
-                        onPortal={() => createPortal(c.id as string)}
+                        onPortal={() => openPortalModal(c.id as string, c.name as string)}
                       />
                     </td>
                   )}
@@ -178,6 +210,49 @@ export default function ClientsPage({ user }: { user: SessionUser }) {
           </table>
         </div>
       </Card>
+
+      <Card title="Client Feature Requests" className="mt-6">
+        <div className="space-y-2">
+          {features.length === 0 && (
+            <p className="text-sm text-muted text-center py-4">No feature requests yet. Clients can submit these from their portal.</p>
+          )}
+          {features.map((f) => (
+            <div key={f.id} className="flex items-start justify-between gap-3 p-4 rounded-xl border border-border">
+              <div className="min-w-0 flex items-start gap-3">
+                <div className="w-8 h-8 rounded-lg bg-brand-100 text-brand-700 flex items-center justify-center shrink-0">
+                  <Lightbulb className="w-4 h-4" />
+                </div>
+                <div className="min-w-0">
+                  <p className="font-medium text-sm">{f.title}</p>
+                  {f.description && <p className="text-xs text-muted mt-0.5">{f.description}</p>}
+                  <p className="text-xs text-muted mt-1">{f.client_name}{f.project_name ? ` · ${f.project_name}` : ""}</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2 shrink-0">
+                <Badge variant={f.status === "done" ? "success" : f.status === "declined" ? "danger" : "info"}>{FR_LABEL[f.status] || f.status}</Badge>
+                {FR_NEXT[f.status] && (
+                  <Btn size="sm" onClick={() => setFeatureStatus(f.id, FR_NEXT[f.status])}>→ {FR_LABEL[FR_NEXT[f.status]]}</Btn>
+                )}
+                {f.status !== "done" && f.status !== "declined" && (
+                  <Btn size="sm" variant="danger" onClick={() => setFeatureStatus(f.id, "declined")}>Decline</Btn>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </Card>
+
+      <Modal open={portalModal !== null} onOpenChange={(o) => !o && setPortalModal(null)} title={`Create Portal Login — ${portalModal?.name ?? ""}`}>
+        <p className="text-sm text-muted mb-4">Set a username and password to share with your client, or leave blank to auto-generate secure credentials.</p>
+        <div className="space-y-3">
+          <Field label="Username"><Input value={portalForm.username} onChange={(e) => setPortalForm({ ...portalForm, username: e.target.value })} placeholder="auto-generated if blank" /></Field>
+          <Field label="Password"><Input value={portalForm.password} onChange={(e) => setPortalForm({ ...portalForm, password: e.target.value })} placeholder="min 6 characters, or auto-generated" /></Field>
+        </div>
+        <div className="flex justify-end gap-2 mt-5">
+          <Btn variant="secondary" onClick={() => setPortalModal(null)}>Cancel</Btn>
+          <Btn onClick={submitPortal} disabled={portalBusy}><KeyRound className="w-3.5 h-3.5" /> {portalBusy ? "Creating…" : "Create Login"}</Btn>
+        </div>
+      </Modal>
 
       <Modal
         open={modal !== null}

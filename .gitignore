@@ -10,3 +10,7 @@ data/
 *.log
 .vercel
 .env*
+
+# uploaded media
+/public/uploads/*
+!/public/uploads/.gitkeep

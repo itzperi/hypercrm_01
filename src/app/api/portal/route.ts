@@ -20,8 +20,9 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   const db = getDb();
   const id = uuidv4();
+  const mediaJson = body.media && body.media.length ? JSON.stringify(body.media) : null;
   db.prepare(
-    `INSERT INTO client_updates (id, client_id, project_id, user_id, content) VALUES (?, ?, ?, ?, ?)`
-  ).run(id, body.client_id, body.project_id ?? null, user.id, body.content);
+    `INSERT INTO client_updates (id, client_id, project_id, user_id, content, media_json) VALUES (?, ?, ?, ?, ?, ?)`
+  ).run(id, body.client_id, body.project_id ?? null, user.id, body.content, mediaJson);
   return NextResponse.json({ id });
 }

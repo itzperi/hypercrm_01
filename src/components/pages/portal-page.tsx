@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import { PortalShell } from "@/components/layout";
 import { Badge, ProgressBar } from "@/components/ui";
+import { MediaGallery } from "@/components/media";
 import { formatCurrency, formatDate, OFFER_LABELS, PAYMENT_STATUS_COLORS } from "@/lib/utils";
 import { SessionUser } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -15,10 +16,31 @@ import {
   Sparkles,
   Clock,
   Shield,
+  MessageSquare,
+  Send,
+  Lightbulb,
+  Plus,
 } from "lucide-react";
+
+type Project = { id: string; name: string; percent_complete: number; health: string; deadline: string };
+type Msg = { id: string; content: string; user_name: string; user_role: string; project_id: string; created_at: string };
+type FeatureReq = { id: string; title: string; description: string; status: string; project_name?: string; created_at: string };
+
+const FR_STATUS: Record<string, { label: string; variant: "default" | "success" | "warning" | "danger" | "info" }> = {
+  requested: { label: "Requested", variant: "info" },
+  planned: { label: "Planned", variant: "warning" },
+  building: { label: "Building", variant: "warning" },
+  done: { label: "Shipped", variant: "success" },
+  declined: { label: "Declined", variant: "danger" },
+};
 
 export default function ClientPortal({ user }: { user: SessionUser }) {
   const [data, setData] = useState<Record<string, unknown> | null>(null);
+  const [activeProject, setActiveProject] = useState<string>("");
+  const [chatMsg, setChatMsg] = useState("");
+  const [frOpen, setFrOpen] = useState(false);
+  const [fr, setFr] = useState<{ title: string; description: string; project_id: string }>({ title: "", description: "", project_id: "" });
+  const chatEndRef = useRef<HTMLDivElement>(null);
 
   const load = useCallback(() => {
     fetch("/api/portal").then((r) => r.json()).then(setData);
@@ -29,6 +51,42 @@ export default function ClientPortal({ user }: { user: SessionUser }) {
     const interval = setInterval(load, 5000);
     return () => clearInterval(interval);
   }, [load]);
+
+  const projects = (data?.projects as Project[]) || [];
+
+  useEffect(() => {
+    if (!activeProject && projects.length > 0) setActiveProject(projects[0].id);
+  }, [projects, activeProject]);
+
+  const messages = ((data?.messages as Msg[]) || []).filter((m) => m.project_id === activeProject);
+
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages.length, activeProject]);
+
+  async function sendChat() {
+    if (!chatMsg.trim() || !activeProject) return;
+    const content = chatMsg;
+    setChatMsg("");
+    await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ project_id: activeProject, content }),
+    });
+    load();
+  }
+
+  async function submitFeature() {
+    if (!fr.title.trim()) return;
+    await fetch("/api/feature-requests", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(fr),
+    });
+    setFr({ title: "", description: "", project_id: "" });
+    setFrOpen(false);
+    load();
+  }
 
   if (!data) {
     return (
@@ -41,22 +99,22 @@ export default function ClientPortal({ user }: { user: SessionUser }) {
   }
 
   const client = data.client as Record<string, unknown>;
-  const projects = data.projects as Array<{ id: string; name: string; percent_complete: number; health: string; deadline: string }>;
-  const tasks = data.tasks as Array<{ id: string; title: string; status: string; project_id?: string }>;
+  const tasks = data.tasks as Array<{ id: string; title: string; status: string }>;
   const documents = data.documents as Array<{ id: string; title: string; type: string; signed: number }>;
   const invoices = data.invoices as Array<{ id: string; total: number; status: string; due_date: string }>;
   const payments = data.payments as Array<{ amount: number; paid_at: string; description: string }>;
-  const updates = data.updates as Array<{ content: string; author_name: string; created_at: string }>;
+  const updates = data.updates as Array<{ content: string; author_name: string; created_at: string; project_name?: string; media: { url: string; type: "image" | "video"; name?: string }[] }>;
   const teamMembers = data.teamMembers as Array<{ id: string; name: string; role: string; project_name: string }>;
+  const featureRequests = (data.featureRequests as FeatureReq[]) || [];
   const progress = data.progress as number;
 
-  const roleLabel = (role: string) =>
-    role.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const roleLabel = (role: string) => role.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const isTeam = (r: string) => r !== "client";
 
   return (
     <PortalShell user={user}>
       {/* Hero */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#15203A] via-[#1a2847] to-[#0f172a] p-8 md:p-10 mb-8 text-white">
+      <div className="reveal relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#15203A] via-[#1a2847] to-[#0f172a] p-8 md:p-10 mb-8 text-white">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#A6E635] rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#C9A84C] rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4" />
@@ -70,7 +128,7 @@ export default function ClientPortal({ user }: { user: SessionUser }) {
             Welcome back, {client.name as string}
           </h1>
           <p className="text-white/60 text-sm max-w-lg">
-            Track your project progress, team activity, documents, and invoices — all in one place.
+            Track live progress, see proof of work, chat with your team, and request new features — all in one place.
           </p>
           <div className="flex flex-wrap gap-4 mt-6">
             <div className="bg-white/10 backdrop-blur rounded-xl px-5 py-3 border border-white/10">
@@ -90,9 +148,9 @@ export default function ClientPortal({ user }: { user: SessionUser }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Progress & Tasks */}
         <div className="lg:col-span-2 space-y-6">
-          <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
+          {/* Progress & Tasks */}
+          <div className="reveal bg-white rounded-2xl border border-border p-6 shadow-sm">
             <div className="flex items-center gap-2 mb-5">
               <TrendingUp className="w-4 h-4 text-brand-600" />
               <h2 className="font-display font-semibold">Project Progress</h2>
@@ -107,9 +165,7 @@ export default function ClientPortal({ user }: { user: SessionUser }) {
                   ) : (
                     <Circle className="w-5 h-5 text-border shrink-0" />
                   )}
-                  <span className={cn("text-sm flex-1", t.status === "done" && "line-through text-muted")}>
-                    {t.title}
-                  </span>
+                  <span className={cn("text-sm flex-1", t.status === "done" && "line-through text-muted")}>{t.title}</span>
                   <Badge variant={t.status === "done" ? "success" : t.status === "in_progress" ? "info" : "default"}>
                     {t.status.replace(/_/g, " ")}
                   </Badge>
@@ -119,47 +175,165 @@ export default function ClientPortal({ user }: { user: SessionUser }) {
             </div>
           </div>
 
-          {projects.length > 0 && (
-            <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
-              <h2 className="font-display font-semibold mb-4">Your Projects</h2>
+          {/* Live proof / updates */}
+          <div className="reveal bg-white rounded-2xl border border-border p-6 shadow-sm">
+            <div className="flex items-center gap-2 mb-4">
+              <Sparkles className="w-4 h-4 text-brand-600" />
+              <h2 className="font-display font-semibold">Live Updates & Proof of Work</h2>
+            </div>
+            {updates.length === 0 ? (
+              <p className="text-sm text-muted py-4 text-center">Your team will post progress updates, screenshots and demo videos here.</p>
+            ) : (
               <div className="space-y-4">
-                {projects.map((p) => (
-                  <div key={p.id} className="p-4 rounded-xl border border-border">
-                    <div className="flex justify-between items-start mb-2">
-                      <p className="font-medium">{p.name}</p>
-                      <Badge variant={p.health === "on_track" ? "success" : p.health === "at_risk" ? "warning" : "danger"}>
-                        {p.health.replace(/_/g, " ")}
-                      </Badge>
-                    </div>
-                    <ProgressBar value={p.percent_complete} />
-                    <p className="text-xs text-muted mt-2 flex items-center gap-1">
-                      <Clock className="w-3 h-3" /> Due {formatDate(p.deadline)}
+                {updates.map((u, i) => (
+                  <div key={i} className="p-4 rounded-xl bg-gradient-to-r from-brand-50/50 to-transparent border border-brand-100/50">
+                    <p className="text-sm">{u.content}</p>
+                    <MediaGallery items={u.media || []} />
+                    <p className="text-xs text-muted mt-2">
+                      {u.author_name}
+                      {u.project_name ? ` · ${u.project_name}` : ""} · {formatDate(u.created_at)}
                     </p>
                   </div>
                 ))}
               </div>
-            </div>
-          )}
+            )}
+          </div>
 
-          {updates.length > 0 && (
-            <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
-              <h2 className="font-display font-semibold mb-4">Latest Updates</h2>
-              <div className="space-y-3">
-                {updates.map((u, i) => (
-                  <div key={i} className="p-4 rounded-xl bg-gradient-to-r from-brand-50/50 to-transparent border border-brand-100/50">
-                    <p className="text-sm">{u.content}</p>
-                    <p className="text-xs text-muted mt-2">{u.author_name} · {formatDate(u.created_at)}</p>
-                  </div>
-                ))}
+          {/* Project chat */}
+          <div className="reveal bg-white rounded-2xl border border-border p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <MessageSquare className="w-4 h-4 text-brand-600" />
+                <h2 className="font-display font-semibold">Talk to Your Team</h2>
               </div>
+              {projects.length > 1 && (
+                <select
+                  className="text-xs border border-border rounded-lg px-2 py-1"
+                  value={activeProject}
+                  onChange={(e) => setActiveProject(e.target.value)}
+                >
+                  {projects.map((p) => (
+                    <option key={p.id} value={p.id}>{p.name}</option>
+                  ))}
+                </select>
+              )}
             </div>
-          )}
+            {projects.length === 0 ? (
+              <p className="text-sm text-muted py-4 text-center">A chat opens up once your project kicks off.</p>
+            ) : (
+              <>
+                <div className="space-y-3 max-h-80 overflow-y-auto mb-3 pr-1">
+                  {messages.length === 0 && (
+                    <p className="text-sm text-muted py-6 text-center">No messages yet — say hello 👋</p>
+                  )}
+                  {messages.map((m) => {
+                    const mine = m.user_role === "client";
+                    return (
+                      <div key={m.id} className={cn("flex flex-col max-w-[80%]", mine ? "ml-auto items-end" : "items-start")}>
+                        <div
+                          className={cn(
+                            "px-3.5 py-2 rounded-2xl text-sm",
+                            mine ? "bg-brand-600 text-white rounded-br-sm" : "bg-slate-100 text-foreground rounded-bl-sm"
+                          )}
+                        >
+                          {m.content}
+                        </div>
+                        <span className="text-[11px] text-muted mt-1">
+                          {isTeam(m.user_role) ? `${m.user_name} · team` : "You"} · {formatDate(m.created_at)}
+                        </span>
+                      </div>
+                    );
+                  })}
+                  <div ref={chatEndRef} />
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    value={chatMsg}
+                    onChange={(e) => setChatMsg(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && sendChat()}
+                    placeholder="Type a message…"
+                    className="flex-1 rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500/30"
+                  />
+                  <button
+                    onClick={sendChat}
+                    className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 text-white px-4 py-2 text-sm font-medium hover:bg-brand-700 transition-colors"
+                  >
+                    <Send className="w-4 h-4" /> Send
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
         </div>
 
         {/* Sidebar */}
         <div className="space-y-6">
+          {/* Feature requests */}
+          <div className="reveal bg-white rounded-2xl border border-border p-6 shadow-sm">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2">
+                <Lightbulb className="w-4 h-4 text-brand-600" />
+                <h2 className="font-display font-semibold">Request a Feature</h2>
+              </div>
+              <button
+                onClick={() => setFrOpen((o) => !o)}
+                className="inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:underline"
+              >
+                <Plus className="w-3.5 h-3.5" /> New
+              </button>
+            </div>
+            {frOpen && (
+              <div className="space-y-2 mb-4 p-3 rounded-xl bg-slate-50 border border-border">
+                <input
+                  value={fr.title}
+                  onChange={(e) => setFr({ ...fr, title: e.target.value })}
+                  placeholder="What would you like us to build?"
+                  className="w-full rounded-lg border border-border px-3 py-2 text-sm"
+                />
+                <textarea
+                  value={fr.description}
+                  onChange={(e) => setFr({ ...fr, description: e.target.value })}
+                  placeholder="Add any detail (optional)"
+                  className="w-full rounded-lg border border-border px-3 py-2 text-sm min-h-[64px]"
+                />
+                {projects.length > 0 && (
+                  <select
+                    className="w-full rounded-lg border border-border px-3 py-2 text-sm"
+                    value={fr.project_id}
+                    onChange={(e) => setFr({ ...fr, project_id: e.target.value })}
+                  >
+                    <option value="">General request</option>
+                    {projects.map((p) => (
+                      <option key={p.id} value={p.id}>{p.name}</option>
+                    ))}
+                  </select>
+                )}
+                <button
+                  onClick={submitFeature}
+                  className="w-full rounded-lg bg-brand-600 text-white py-2 text-sm font-medium hover:bg-brand-700 transition-colors"
+                >
+                  Submit request
+                </button>
+              </div>
+            )}
+            <div className="space-y-2">
+              {featureRequests.length === 0 && !frOpen && (
+                <p className="text-sm text-muted text-center py-3">Have an idea? Tell us and we&apos;ll build it.</p>
+              )}
+              {featureRequests.map((f) => (
+                <div key={f.id} className="p-3 rounded-xl border border-border">
+                  <div className="flex items-start justify-between gap-2">
+                    <p className="text-sm font-medium">{f.title}</p>
+                    <Badge variant={FR_STATUS[f.status]?.variant || "default"}>{FR_STATUS[f.status]?.label || f.status}</Badge>
+                  </div>
+                  {f.description && <p className="text-xs text-muted mt-1">{f.description}</p>}
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Team */}
-          <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
+          <div className="reveal bg-white rounded-2xl border border-border p-6 shadow-sm">
             <div className="flex items-center gap-2 mb-4">
               <Users className="w-4 h-4 text-brand-600" />
               <h2 className="font-display font-semibold">Your Team</h2>
@@ -183,7 +357,7 @@ export default function ClientPortal({ user }: { user: SessionUser }) {
           </div>
 
           {/* Account */}
-          <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
+          <div className="reveal bg-white rounded-2xl border border-border p-6 shadow-sm">
             <div className="flex items-center gap-2 mb-4">
               <Shield className="w-4 h-4 text-brand-600" />
               <h2 className="font-display font-semibold">Account</h2>
@@ -199,7 +373,7 @@ export default function ClientPortal({ user }: { user: SessionUser }) {
           </div>
 
           {/* Documents */}
-          <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
+          <div className="reveal bg-white rounded-2xl border border-border p-6 shadow-sm">
             <div className="flex items-center gap-2 mb-4">
               <FileText className="w-4 h-4 text-brand-600" />
               <h2 className="font-display font-semibold">Documents</h2>
@@ -219,7 +393,7 @@ export default function ClientPortal({ user }: { user: SessionUser }) {
           </div>
 
           {/* Invoices */}
-          <div className="bg-white rounded-2xl border border-border p-6 shadow-sm">
+          <div className="reveal bg-white rounded-2xl border border-border p-6 shadow-sm">
             <h2 className="font-display font-semibold mb-4">Invoices</h2>
             <div className="space-y-2">
               {invoices.map((inv) => (

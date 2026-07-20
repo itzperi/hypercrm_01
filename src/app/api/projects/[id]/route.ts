@@ -17,6 +17,15 @@ export async function PATCH(
   const existing = db.prepare(`SELECT id FROM projects WHERE id = ?`).get(id);
   if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
+  // Assign/replace the responsible team members for this project.
+  if (Array.isArray(body.member_ids)) {
+    db.prepare(`DELETE FROM project_members WHERE project_id = ?`).run(id);
+    const stmt = db.prepare(`INSERT OR IGNORE INTO project_members (project_id, user_id) VALUES (?, ?)`);
+    for (const uid of body.member_ids) stmt.run(id, uid);
+    logActivity("project", id, user!.id, "members_updated", `${body.member_ids.length} members`);
+    if (!body.name) return NextResponse.json({ ok: true });
+  }
+
   db.prepare(
     `UPDATE projects SET name = ?, scope_summary = ?, status = ?, health = ?, start_date = ?, deadline = ?, percent_complete = ? WHERE id = ?`
   ).run(

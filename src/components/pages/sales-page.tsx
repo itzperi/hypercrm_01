@@ -5,6 +5,7 @@ import { AppShell } from "@/components/layout";
 import { Card, ProgressBar } from "@/components/ui";
 import { Modal } from "@/components/admin/modal";
 import { AddButton, Btn, Field, Input, Select, RowActions } from "@/components/admin/actions";
+import { SalesAnalytics } from "@/components/sales-analytics";
 import { formatCurrency, STAGE_LABELS, OFFER_LABELS } from "@/lib/utils";
 import { SessionUser } from "@/lib/types";
 import { isExecutive } from "@/lib/admin";
@@ -73,6 +74,7 @@ export default function SalesPage({ user }: { user: SessionUser }) {
 
   return (
     <AppShell user={user} title="Sales">
+      <SalesAnalytics />
       <div className="flex gap-2 mb-6 flex-wrap">
         {["call", "email", "lead", "meeting"].map((t) => (
           <Btn key={t} onClick={() => setShowForm(showForm === t ? null : t)}>

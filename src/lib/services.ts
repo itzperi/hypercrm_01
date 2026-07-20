@@ -255,9 +255,32 @@ export function getClientPortalData(clientId: string) {
     .all(clientId);
   const updates = db
     .prepare(
-      `SELECT cu.*, u.name as author_name FROM client_updates cu
+      `SELECT cu.*, u.name as author_name, p.name as project_name FROM client_updates cu
        JOIN users u ON u.id = cu.user_id
-       WHERE cu.client_id = ? ORDER BY cu.created_at DESC LIMIT 10`
+       LEFT JOIN projects p ON p.id = cu.project_id
+       WHERE cu.client_id = ? ORDER BY cu.created_at DESC LIMIT 20`
+    )
+    .all(clientId) as Array<Record<string, unknown> & { media_json: string | null }>;
+  const updatesWithMedia = updates.map((u) => ({
+    ...u,
+    media: u.media_json ? JSON.parse(u.media_json as string) : [],
+  }));
+
+  const featureRequests = db
+    .prepare(
+      `SELECT fr.*, p.name as project_name FROM feature_requests fr
+       LEFT JOIN projects p ON p.id = fr.project_id
+       WHERE fr.client_id = ? ORDER BY fr.created_at DESC`
+    )
+    .all(clientId);
+
+  const messages = db
+    .prepare(
+      `SELECT m.*, u.name as user_name, u.role as user_role, p.name as project_name
+       FROM chat_messages m
+       JOIN users u ON u.id = m.user_id
+       JOIN projects p ON p.id = m.project_id
+       WHERE p.client_id = ? ORDER BY m.created_at`
     )
     .all(clientId);
 
@@ -284,7 +307,20 @@ export function getClientPortalData(clientId: string) {
     .prepare(`SELECT username FROM users WHERE client_id = ? AND role = 'client'`)
     .get(clientId) as { username: string } | undefined;
 
-  return { client, projects, tasks, documents, invoices, payments, updates, progress, teamMembers, portalUser };
+  return {
+    client,
+    projects,
+    tasks,
+    documents,
+    invoices,
+    payments,
+    updates: updatesWithMedia,
+    featureRequests,
+    messages,
+    progress,
+    teamMembers,
+    portalUser,
+  };
 }
 
 export function getAllClients() {
@@ -322,9 +358,14 @@ export function getProjectWithDetails(projectId: string) {
     .all(projectId);
   const members = db
     .prepare(
-      `SELECT u.id, u.name FROM project_members pm JOIN users u ON u.id = pm.user_id WHERE pm.project_id = ?`
+      `SELECT u.id, u.name, u.role FROM project_members pm JOIN users u ON u.id = pm.user_id WHERE pm.project_id = ?`
     )
     .all(projectId);
+  const assignableStaff = db
+    .prepare(
+      `SELECT id, name, role FROM users WHERE role IN ('tech_employee','cto_admin','ceo_admin','sales_employee') ORDER BY name`
+    )
+    .all();
   const activity = db
     .prepare(
       `SELECT a.*, u.name as user_name FROM activity_logs a LEFT JOIN users u ON u.id = a.user_id
@@ -333,7 +374,7 @@ export function getProjectWithDetails(projectId: string) {
     )
     .all(projectId, projectId);
 
-  return { project, tasks, messages, members, activity };
+  return { project, tasks, messages, members, assignableStaff, activity };
 }
 
 export function getContentItems() {
@@ -343,6 +384,92 @@ export function getContentItems() {
       `SELECT c.*, u.name as owner_name FROM content_items c LEFT JOIN users u ON u.id = c.owner_id ORDER BY c.due_date`
     )
     .all();
+}
+
+export function getCallAnalytics() {
+  const db = getDb();
+  const month = currentMonth();
+
+  const one = (sql: string, ...p: unknown[]) =>
+    (db.prepare(sql).get(...(p as [])) as { c: number }).c;
+
+  const totals = {
+    callsAllTime: one(`SELECT COUNT(*) as c FROM call_logs`),
+    callsMonth: one(`SELECT COUNT(*) as c FROM call_logs WHERE logged_at LIKE ?`, `${month}%`),
+    callsToday: one(`SELECT COUNT(*) as c FROM call_logs WHERE date(logged_at) = date('now')`),
+    meetingsBooked: one(`SELECT COUNT(*) as c FROM meetings`),
+    leadsTotal: one(`SELECT COUNT(*) as c FROM leads`),
+    converted: one(`SELECT COUNT(*) as c FROM leads WHERE stage = 'closed_won'`),
+    lost: one(`SELECT COUNT(*) as c FROM leads WHERE stage = 'closed_lost'`),
+  };
+
+  const emails = db
+    .prepare(
+      `SELECT COALESCE(SUM(sent_count),0) as sent, COALESCE(SUM(reply_count),0) as replies FROM email_logs`
+    )
+    .get() as { sent: number; replies: number };
+
+  const wonValue = (
+    db.prepare(`SELECT COALESCE(SUM(value),0) as v FROM leads WHERE stage = 'closed_won'`).get() as {
+      v: number;
+    }
+  ).v;
+
+  // Outcome breakdown of every logged call
+  const outcomes = db
+    .prepare(`SELECT outcome, COUNT(*) as c FROM call_logs GROUP BY outcome ORDER BY c DESC`)
+    .all() as Array<{ outcome: string; c: number }>;
+
+  // 14-day daily trend of calls
+  const daily = db
+    .prepare(
+      `SELECT date(logged_at) as day, COUNT(*) as calls FROM call_logs
+       WHERE date(logged_at) >= date('now', '-13 days')
+       GROUP BY date(logged_at)`
+    )
+    .all() as Array<{ day: string; calls: number }>;
+  const dailyMap = new Map(daily.map((d) => [d.day, d.calls]));
+  const trend: Array<{ day: string; calls: number }> = [];
+  for (let i = 13; i >= 0; i--) {
+    const d = new Date();
+    d.setDate(d.getDate() - i);
+    const key = d.toISOString().slice(0, 10);
+    trend.push({ day: key.slice(5), calls: dailyMap.get(key) ?? 0 });
+  }
+
+  // Lead funnel
+  const funnel = db
+    .prepare(`SELECT stage, COUNT(*) as c FROM leads GROUP BY stage`)
+    .all() as Array<{ stage: string; c: number }>;
+
+  // Per-rep performance
+  const reps = db
+    .prepare(
+      `SELECT u.id, u.name,
+        (SELECT COUNT(*) FROM call_logs cl WHERE cl.user_id = u.id) as calls,
+        (SELECT COUNT(*) FROM meetings m WHERE m.user_id = u.id) as meetings,
+        (SELECT COUNT(*) FROM leads l WHERE l.assigned_to = u.id AND l.stage = 'closed_won') as won,
+        (SELECT COALESCE(SUM(l.value),0) FROM leads l WHERE l.assigned_to = u.id AND l.stage = 'closed_won') as revenue
+       FROM users u
+       WHERE u.role IN ('sales_employee','ceo_admin','cto_admin')
+       ORDER BY won DESC, calls DESC`
+    )
+    .all() as Array<{ id: string; name: string; calls: number; meetings: number; won: number; revenue: number }>;
+
+  const conversionRate = totals.leadsTotal ? Math.round((totals.converted / totals.leadsTotal) * 100) : 0;
+  const replyRate = emails.sent ? Math.round((emails.replies / emails.sent) * 100) : 0;
+  const callToMeeting = totals.callsAllTime ? Math.round((totals.meetingsBooked / totals.callsAllTime) * 100) : 0;
+
+  return {
+    totals,
+    emails,
+    wonValue,
+    outcomes,
+    trend,
+    funnel,
+    reps,
+    rates: { conversionRate, replyRate, callToMeeting },
+  };
 }
 
 export function generateInvoiceData(clientId: string, lineItems: Array<{ description: string; amount: number }>) {

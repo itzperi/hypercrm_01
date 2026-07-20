@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { SessionUser } from "@/lib/types";
+import { NotificationBell } from "@/components/notifications";
+import { RevealOnMount } from "@/components/animate";
 import {
   LayoutDashboard,
   Users,
@@ -115,6 +117,7 @@ export function AppShell({
           <div className="flex items-center justify-between">
             <h1 className="font-display font-semibold text-lg">{title || "Dashboard"}</h1>
             <div className="flex items-center gap-3">
+              <NotificationBell />
               <span className="text-sm text-muted">{user.name}</span>
               <div className="w-8 h-8 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center text-sm font-medium">
                 {user.name.charAt(0)}
@@ -124,6 +127,7 @@ export function AppShell({
         </header>
         <div className="p-8">{children}</div>
       </main>
+      <RevealOnMount />
     </div>
   );
 }
@@ -172,6 +176,7 @@ export function PortalShell({
       <div className="max-w-6xl mx-auto p-6 md:p-8">
         {children}
       </div>
+      <RevealOnMount />
     </div>
   );
 }

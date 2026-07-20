@@ -29,7 +29,9 @@ export function Btn({
         className
       )}
       {...props}
-    />
+    >
+      {children}
+    </button>
   );
 }
 

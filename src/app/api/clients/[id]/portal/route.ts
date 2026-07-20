@@ -24,7 +24,31 @@ export async function POST(
     return NextResponse.json({ error: "Portal account already exists" }, { status: 400 });
   }
 
-  const { username, password } = generateClientCredentials(client.name);
+  // Allow the admin to choose credentials, otherwise auto-generate them.
+  let username: string;
+  let password: string;
+  try {
+    const body = await request.json();
+    username = body?.username?.trim() || "";
+    password = body?.password?.trim() || "";
+  } catch {
+    username = "";
+    password = "";
+  }
+  if (!username || !password) {
+    const gen = generateClientCredentials(client.name);
+    username = username || gen.username;
+    password = password || gen.password;
+  }
+  if (password.length < 6) {
+    return NextResponse.json({ error: "Password must be at least 6 characters" }, { status: 400 });
+  }
+
+  const taken = db.prepare(`SELECT 1 FROM users WHERE username = ?`).get(username);
+  if (taken) {
+    return NextResponse.json({ error: "That username is already taken" }, { status: 400 });
+  }
+
   const userId = await createUser({
     username,
     password,

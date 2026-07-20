@@ -230,9 +230,53 @@ function initSchema(database: Database) {
       project_id TEXT REFERENCES projects(id),
       user_id TEXT NOT NULL REFERENCES users(id),
       content TEXT NOT NULL,
+      media_json TEXT,
+      created_at TEXT DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS feature_requests (
+      id TEXT PRIMARY KEY,
+      client_id TEXT NOT NULL REFERENCES clients(id),
+      project_id TEXT REFERENCES projects(id),
+      user_id TEXT REFERENCES users(id),
+      title TEXT NOT NULL,
+      description TEXT,
+      priority TEXT DEFAULT 'medium',
+      status TEXT DEFAULT 'requested',
+      created_at TEXT DEFAULT (datetime('now')),
+      updated_at TEXT DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS notifications (
+      id TEXT PRIMARY KEY,
+      user_id TEXT NOT NULL REFERENCES users(id),
+      type TEXT NOT NULL,
+      title TEXT NOT NULL,
+      body TEXT,
+      link TEXT,
+      entity_id TEXT,
+      read INTEGER DEFAULT 0,
       created_at TEXT DEFAULT (datetime('now'))
     );
   `);
+
+  runMigrations(database);
+}
+
+// Idempotent column additions for existing databases.
+function runMigrations(database: Database) {
+  const cols = (table: string) =>
+    (database.prepare(`PRAGMA table_info(${table})`).all() as Array<{ name: string }>).map((c) => c.name);
+
+  if (!cols("client_updates").includes("media_json")) {
+    database.exec(`ALTER TABLE client_updates ADD COLUMN media_json TEXT`);
+  }
+  if (!cols("tasks").includes("overdue_notified")) {
+    database.exec(`ALTER TABLE tasks ADD COLUMN overdue_notified INTEGER DEFAULT 0`);
+  }
+  if (!cols("chat_messages").includes("attachment_json")) {
+    database.exec(`ALTER TABLE chat_messages ADD COLUMN attachment_json TEXT`);
+  }
 }
 
 export function getDb(): Database {
@@ -265,6 +309,75 @@ export function logActivity(
       action,
       details ?? null
     );
+}
+
+export function notify(
+  userId: string,
+  type: string,
+  title: string,
+  body?: string,
+  link?: string,
+  entityId?: string
+) {
+  const database = getDb();
+  database
+    .prepare(
+      `INSERT INTO notifications (id, user_id, type, title, body, link, entity_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`
+    )
+    .run(crypto.randomUUID(), userId, type, title, body ?? null, link ?? null, entityId ?? null);
+}
+
+// Detects tasks that are past their due date and not done, and notifies the
+// admins (Peri & Mounesh) plus the assignee — exactly once per task.
+export function checkOverdueTasks() {
+  const database = getDb();
+  const overdue = database
+    .prepare(
+      `SELECT t.id, t.title, t.assignee_id, t.project_id, t.due_date,
+              p.name as project_name, u.name as assignee_name
+       FROM tasks t
+       JOIN projects p ON p.id = t.project_id
+       LEFT JOIN users u ON u.id = t.assignee_id
+       WHERE t.status != 'done'
+         AND t.due_date IS NOT NULL
+         AND date(t.due_date) < date('now')
+         AND COALESCE(t.overdue_notified, 0) = 0`
+    )
+    .all() as Array<{
+    id: string;
+    title: string;
+    assignee_id: string | null;
+    project_id: string;
+    due_date: string;
+    project_name: string;
+    assignee_name: string | null;
+  }>;
+
+  if (overdue.length === 0) return;
+
+  const admins = database
+    .prepare(`SELECT id FROM users WHERE role IN ('ceo_admin', 'cto_admin')`)
+    .all() as Array<{ id: string }>;
+
+  const mark = database.prepare(`UPDATE tasks SET overdue_notified = 1 WHERE id = ?`);
+
+  for (const task of overdue) {
+    const who = task.assignee_name ? ` — assigned to ${task.assignee_name}` : " — unassigned";
+    const recipients = new Set<string>(admins.map((a) => a.id));
+    if (task.assignee_id) recipients.add(task.assignee_id);
+    for (const rid of recipients) {
+      notify(
+        rid,
+        "task_overdue",
+        `Overdue task: ${task.title}`,
+        `In "${task.project_name}", due ${task.due_date}${who}.`,
+        `/projects/${task.project_id}`,
+        task.id
+      );
+    }
+    mark.run(task.id);
+  }
 }
 
 export function sqlGet<T>(sql: string, ...params: QueryValue[]): T | undefined {
